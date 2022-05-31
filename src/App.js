@@ -6,9 +6,9 @@ import {
 // Global Component
 import ProtectedRoutes from './components/ProtectedRoutes';
 
-// Layout
-import UserLayout from './Layouts/UserLayout';
-import AdminLayout from './Layouts/AdminLayout';
+// Layouts
+import UserLayout from './layouts/UserLayout';
+import AdminLayout from './layouts/AdminLayout';
 
 // Customer Pages
 import CustomerHome from './pages/customer/Home';
