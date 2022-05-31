@@ -10,8 +10,12 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import UserLayout from './Layouts/UserLayout';
 import AdminLayout from './Layouts/AdminLayout';
 
-// Pages
-import Home from './pages/Home';
+// Customer Pages
+import CustomerHome from './pages/customer/Home';
+import CustomerSignOut from './pages/customer/SignOut';
+
+// Admin Pages
+import AdminSignOut from './pages/admin/SignOut';
 
 const App = () => {
   const user = useSelector((state) => (state.user.value));
@@ -23,14 +27,14 @@ const App = () => {
       <Route path="/" element={<UserLayout />}>
 
         <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={user} />}>
-          <Route index element={<Home />} />
+          <Route index element={<CustomerHome />} />
 
-          <Route path="sign-out" element={<Home />} />
+          <Route path="sign-out" element={<CustomerSignOut />} />
         </Route>
 
         <Route element={<ProtectedRoutes redirectPath="/" allowedBy={!user} />}>
-          <Route path="sign-in" element={<Home />} />
-          <Route path="sign-up" element={<Home />} />
+          <Route path="sign-in" element={<CustomerHome />} />
+          <Route path="sign-up" element={<CustomerHome />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
@@ -38,14 +42,14 @@ const App = () => {
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Home />} />
+        <Route index element={<CustomerHome />} />
 
         <Route element={<ProtectedRoutes redirectPath="/admin/sign-in" allowedBy={admin} />}>
-          <Route path="sign-out" element={<Home />} />
+          <Route path="sign-out" element={<AdminSignOut />} />
         </Route>
 
-        <Route element={<ProtectedRoutes redirectPath="/" allowedBy={!admin} />}>
-          <Route path="sign-in" element={<Home />} />
+        <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={!admin} />}>
+          <Route path="sign-in" element={<CustomerHome />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
