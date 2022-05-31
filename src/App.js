@@ -39,6 +39,7 @@ const App = () => {
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
+      {/* ./Customers */}
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLayout />}>
@@ -54,6 +55,7 @@ const App = () => {
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>
+      {/* ./Admin */}
     </Routes>
   );
 }
