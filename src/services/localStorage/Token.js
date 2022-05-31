@@ -1,24 +1,24 @@
 import CONFIG from "../../global/CONFIG"
 
 const Token = {
-  createUserToken(token) {
-    return localStorage.setItem(CONFIG.USER_TOKEN_KEY, token)
+  saveCustomerToken(token) {
+    return localStorage.setItem(CONFIG.CUSTOMER_TOKEN_KEY, token)
   },
 
-  createAdminToken(token) {
+  saveAdminToken(token) {
     return localStorage.setItem(CONFIG.ADMIN_TOKEN_KEY, token)
   },
 
-  getUserToken() {
-    return localStorage.getItem(CONFIG.USER_TOKEN_KEY);
+  getCustomerToken() {
+    return localStorage.getItem(CONFIG.CUSTOMER_TOKEN_KEY);
   },
 
   getAdminToken() {
     return localStorage.getItem(CONFIG.ADMIN_TOKEN_KEY);
   },
 
-  removeUserToken() {
-    return localStorage.removeItem(CONFIG.USER_TOKEN_KEY);
+  removeCustomerToken() {
+    return localStorage.removeItem(CONFIG.CUSTOMER_TOKEN_KEY);
   },
 
   removeAdminToken() {

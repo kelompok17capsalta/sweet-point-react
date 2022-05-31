@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 // Redux Action
-import { updateUser } from '../../services/redux/User';
+import { updateCustomer } from '../../services/redux/Customer';
 
 // API Service
-import User from '../../services/api/User';
+import Customer from '../../services/api/Customer';
 
-const UserLayout = () => {
+const CustomerLayout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const updateData = async () => {
       try {
-        const newUser = await User.getUser();
-        dispatch(updateUser(newUser));
+        const newCustomer = await Customer.getCustomer();
+        dispatch(updateCustomer(newCustomer));
       } catch (error) {
         console.log(error);
       }
@@ -37,4 +37,4 @@ const UserLayout = () => {
   );
 };
 
-export default UserLayout;
+export default CustomerLayout;

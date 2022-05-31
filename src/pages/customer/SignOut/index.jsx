@@ -4,12 +4,12 @@ import {
 } from 'react-router-dom';
 
 // Redux Actions
-import { updateUser } from '../../../services/redux/User';
+import { updateCustomer } from '../../../services/redux/Customer';
 
 const SignOut = () => {
   const dispatch = useDispatch();
 
-  dispatch(updateUser(null));
+  dispatch(updateCustomer(null));
 
   return (<Navigate to="/" replace />);
 };

@@ -7,7 +7,7 @@ import {
 import ProtectedRoutes from './components/ProtectedRoutes';
 
 // Layouts
-import UserLayout from './layouts/UserLayout';
+import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
 
 // Customer Pages
@@ -18,21 +18,21 @@ import CustomerSignOut from './pages/customer/SignOut';
 import AdminSignOut from './pages/admin/SignOut';
 
 const App = () => {
-  const user = useSelector((state) => (state.user.value));
+  const customer = useSelector((state) => (state.customer.value));
   const admin = useSelector((state) => (state.admin.value));
 
   return (
     <Routes>
-      {/* Users */}
-      <Route path="/" element={<UserLayout />}>
+      {/* Customers */}
+      <Route path="/" element={<CustomerLayout />}>
 
-        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={user} />}>
+        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
           <Route index element={<CustomerHome />} />
 
           <Route path="sign-out" element={<CustomerSignOut />} />
         </Route>
 
-        <Route element={<ProtectedRoutes redirectPath="/" allowedBy={!user} />}>
+        <Route element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}>
           <Route path="sign-in" element={<CustomerHome />} />
           <Route path="sign-up" element={<CustomerHome />} />
         </Route>
