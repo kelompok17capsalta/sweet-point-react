@@ -26,13 +26,17 @@ const AdminLayout = () => {
 
   return (
     <>
-      <header>Ini Header</header>
+      <header>
+        {/* Ini Header */}
+      </header>
 
       <main>
         <Outlet />
       </main>
 
-      <footer>Ini Footer</footer>
+      <footer>
+        {/* Ini Footer */}
+      </footer>
     </>
   );
 };
