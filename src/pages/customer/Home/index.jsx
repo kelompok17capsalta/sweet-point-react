@@ -6,7 +6,7 @@ const Home = () => {
 
   console.log(customer);
   return (
-    <div className={`container ${styles.container_custom}`}>
+    <div className={`${styles.container_custom}`}>
       Hello World.
     </div>
   );
