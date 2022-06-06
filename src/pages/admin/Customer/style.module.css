@@ -1,0 +1,34 @@
+.input_icon {
+  background-color: transparent;
+}
+
+.input {
+  border-left: 0;
+  border-right: 0;
+}
+
+.input_button {
+  width: 100%;
+}
+.input_button button {
+  width: 100%;
+  background-color: #5B6AD0;
+}
+
+.sort_button button {
+  border-color: grey;
+}
+.sort_button button:hover {
+  background-color: #5B6AD0;
+  color: white;
+}
+.sort_button li button:active {
+  background-color: #5B6AD0;
+  color: white;
+}
+
+@media (min-width: 992px) {
+  .input_button {
+    width: 50%;
+  }
+}

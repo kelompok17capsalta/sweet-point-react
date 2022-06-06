@@ -16,6 +16,7 @@ import CustomerSignOut from './pages/customer/SignOut';
 
 // Admin Pages
 import AdminSignOut from './pages/admin/SignOut';
+import AdminCustomer from './pages/admin/Customer';
 
 const App = () => {
   const customer = useSelector((state) => (state.customer.value));
@@ -45,9 +46,10 @@ const App = () => {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<CustomerHome />} />
 
-        <Route element={<ProtectedRoutes redirectPath="/admin/sign-in" allowedBy={admin} />}>
+        {/* <Route element={<ProtectedRoutes redirectPath="/admin/sign-in" allowedBy={admin} />}> */}
           <Route path="sign-out" element={<AdminSignOut />} />
-        </Route>
+          <Route path="customer" element={<AdminCustomer />} />
+        {/* </Route> */}
 
         <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={!admin} />}>
           <Route path="sign-in" element={<CustomerHome />} />
