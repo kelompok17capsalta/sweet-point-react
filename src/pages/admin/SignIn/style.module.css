@@ -1,0 +1,26 @@
+.text_login {
+  font-size: large;
+  font-weight: bold;
+  color: #5d6fff;
+}
+.color_text {
+  color: #5d6fff;
+}
+.body_form {
+  margin-top: 10%;
+}
+.body_login {
+  width: auto;
+  height: 828px;
+  display: flex;
+  background-image: url("./bglogin.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.gap {
+  column-gap: 10rem;
+}
+.button_login {
+  background-color: #5d6fff;
+  width: 100%;
+}

@@ -1,31 +1,29 @@
-import { useSelector } from 'react-redux';
-import {
-  Routes, Route, Navigate,
-} from 'react-router-dom';
+import { useSelector } from "react-redux";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 // Global Component
-import ProtectedRoutes from './components/ProtectedRoutes';
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 // Layouts
-import CustomerLayout from './layouts/CustomerLayout';
-import AdminLayout from './layouts/AdminLayout';
+import CustomerLayout from "./layouts/CustomerLayout";
+import AdminLayout from "./layouts/AdminLayout";
 
 // Customer Pages
-import CustomerHome from './pages/customer/Home';
-import CustomerSignOut from './pages/customer/SignOut';
+import CustomerHome from "./pages/customer/Home";
+import CustomerSignOut from "./pages/customer/SignOut";
 
 // Admin Pages
-import AdminSignOut from './pages/admin/SignOut';
+import AdminSignOut from "./pages/admin/SignOut";
+import AdminSignIn from "./pages/admin/SignIn";
 
 const App = () => {
-  const customer = useSelector((state) => (state.customer.value));
-  const admin = useSelector((state) => (state.admin.value));
+  const customer = useSelector((state) => state.customer.value);
+  const admin = useSelector((state) => state.admin.value);
 
   return (
     <Routes>
       {/* Customers */}
       <Route path="/" element={<CustomerLayout />}>
-
         <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
           <Route index element={<CustomerHome />} />
 
@@ -43,14 +41,14 @@ const App = () => {
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<CustomerHome />} />
+        <Route index element={<AdminSignIn />} />
 
         <Route element={<ProtectedRoutes redirectPath="/admin/sign-in" allowedBy={admin} />}>
           <Route path="sign-out" element={<AdminSignOut />} />
         </Route>
 
         <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={!admin} />}>
-          <Route path="sign-in" element={<CustomerHome />} />
+          <Route path="sign-in" element={<AdminSignIn />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
@@ -58,6 +56,6 @@ const App = () => {
       {/* ./Admin */}
     </Routes>
   );
-}
+};
 
 export default App;
