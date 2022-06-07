@@ -20,7 +20,7 @@ import AdminCustomer from "./pages/admin/Customer";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
-  const admin = useSelector((state) => state.admin.value);
+  // const admin = useSelector((state) => state.admin.value);
 
   return (
     <Routes>
