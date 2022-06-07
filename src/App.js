@@ -15,6 +15,7 @@ import CustomerSignOut from "./pages/customer/SignOut";
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
 import AdminSignOut from "./pages/admin/SignOut";
+import AdminDashboard from "./pages/admin/Dashboard";
 import AdminCustomer from "./pages/admin/Customer";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
         {/* <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}> */}
           <Route path="sign-out" element={<AdminSignOut />} />
           <Route path="customer" element={<AdminCustomer />} />
+          <Route path="dashboard" element={<Dashboard />} />
         {/* </Route> */}
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
