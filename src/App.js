@@ -44,14 +44,10 @@ const App = () => {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminSignIn />} />
 
-        {/* <Route element={<ProtectedRoutes redirectPath="/admin/sign-in" allowedBy={admin} />}> */}
+        {/* <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}> */}
           <Route path="sign-out" element={<AdminSignOut />} />
           <Route path="customer" element={<AdminCustomer />} />
         {/* </Route> */}
-
-        <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={!admin} />}>
-          <Route path="sign-in" element={<AdminSignIn />} />
-        </Route>
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>

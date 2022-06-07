@@ -11,7 +11,7 @@
 }
 .body_login {
   width: auto;
-  height: 828px;
+  min-height: 100vh;
   display: flex;
   background-image: url("./bglogin.png");
   background-repeat: no-repeat;

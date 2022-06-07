@@ -1,8 +1,16 @@
 import React from "react";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import coin from "./logocoin.png";
 import styles from "./style.module.css";
 
 const SignIn = () => {
+  const admin = useSelector((state) => state.admin.value);
+
+  // if (!admin) {
+  //   return <Navigate to="/" />
+  // }
+
   return (
     <div className={`${styles.body_login}`}>
       <div className={`container`}>
@@ -10,6 +18,7 @@ const SignIn = () => {
           <img className={`px-1`} src={coin} alt=""></img>
           Sweet Point
         </div>
+
         <div className={`container px-4 ${styles.body_form}`}>
           <div className={`row ${styles.gap}`}>
             <div className={`col ${styles.text_h1}`}>
