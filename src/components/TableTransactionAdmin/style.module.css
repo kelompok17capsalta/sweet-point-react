@@ -1,0 +1,65 @@
+table {
+	border-collapse: separate;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+	border-style: none;
+}
+
+thead tr th {
+	font-size: 14px;
+	font-weight: 400;
+	color: #b1b1b1;
+}
+
+tbody tr td {
+	font-size: 16px;
+	color: #404d61 !important;
+}
+
+.arrow_down {
+	font-size: 12px;
+}
+
+.foto_container {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	margin: 0 20px;
+}
+
+/* .foto_profil {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: rgb(212, 71, 71);
+} */
+
+.img_profile {
+	object-fit: cover;
+}
+
+.button {
+	width: 30px;
+	height: 30px;
+	border: none;
+	background-color: transparent;
+	color: #b1b1b1;
+}
+
+.text_success {
+	color: #0064ff;
+}
+
+.text_failed {
+	color: #f63f3f;
+}
+
+.text_pending {
+	color: #f9a348;
+}
