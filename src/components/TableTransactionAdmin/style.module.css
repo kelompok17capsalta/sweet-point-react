@@ -33,12 +33,12 @@ tbody tr td {
 	margin: 0 20px;
 }
 
-.foto_profil {
+/* .foto_profil {
 	width: 100%;
 	height: 100%;
 	border-radius: 50%;
 	background: rgb(212, 71, 71);
-}
+} */
 
 .img_profile {
 	object-fit: cover;

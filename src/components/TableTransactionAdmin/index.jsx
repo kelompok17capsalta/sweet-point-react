@@ -39,11 +39,7 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={styles.foto_container}>
-									<div className={styles.foto_profil}>
-										<img src="" alt="" className={styles.img_profile} />
-									</div>
-								</div>
+								<img src="https://ui-avatars.com/api/?name=dummy+user&background=random&color=ffffff&rounded=true" alt="" className={`${styles.img_profile} me-1`} width="60" height="60" />
 								Darlene Robertson
 							</div>
 						</td>
@@ -66,11 +62,8 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={styles.foto_container}>
-									<div className={styles.foto_profil}>
-										<img src="" alt="" className={styles.img_profile} />
-									</div>
-								</div>
+								<img src="https://ui-avatars.com/api/?name=dummy+user&background=random&color=ffffff&rounded=true" alt="" className={`${styles.img_profile} me-1`} width="60" height="60" />
+
 								Darlene Rober
 							</div>
 						</td>
@@ -93,11 +86,8 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={styles.foto_container}>
-									<div className={styles.foto_profil}>
-										<img src="" alt="" className={styles.img_profile} />
-									</div>
-								</div>
+								<img src="https://ui-avatars.com/api/?name=dummy+user&background=random&color=ffffff&rounded=true" alt="" className={`${styles.img_profile} me-1`} width="60" height="60" />
+								
 								Darlen
 							</div>
 						</td>
@@ -120,11 +110,8 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={styles.foto_container}>
-									<div className={styles.foto_profil}>
-										<img src="" alt="" className={styles.img_profile} />
-									</div>
-								</div>
+								<img src="https://ui-avatars.com/api/?name=dummy+user&background=random&color=ffffff&rounded=true" alt="" className={`${styles.img_profile} me-1`} width="60" height="60" />
+
 								Darlene Rober
 							</div>
 						</td>
