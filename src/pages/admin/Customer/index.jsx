@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTable } from 'react-table';
 import { Link } from 'react-router-dom';
 
+import AdminNavbar from '../../../components/AdminNavbar';
 import AdminFooter from '../../../components/AdminFooter';
 
 import styles from './style.module.css';
@@ -67,8 +68,10 @@ const Customer = () => {
 
   return (
     <>
+      <AdminNavbar />
+
       <div className="container">
-        <section className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between">
+        <section className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-4">
           <h1 className="mb-0 h3">Data Users</h1>
 
           <form className="d-flex flex-column flex-lg-row mt-3 mt-lg-1">
@@ -105,7 +108,7 @@ const Customer = () => {
             </button>
 
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><button className="dropdown-item">Default</button></li>
+              <li><button className="dropdown-item active">Default</button></li>
               <li><button className="dropdown-item">Name</button></li>
               <li><button className="dropdown-item">Username</button></li>
             </ul>
@@ -129,7 +132,6 @@ const Customer = () => {
               <tbody {...getTableBodyProps()}>
                 {rows.map((row, i) => {
                   prepareRow(row);
-                  console.log(row)
                   return (
                     <tr {...row.getRowProps()}>
                       {row.cells.map((cell, cellIdx) => (
