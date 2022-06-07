@@ -1,36 +1,35 @@
-import React from "react";
-import style from "./TableTransactionAdmin.module.css";
+import styles from "./style.module.css";
 import iconEdit from "./icon-edit.svg";
 import iconDelete from "./icon-delete.svg";
 
 const TableTransactionAdmin = () => {
 	return (
 		<div className="table-responsive">
-			<table class="table table-striped">
+			<table className="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col">
 							Name
-							<button className={style.button}>
-								<i class={`bi bi-caret-down-fill ms-1 ${style.arrow_down}`}></i>
+							<button className={styles.button}>
+								<i className={`bi bi-caret-down-fill ms-1 ${styles.arrow_down}`}></i>
 							</button>
 						</th>
 						<th scope="col">
 							Email
-							<button className={style.button}>
-								<i class={`bi bi-caret-down-fill ms-1 ${style.arrow_down}`}></i>
+							<button className={styles.button}>
+								<i className={`bi bi-caret-down-fill ms-1 ${styles.arrow_down}`}></i>
 							</button>
 						</th>
 						<th scope="col">
 							Status
-							<button className={style.button}>
-								<i class={`bi bi-caret-down-fill ms-1 ${style.arrow_down}`}></i>
+							<button className={styles.button}>
+								<i className={`bi bi-caret-down-fill ms-1 ${styles.arrow_down}`}></i>
 							</button>
 						</th>
 						<th scope="col" colSpan="2">
 							Category
-							<button className={style.button}>
-								<i class={`bi bi-caret-down-fill ms-1 ${style.arrow_down}`}></i>
+							<button className={styles.button}>
+								<i className={`bi bi-caret-down-fill ms-1 ${styles.arrow_down}`}></i>
 							</button>
 						</th>
 					</tr>
@@ -40,9 +39,9 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={style.foto_container}>
-									<div className={style.foto_profil}>
-										<img src="" alt="" className={style.img_profile} />
+								<div className={styles.foto_container}>
+									<div className={styles.foto_profil}>
+										<img src="" alt="" className={styles.img_profile} />
 									</div>
 								</div>
 								Darlene Robertson
@@ -50,14 +49,14 @@ const TableTransactionAdmin = () => {
 						</td>
 						<td className="align-middle">trungkienspktnd@gamail.com</td>
 						<td className="align-middle pe-5">
-							<span className={style.text_success}>Success</span>
+							<span className={styles.text_success}>Success</span>
 						</td>
 						<td className="align-middle pe-5">Pulsa</td>
 						<td className="align-middle pe-5">
-							<button className={`me-3 ${style.button}`}>
+							<button className={`me-3 ${styles.button}`}>
 								<img src={iconEdit} alt="edit" />
 							</button>
-							<button className={style.button}>
+							<button className={styles.button}>
 								<img src={iconDelete} alt="delete" />
 							</button>
 						</td>
@@ -67,9 +66,9 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={style.foto_container}>
-									<div className={style.foto_profil}>
-										<img src="" alt="" className={style.img_profile} />
+								<div className={styles.foto_container}>
+									<div className={styles.foto_profil}>
+										<img src="" alt="" className={styles.img_profile} />
 									</div>
 								</div>
 								Darlene Rober
@@ -77,14 +76,14 @@ const TableTransactionAdmin = () => {
 						</td>
 						<td className="align-middle">truktnd@gamail.com</td>
 						<td className="align-middle pe-5">
-							<span className={style.text_failed}>Failed</span>
+							<span className={styles.text_failed}>Failed</span>
 						</td>
 						<td className="align-middle pe-5">Cash Out</td>
 						<td className="align-middle pe-5">
-							<button className={`me-3 ${style.button}`}>
+							<button className={`me-3 ${styles.button}`}>
 								<img src={iconEdit} alt="edit" />
 							</button>
-							<button className={style.button}>
+							<button className={styles.button}>
 								<img src={iconDelete} alt="delete" />
 							</button>
 						</td>
@@ -94,9 +93,9 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={style.foto_container}>
-									<div className={style.foto_profil}>
-										<img src="" alt="" className={style.img_profile} />
+								<div className={styles.foto_container}>
+									<div className={styles.foto_profil}>
+										<img src="" alt="" className={styles.img_profile} />
 									</div>
 								</div>
 								Darlen
@@ -104,14 +103,14 @@ const TableTransactionAdmin = () => {
 						</td>
 						<td className="align-middle">trungkienspktnd@gamail.com</td>
 						<td className="align-middle pe-5">
-							<span className={style.text_failed}>Failed</span>
+							<span className={styles.text_failed}>Failed</span>
 						</td>
 						<td className="align-middle pe-5">E-Money</td>
 						<td className="align-middle pe-5">
-							<button className={`me-3 ${style.button}`}>
+							<button className={`me-3 ${styles.button}`}>
 								<img src={iconEdit} alt="edit" />
 							</button>
-							<button className={style.button}>
+							<button className={styles.button}>
 								<img src={iconDelete} alt="delete" />
 							</button>
 						</td>
@@ -121,9 +120,9 @@ const TableTransactionAdmin = () => {
 					<tr>
 						<td>
 							<div className="d-flex align-items-center">
-								<div className={style.foto_container}>
-									<div className={style.foto_profil}>
-										<img src="" alt="" className={style.img_profile} />
+								<div className={styles.foto_container}>
+									<div className={styles.foto_profil}>
+										<img src="" alt="" className={styles.img_profile} />
 									</div>
 								</div>
 								Darlene Rober
@@ -131,14 +130,14 @@ const TableTransactionAdmin = () => {
 						</td>
 						<td className="align-middle">ngkienspktnd@gamail.com</td>
 						<td className="align-middle pe-5">
-							<span className={style.text_pending}>Pending</span>
+							<span className={styles.text_pending}>Pending</span>
 						</td>
 						<td className="align-middle pe-5">Paket Data</td>
 						<td className="align-middle pe-5">
-							<button className={`me-3 ${style.button}`}>
+							<button className={`me-3 ${styles.button}`}>
 								<img src={iconEdit} alt="edit" />
 							</button>
-							<button className={style.button}>
+							<button className={styles.button}>
 								<img src={iconDelete} alt="delete" />
 							</button>
 						</td>

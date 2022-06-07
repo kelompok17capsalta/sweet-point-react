@@ -48,7 +48,7 @@ const App = () => {
         {/* <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}> */}
           <Route path="sign-out" element={<AdminSignOut />} />
           <Route path="customer" element={<AdminCustomer />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
         {/* </Route> */}
 
         <Route path="*" element={<Navigate to="/admin" replace />} />

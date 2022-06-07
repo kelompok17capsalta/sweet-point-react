@@ -14,8 +14,8 @@ const SignIn = () => {
   return (
     <div className={`${styles.body_login}`}>
       <div className={`container`}>
-        <div className={` mt-3 ${styles.text_login}`}>
-          <img className={`px-1`} src={coin} alt=""></img>
+        <div className={`mt-3 ${styles.text_login}`}>
+          <img className={`px-1`} src={coin} alt="" />
           Sweet Point
         </div>
 

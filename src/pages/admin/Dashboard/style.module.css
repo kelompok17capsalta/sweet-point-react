@@ -8,6 +8,10 @@
 	font-family: "Poppins", sans-serif;
 }
 
+.container {
+	min-height: 100vh;
+}
+
 .transaction {
 	color: #4455a2;
 	font-family: "Poppins", sans-serif;

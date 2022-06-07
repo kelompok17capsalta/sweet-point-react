@@ -1,23 +1,29 @@
-import React from "react";
+import styles from "./style.module.css";
+
+import AdminNavbar from '../../../components/AdminNavbar';
+import AdminFooter from '../../../components/AdminFooter';
 import TableTransactionAdmin from "../../../components/TableTransactionAdmin";
 import TotalPoint from "../../../components/TotalPoint";
-import style from "./dashboard-admin.module.css";
 
 const Dashboard = () => {
 	return (
 		<>
-			<div className="container mt-5">
-				<span className={style.header}>Welcome back, Admin!</span>
+			<AdminNavbar />
+
+			<div className={`container mt-5 ${styles.container}`}>
+				<span className={styles.header}>Welcome back, Admin!</span>
 				<div className="d-flex justify-content-center flex-wrap">
 					<TotalPoint />
 					<TotalPoint />
 					<TotalPoint />
 				</div>
+
 				<div className="container mt-5">
-					<span className={style.transaction}>Recent Transaction</span>
+					<span className={styles.transaction}>Recent Transaction</span>
 					<TableTransactionAdmin />
 				</div>
 			</div>
+			<AdminFooter />
 		</>
 	);
 };
