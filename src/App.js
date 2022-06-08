@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Global Component
-import ProtectedRoutes from "./components/ProtectedRoutes";
+// Routes
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 // Layouts
 import CustomerLayout from "./layouts/CustomerLayout";
