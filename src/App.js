@@ -60,7 +60,7 @@ const App = () => {
         <Route path="redeem" element={<AdminRedeem />} />
         <Route path="redeem/:category" element={<AdminRedeemProducts />} />
         <Route path="sign-out" element={<AdminSignOut />} />
-        <Route path="redeem/:itemId/edit" element={<AdminRedeemEdit />} />
+        <Route path="redeem/:category/:itemId/edit" element={<AdminRedeemEdit />} />
         {/* </Route> */}
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
