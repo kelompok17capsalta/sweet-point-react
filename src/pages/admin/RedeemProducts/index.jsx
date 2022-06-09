@@ -5,7 +5,6 @@ import AdminNavbar from "../../../components/AdminNavbar";
 import AdminFooter from "../../../components/AdminFooter";
 
 import brilogo from "./brilogo.png";
-import ProductCategoryCard from "../../../components/ProductCategoryCard";
 import RedeemProductCard from "../../../components/RedeemProductCard";
 
 const RedeemProducts = () => {
@@ -15,9 +14,9 @@ const RedeemProducts = () => {
     const mockProducts = [];
     for (let i = 0; i < 10; i++) {
       mockProducts.push({
-        title: "Paket " + i,
+        title: `Paket ${i}`,
         description:
-          "Saldo Bank " + i + " sebesar 50.000 rupiah ada daw awdaw daw awd wa",
+          `Saldo Bank ${i} sebesar 50.000 rupiah ada daw awdaw daw awd wa`,
         image: brilogo,
       });
     }

@@ -27,22 +27,22 @@ const Redeem = () => {
           <ProductCategoryCard
             title="Cash Out"
             image={cashout}
-            redirectTo="/admin/redeem-cashout"
+            redirectTo="/admin/redeem/cashout"
           />
           <ProductCategoryCard
             title="E-Money"
             image={eMoney}
-            redirectTo="/admin/redeem-e-money"
+            redirectTo="/admin/redeem/e-money"
           />
           <ProductCategoryCard
             title="Pulsa"
             image={pulsa}
-            redirectTo="/admin/redeem-pulsa"
+            redirectTo="/admin/redeem/pulsa"
           />
           <ProductCategoryCard
             title="Paket Data"
             image={paket}
-            redirectTo="/admin/redeem-paket"
+            redirectTo="/admin/redeem/paket"
           />
         </div>
       </div>
