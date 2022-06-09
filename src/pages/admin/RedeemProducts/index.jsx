@@ -6,17 +6,18 @@ import AdminFooter from "../../../components/AdminFooter";
 
 import brilogo from "./brilogo.png";
 import RedeemProductCard from "../../../components/RedeemProductCard";
+import { useParams } from "react-router-dom";
 
 const RedeemProducts = () => {
   const [products, setProducts] = useState([]);
+  const { category } = useParams();
 
   useEffect(() => {
     const mockProducts = [];
     for (let i = 0; i < 10; i++) {
       mockProducts.push({
         title: `Paket ${i}`,
-        description:
-          `Saldo Bank ${i} sebesar 50.000 rupiah ada daw awdaw daw awd wa`,
+        description: `Saldo Bank ${i} sebesar 50.000 rupiah ada daw awdaw daw awd wa`,
         image: brilogo,
       });
     }
@@ -65,7 +66,7 @@ const RedeemProducts = () => {
           </form>
         </section>
         <section>
-          <h1 className="mb-0 h5">Cash Out</h1>
+          <h1 className={`mb-0 h5 ${styles.subpage_title}`}>{category}</h1>
           <p>{products.length} results found</p>
           <div className="d-flex justify-content-center flex-wrap gap-5">
             {products.map((product, index) => (
