@@ -18,6 +18,7 @@ import AdminSignOut from "./pages/admin/SignOut";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
+import RedeemProducts from "./pages/admin/RedeemProducts";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -57,6 +58,7 @@ const App = () => {
         <Route path="customer" element={<AdminCustomer />} />
         <Route path="dashboard" element={<AdminDashboard />} />
         <Route path="redeem" element={<AdminRedeem />} />
+        <Route path="redeem-cashout" element={<RedeemProducts />} />
         {/* </Route> */}
 
         <Route path="*" element={<Navigate to="/admin" replace />} />

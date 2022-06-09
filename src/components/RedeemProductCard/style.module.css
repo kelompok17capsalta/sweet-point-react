@@ -1,0 +1,24 @@
+.redeem_product_container {	
+	height: 24rem;
+	width: 20rem;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 4px;
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.redeem_product_title {
+	color: #404D61;
+	font-size: 24px;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.redeem_product_description {
+	color: #404D61;
+	font-size: 20px;
+}
