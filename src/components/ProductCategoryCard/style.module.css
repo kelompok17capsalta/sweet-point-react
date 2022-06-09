@@ -1,0 +1,24 @@
+.product_category_container {
+	width: 16rem;
+	height: 10rem;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding-left: 20px;
+	border-radius: 4px;
+	background-color: #DFE5FD;
+}
+
+.product_category_title {
+	color: #4455A2;
+	font-size: 24px;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.product_category_value {
+	color: #4455A2;
+	font-size: 24px;
+	font-weight: 600;
+
+}
