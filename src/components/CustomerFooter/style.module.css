@@ -1,0 +1,18 @@
+.footer {
+  background-color: #5D6FFF;
+}
+
+.title {
+  font-family: 'Caveat', cursive;
+}
+
+.social_icon {
+  display: flex;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+}
+
+.footer_nav li {
+  list-style: none;
+}
