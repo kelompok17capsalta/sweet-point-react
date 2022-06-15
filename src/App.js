@@ -11,6 +11,7 @@ import AdminLayout from "./layouts/AdminLayout";
 // Customer Pages
 import CustomerHome from "./pages/customer/Home";
 import CustomerSignOut from "./pages/customer/SignOut";
+import CustomerSignUp from "./pages/customer/SignUp"
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -43,11 +44,12 @@ const App = () => {
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
         >
           <Route path="sign-in" element={<CustomerHome />} />
-          <Route path="sign-up" element={<CustomerHome />} />
+          {/* <Route path="sign-up" element={<CustomerHome />} /> */}
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
+      <Route path="sign-up" element={<CustomerSignUp />} />
       {/* ./Customers */}
 
       {/* Admin */}
