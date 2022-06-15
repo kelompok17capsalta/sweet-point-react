@@ -11,6 +11,7 @@ import AdminLayout from "./layouts/AdminLayout";
 // Customer Pages
 import CustomerHome from "./pages/customer/Home";
 import CustomerSignOut from "./pages/customer/SignOut";
+import CustomerSignIn from "./pages/customer/SignIn";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -29,20 +30,14 @@ const App = () => {
     <Routes>
       {/* Customers */}
       <Route path="/" element={<CustomerLayout />}>
-        <Route
-          element={
-            <ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />
-          }
-        >
+        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
           <Route index element={<CustomerHome />} />
 
           <Route path="sign-out" element={<CustomerSignOut />} />
         </Route>
 
-        <Route
-          element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
-        >
-          <Route path="sign-in" element={<CustomerHome />} />
+        <Route element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}>
+          <Route path="sign-in" element={<CustomerSignIn />} />
           <Route path="sign-up" element={<CustomerHome />} />
         </Route>
 
