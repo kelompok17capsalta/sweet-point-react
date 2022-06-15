@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+
+.header,
+.description,
+.label__form,
+.btn__submit,
+input {
+	font-family: "Poppins", sans-serif;
+}
+
+.signup__page {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+
+.btn__back {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	border: none;
+	border-radius: 50%;
+	padding: 0;
+	line-height: 0;
+	background-color: transparent;
+}
+
+.btn__back i {
+	font-size: 50px;
+	color: #5d6fff;
+}
+
+.btn__back i:hover {
+	color: #5d70ffc5;
+}
+
+.container__text {
+	width: 80%;
+	margin-bottom: 30px;
+}
+
+.header {
+	color: #5d6fff;
+	font-weight: 600;
+}
+
+.description {
+	font-size: 21px;
+	line-height: 25px;
+}
+
+.container__form {
+	width: 90%;
+}
+
+.label__form {
+	font-size: 24px;
+	font-weight: 600;
+	color: #404040;
+}
+
+::placeholder {
+	font-size: 16px;
+	color: #c7c9d9 !important;
+}
+
+.btn__submit {
+	background-color: #5d6fff;
+	border-radius: 8px;
+	border: none;
+}
+
+.btn__submit:hover {
+	background-color: #5d70ffec;
+}
+
+@media only screen and (max-width: 992px) {
+	.signup__page {
+		height: 100%;
+	}
+	.btn__back {
+		top: 10px;
+		left: 10px;
+	}
+	.btn__back i {
+		font-size: 30px;
+	}
+	.container__text {
+		width: 100%;
+	}
+	.container__form {
+		width: 100%;
+	}
+	.label__form {
+		font-size: 20px;
+	}
+	.description {
+		font-size: 18px;
+	}
+}
