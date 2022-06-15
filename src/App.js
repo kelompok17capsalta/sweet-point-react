@@ -40,16 +40,15 @@ const App = () => {
           <Route path="sign-out" element={<CustomerSignOut />} />
         </Route>
 
-        <Route
+        {/* <Route
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
-        >
+        > */}
           <Route path="sign-in" element={<CustomerHome />} />
-          {/* <Route path="sign-up" element={<CustomerHome />} /> */}
-        </Route>
+          <Route path="sign-up" element={<CustomerSignUp />} />
+        {/* </Route> */}
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
-      <Route path="sign-up" element={<CustomerSignUp />} />
       {/* ./Customers */}
 
       {/* Admin */}
