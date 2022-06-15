@@ -11,6 +11,7 @@ import AdminLayout from "./layouts/AdminLayout";
 // Customer Pages
 import CustomerHome from "./pages/customer/Home";
 import CustomerSignOut from "./pages/customer/SignOut";
+import CustomerSignIn from "./pages/customer/SignIn";
 import CustomerSignUp from "./pages/customer/SignUp"
 
 // Admin Pages
@@ -30,11 +31,7 @@ const App = () => {
     <Routes>
       {/* Customers */}
       <Route path="/" element={<CustomerLayout />}>
-        <Route
-          element={
-            <ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />
-          }
-        >
+        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
           <Route index element={<CustomerHome />} />
 
           <Route path="sign-out" element={<CustomerSignOut />} />
@@ -43,7 +40,7 @@ const App = () => {
         {/* <Route
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
         > */}
-          <Route path="sign-in" element={<CustomerHome />} />
+          <Route path="sign-in" element={<CustomerSignIn />} />
           <Route path="sign-up" element={<CustomerSignUp />} />
         {/* </Route> */}
 
