@@ -1,4 +1,6 @@
-class APIError extends Error {
+import ClientError from './ClientError';
+
+class APIError extends ClientError {
   constructor(message) {
     super(message);
     this.name = 'APIError';

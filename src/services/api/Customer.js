@@ -26,7 +26,24 @@ const Customer = {
     }
 
     return responseJSON.data;
-  }
+  },
+
+  async signIn({ username, password }) {
+    const response = await fetch(API_ENDPOINT.CUSTOMER.SIGN_IN, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) {
+      throw new APIError(responseJSON.message);
+    }
+
+    return responseJSON.data;
+  },
 };
 
 export default Customer;

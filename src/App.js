@@ -31,9 +31,9 @@ const App = () => {
     <Routes>
       {/* Customers */}
       <Route path="/" element={<CustomerLayout />}>
-        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
-          <Route index element={<CustomerHome />} />
+        <Route index element={<CustomerHome />} />
 
+        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
           <Route path="sign-out" element={<CustomerSignOut />} />
         </Route>
 

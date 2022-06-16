@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import illustration from "./illustration.png";
 import style from "./style.module.css";
 
 // Utils
 import ErrorHandler from "../../../utils/ErrorHandler";
+
+// Services
 import Customer from "../../../services/api/Customer";
-import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
 	const [form, setForm] = useState({
