@@ -1,17 +1,52 @@
 import React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import styles from "./style.module.css";
 
 //logo
 import LogoLogin from "./logologin.png";
 import MenuBack from "./menuback.png";
-import { Link } from "react-router-dom";
+
+// Utils
+import ErrorHandler from "../../../utils/ErrorHandler";
+
+// Services
+import Customer from "../../../services/api/Customer";
+import Token from "../../../services/localStorage/Token";
 
 const SignIn = () => {
   const [clickEye, setClickEye] = useState(false);
+  const [formValue, setFormValue] = useState({
+    username: '',
+    password: '',
+  });
+
+	const navigate = useNavigate();
 
   const toggleEye = () => {
     setClickEye((prevState) => !prevState);
+  };
+
+  const handleChange = (e) => {
+		const { name, value } = e.target;
+
+		setFormValue({
+			...formValue,
+			[name]: value,
+		});
+	};
+
+  const handleSignIn = async (e) => {
+    try {
+			e.preventDefault();
+			const { token } = await Customer.signIn(formValue);
+
+			Token.saveCustomerToken(token);
+			navigate('/');
+		} catch (error) {
+			ErrorHandler.handle(error);
+		}
   };
 
   return (
@@ -19,7 +54,7 @@ const SignIn = () => {
       <Link to="/">
         <img src={MenuBack} className={`${styles.body_menu} mb-3`} alt="Go back" />
       </Link>
-      <div className={`${styles.body} container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5  mx-auto`}>
+      <div className={`${styles.body} ${styles.body_height} container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5  mx-auto`}>
         <div className={`${styles.body} card border-0`}>
           <div className={`row d-flex`}>
             <div className="col-lg-6">
@@ -30,19 +65,19 @@ const SignIn = () => {
               </div>
             </div>
             <div className="col-lg-6">
-              <div className={`${styles.body}  border-0 px-4 py-5`}>
+              <form className={`${styles.body} border-0 px-4 py-5`} onSubmit={handleSignIn}>
                 <h3 className="mb-4 px-2">Log In</h3>
                 <div className="row mb-3 px-3">
                   <label className="mb-1 px-1">
-                    <h4 className={styles.color_text}>Email</h4>
+                    <h4 className={styles.color_text}>Username</h4>
                   </label>
-                  <input className="mb-4" type="text" placeholder="Enter your email" />
+                  <input className="mb-4" type="text" placeholder="Enter your username" name="username" onChange={handleChange} />
                 </div>
                 <div className="row mb-3 px-3">
                   <label className="mb-0 px-1">
                     <h4 className={styles.color_text}>Password</h4>
                   </label>
-                  <input className={`mb-1`} type={clickEye ? "text" : "password"} placeholder="Enter your password" />
+                  <input className={`mb-1`} type={clickEye ? "text" : "password"} placeholder="Enter your password" name="password" onChange={handleChange} />
                   <div className={` ${styles.col_layout} col-auto`}>
                     <i className={clickEye ? `bi bi-eye` : `bi bi-eye-slash`} onClick={toggleEye}></i>
                   </div>
@@ -53,7 +88,7 @@ const SignIn = () => {
                   </a>
                 </div> */}
                 <div className="row mb-4 px-3">
-                  <button type="button" className={`btn btn-primary btn-lg ${styles.button_login}`}>
+                  <button type="submit" className={`btn btn-primary btn-lg ${styles.button_login}`}>
                     Log In
                   </button>
                 </div>
@@ -62,7 +97,7 @@ const SignIn = () => {
                     Create New Account
                   </Link>
                 </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
