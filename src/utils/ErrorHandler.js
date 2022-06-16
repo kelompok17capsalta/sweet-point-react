@@ -4,12 +4,12 @@ import swal from 'sweetalert2';
 import CONFIG from '../global/CONFIG';
 
 // Errors
-import ClientError from '../errors/ClientError';
+import APIError from '../errors/APIError';
 
 const ErrorHandler = {
   handle(error) {
     let message = CONFIG.DEFAULT_ERROR_MESSAGE;
-    if (error instanceof ClientError) {
+    if (error instanceof APIError) {
       message = error.message;
     }
 
