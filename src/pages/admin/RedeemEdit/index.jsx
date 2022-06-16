@@ -34,7 +34,7 @@ const RedeemEdit = () => {
             <label htmlFor="productName" className={styles.input_label}>
               Product Category
             </label>
-            <select class="form-select">
+            <select className="form-select">
               <option selected>Kategori</option>
               {categories.map((category, i) => (
                 <option key={i} value={categories.id}>

@@ -3,6 +3,12 @@ import { useState } from "react";
 import illustration from "./illustration.png";
 import style from "./style.module.css";
 
+// Utils
+import ErrorHandler from "../../../utils/ErrorHandler";
+import Customer from "../../../services/api/Customer";
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
+
 const SignUp = () => {
 	const [form, setForm] = useState({
 		name: "",
@@ -10,6 +16,8 @@ const SignUp = () => {
 		email: "",
 		password: "",
 	});
+
+	const navigate = useNavigate();
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -20,12 +28,23 @@ const SignUp = () => {
 		});
 	};
 
-	console.log("Input Form SignUp" + form);
+	const handleSignUp = async (e) => {
+		try {
+			e.preventDefault();
+			await Customer.register(form);
+
+			await Swal.fire('User successfully registered!', '', 'success');
+			navigate('/sign-in');
+		} catch (error) {
+			ErrorHandler.handle(error);
+		}
+	};
+
 	return (
 		<div className={style.signup__page}>
-			<button className={style.btn__back}>
+			<Link to="/sign-in" className={style.btn__back}>
 				<i className="bi bi-arrow-left-circle"></i>
-			</button>
+			</Link>
 			<div className="container">
 				<div className="row align-items-center">
 					<div className="col-lg-6 col-8 my-5 my-lg-0 offset-2 offset-lg-0">
@@ -44,7 +63,7 @@ const SignUp = () => {
 									valid
 								</p>
 							</div>
-							<form>
+							<form onSubmit={handleSignUp}>
 								<div className="mb-3">
 									<label htmlFor="name" className={style.label__form}>
 										Nama Lengkap
@@ -54,8 +73,9 @@ const SignUp = () => {
 										className="form-control form-control-lg"
 										id="name"
 										name="name"
-										placeholder="Type something here..."
+										placeholder="Nama Lengkap"
 										onChange={handleChange}
+										required
 									/>
 								</div>
 								<div className="mb-3">
@@ -67,8 +87,9 @@ const SignUp = () => {
 										className="form-control form-control-lg"
 										id="username"
 										name="username"
-										placeholder="Type something here..."
+										placeholder="Username"
 										onChange={handleChange}
+										required
 									/>
 								</div>
 								<div className="mb-3">
@@ -80,8 +101,9 @@ const SignUp = () => {
 										className="form-control form-control-lg"
 										id="email"
 										name="email"
-										placeholder="Type something here..."
+										placeholder="Email"
 										onChange={handleChange}
+										required
 									/>
 								</div>
 								<div className="mb-5">
@@ -93,14 +115,15 @@ const SignUp = () => {
 										className="form-control form-control-lg"
 										id="password"
 										name="password"
-										placeholder="Type something here..."
+										placeholder="Password"
 										onChange={handleChange}
+										required
 									/>
 								</div>
 								<div className="d-grid gap-2">
 									<button
 										className={`btn btn-lg btn-primary ${style.btn__submit}`}
-										type="button"
+										type="submit"
 									>
 										Create Account
 									</button>

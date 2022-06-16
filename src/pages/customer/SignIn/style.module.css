@@ -4,6 +4,7 @@
   max-width: auto;
   background-color: #f6f9ff;
   font-family: "Poppins", sans-serif;
+  min-height: 100vh;
 }
 .color_text {
   color: #767676;
