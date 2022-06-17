@@ -1,19 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useDispatch } from 'react-redux';
 import styles from "./style.module.css";
 
 //logo
 import LogoLogin from "./logologin.png";
 import MenuBack from "./menuback.png";
 
-// Utils
-import ErrorHandler from "../../../utils/ErrorHandler";
+
+// Redux Action
+import { updateCustomer } from '../../../services/redux/Customer';
 
 // Services
 import Customer from "../../../services/api/Customer";
 import Token from "../../../services/localStorage/Token";
+
+// Utils
+import ErrorHandler from "../../../utils/ErrorHandler";
 
 const SignIn = () => {
   const [clickEye, setClickEye] = useState(false);
@@ -22,6 +26,7 @@ const SignIn = () => {
     password: '',
   });
 
+  const dispatch = useDispatch();
 	const navigate = useNavigate();
 
   const toggleEye = () => {
@@ -43,6 +48,9 @@ const SignIn = () => {
 			const { token } = await Customer.signIn(formValue);
 
 			Token.saveCustomerToken(token);
+
+      const newCustomer = await Customer.getCustomer();
+      dispatch(updateCustomer(newCustomer));
 			navigate('/');
 		} catch (error) {
 			ErrorHandler.handle(error);

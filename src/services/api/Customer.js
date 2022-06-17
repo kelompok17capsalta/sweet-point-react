@@ -1,14 +1,28 @@
 import API_ENDPOINT from "../../global/API_ENDPOINT";
+
+// Error
 import APIError from "../../errors/APIError";
 
-const dummyCustomer = {
-  id: +new Date(),
-  name: 'Dummy Customer',
-};
+// utils
+import Token from "../localStorage/Token";
 
 const Customer = {
   async getCustomer() {
-    return dummyCustomer;
+    const token = Token.getCustomerToken();
+
+    const response = await fetch(API_ENDPOINT.CUSTOMER.INFO, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) {
+      throw new APIError(responseJSON.message || responseJSON.error);
+    }
+
+    return responseJSON.data;
   },
 
   async register(customerPayload) {
@@ -22,7 +36,7 @@ const Customer = {
     const responseJSON = await response.json();
 
     if (response.status !== 200) {
-      throw new APIError(responseJSON.message);
+      throw new APIError(responseJSON.message || responseJSON.error);
     }
 
     return responseJSON.data;
@@ -39,7 +53,7 @@ const Customer = {
     const responseJSON = await response.json();
 
     if (response.status !== 200) {
-      throw new APIError(responseJSON.message);
+      throw new APIError(responseJSON.message || responseJSON.error);
     }
 
     return responseJSON.data;

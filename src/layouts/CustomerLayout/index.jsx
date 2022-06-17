@@ -5,8 +5,9 @@ import { Outlet } from 'react-router-dom';
 // Redux Action
 import { updateCustomer } from '../../services/redux/Customer';
 
-// API Service
+// Services
 import Customer from '../../services/api/Customer';
+import Token from '../../services/localStorage/Token';
 
 const CustomerLayout = () => {
   const dispatch = useDispatch();
@@ -14,10 +15,13 @@ const CustomerLayout = () => {
   useEffect(() => {
     const updateData = async () => {
       try {
-        const newCustomer = await Customer.getCustomer();
-        dispatch(updateCustomer(newCustomer));
-      } catch (error) {
-        console.log(error);
+        const customerToken = Token.getCustomerToken();
+
+        if (customerToken) {
+          const newCustomer = await Customer.getCustomer();
+          dispatch(updateCustomer(newCustomer));
+        }
+      } catch {
       }
     };
 
