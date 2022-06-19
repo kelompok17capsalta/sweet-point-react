@@ -12,7 +12,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import CustomerHome from "./pages/customer/Home";
 import CustomerSignOut from "./pages/customer/SignOut";
 import CustomerSignIn from "./pages/customer/SignIn";
-import CustomerSignUp from "./pages/customer/SignUp"
+import CustomerSignUp from "./pages/customer/SignUp";
+import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -34,14 +35,15 @@ const App = () => {
         <Route index element={<CustomerHome />} />
 
         {/* <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}> */}
-          <Route path="sign-out" element={<CustomerSignOut />} />
+        <Route path="sign-out" element={<CustomerSignOut />} />
         {/* </Route> */}
 
         {/* <Route
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
         > */}
-          <Route path="sign-in" element={<CustomerSignIn />} />
-          <Route path="sign-up" element={<CustomerSignUp />} />
+        <Route path="sign-in" element={<CustomerSignIn />} />
+        <Route path="sign-up" element={<CustomerSignUp />} />
+        <Route path="profil/pengaturanakun" element={<CustomerPengaturanAkun />} />
         {/* </Route> */}
 
         <Route path="*" element={<Navigate to="/" replace />} />
