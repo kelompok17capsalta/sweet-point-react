@@ -5,8 +5,10 @@ import { Outlet } from 'react-router-dom';
 // Redux Action
 import { updateAdmin } from '../../services/redux/Admin';
 
-// API Service
+// Services
 import Admin from '../../services/api/Admin';
+import Token from '../../services/localStorage/Token';
+
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
@@ -14,8 +16,12 @@ const AdminLayout = () => {
   useEffect(() => {
     const updateData = async () => {
       try {
-        const newAdmin = await Admin.getAdmin();
-        dispatch(updateAdmin(newAdmin));
+        const adminToken = Token.getAdminToken();
+
+        if (adminToken) {
+          const newAdmin = await Admin.getAdmin();
+          dispatch(updateAdmin(newAdmin));
+        }
       } catch (error) {
         console.log(error);
       }
