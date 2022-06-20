@@ -15,7 +15,7 @@ const ProfileCard = () => {
     <div className={`card ${style.card_body}`}>
       <div className="card-body p-4">
         <div className="p-4">
-          <img src="" className="img-circle" alt="" />
+          <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&rounded=true" className="img-circle" alt="" />
         </div>
         <div className="card-body">
           <h5>Asep Yahud</h5>
