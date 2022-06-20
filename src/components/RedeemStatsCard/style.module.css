@@ -1,0 +1,22 @@
+.redeem_container {
+	width: 16rem;
+	height: 130px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding-left: 20px;
+	border-radius: 4px;
+	background-color: #F8F8F8;
+}
+
+.redeem_title {
+	color: #404D61;
+	font-size: 24px;
+}
+
+.redeem_value {
+	color: #404D61;
+	font-size: 24px;
+	font-weight: 600;
+
+}
