@@ -12,7 +12,9 @@ import AdminLayout from "./layouts/AdminLayout";
 import CustomerHome from "./pages/customer/Home";
 import CustomerSignOut from "./pages/customer/SignOut";
 import CustomerSignIn from "./pages/customer/SignIn";
-import CustomerSignUp from "./pages/customer/SignUp"
+import CustomerSignUp from "./pages/customer/SignUp";
+import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
+import CustomerAccountInformation from "./pages/customer/AccountInformation";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -22,7 +24,7 @@ import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
 import AdminRedeemProducts from "./pages/admin/RedeemProducts";
 import AdminRedeemEdit from "./pages/admin/RedeemEdit";
-import AccountInformation from "./pages/customer/AccountInformation";
+
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -36,6 +38,8 @@ const App = () => {
 
         {/* <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}> */}
         <Route path="sign-out" element={<CustomerSignOut />} />
+        <Route path="akun/informasi" element={<CustomerAccountInformation />} />
+        <Route path="akun/pengaturan" element={<CustomerPengaturanAkun />} />
         {/* </Route> */}
 
         {/* <Route
@@ -44,7 +48,6 @@ const App = () => {
         <Route path="sign-in" element={<CustomerSignIn />} />
         <Route path="sign-up" element={<CustomerSignUp />} />
         {/* </Route> */}
-        <Route path="informasi-akun" element={<AccountInformation />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       {/* ./Customers */}
