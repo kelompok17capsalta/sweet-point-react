@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from "react-router-dom";
 import coin from "./logocoin.png";
