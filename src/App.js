@@ -28,7 +28,7 @@ import AdminRedeemEdit from "./pages/admin/RedeemEdit";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
-  // const admin = useSelector((state) => state.admin.value);
+  const admin = useSelector((state) => state.admin.value);
 
   return (
     <Routes>
@@ -56,14 +56,14 @@ const App = () => {
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminSignIn />} />
 
-        {/* <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}> */}
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="customer" element={<AdminCustomer />} />
-        <Route path="redeem" element={<AdminRedeem />} />
-        <Route path="redeem/:category" element={<AdminRedeemProducts />} />
-        <Route path="sign-out" element={<AdminSignOut />} />
-        <Route path="redeem/:category/:itemId/edit" element={<AdminRedeemEdit />} />
-        {/* </Route> */}
+        <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="customer" element={<AdminCustomer />} />
+          <Route path="redeem" element={<AdminRedeem />} />
+          <Route path="redeem/:category" element={<AdminRedeemProducts />} />
+          <Route path="sign-out" element={<AdminSignOut />} />
+          <Route path="redeem/:category/:itemId/edit" element={<AdminRedeemEdit />} />
+          </Route>
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
       </Route>

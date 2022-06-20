@@ -26,37 +26,37 @@ const ProfileCard = () => {
 
         <div className="card-body mx-2 p-3">
           <div>
-            <Link className={style.text_link} to="/">
+            <Link className={style.text_link} to="/akun/informasi">
               <img className={style.body_hover} src={iconjournal} alt="journal" />
               <span className="mx-2">Pengaturan Profil</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/profil/pengaturanakun">
+            <Link className={style.text_link} to="/akun/pengaturan">
               <img className={style.body_hover} src={icongear} alt="gear" />
               <span className="mx-2">Pengaturan Akun</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/">
+            <Link className={style.text_link} to="/akun/transaksi">
               <img className={style.body_hover} src={iconparkoutline} alt="parkoutline" />
               <span className="mx-2">My Transaction</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/">
+            <Link className={style.text_link} to="/bantuan">
               <img className={style.body_hover} src={iconquestion} alt="question" />
               <span className="mx-2">Bantuan</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/">
+            <Link className={style.text_link} to="/redeem">
               <img className={style.body_hover} src={iconreceipt} alt="receipt" />
               <span className="mx-2">Radeem Category</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/">
+            <Link className={style.text_link} to="/sign-out">
               <img className={style.body_hover} src={iconlogout} alt="logout" />
               <span className="mx-2">Log Out</span>
             </Link>
