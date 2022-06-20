@@ -22,6 +22,7 @@ import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
 import AdminRedeemProducts from "./pages/admin/RedeemProducts";
 import AdminRedeemEdit from "./pages/admin/RedeemEdit";
+import AccountInformation from "./pages/customer/AccountInformation";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -34,16 +35,16 @@ const App = () => {
         <Route index element={<CustomerHome />} />
 
         {/* <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}> */}
-          <Route path="sign-out" element={<CustomerSignOut />} />
+        <Route path="sign-out" element={<CustomerSignOut />} />
         {/* </Route> */}
 
         {/* <Route
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
         > */}
-          <Route path="sign-in" element={<CustomerSignIn />} />
-          <Route path="sign-up" element={<CustomerSignUp />} />
+        <Route path="sign-in" element={<CustomerSignIn />} />
+        <Route path="sign-up" element={<CustomerSignUp />} />
         {/* </Route> */}
-
+        <Route path="informasi-akun" element={<AccountInformation />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       {/* ./Customers */}
