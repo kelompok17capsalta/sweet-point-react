@@ -4,6 +4,7 @@ import CustomerNavbar from "../../../components/CustomerNavbar";
 import profile from "./profile.png";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import ProfileCard from "../../../components/ProfileCard";
 
 const AccountInformation = () => {
 	const [fotoProfile, setFotoProfile] = useState();
@@ -39,9 +40,11 @@ const AccountInformation = () => {
 				</div>
 
 				{/* Edit Akun */}
-				<div className="container">
+				<div className="container mb-5">
 					<div className="row">
-						<div className="col-4">fdfsd</div>
+						<div className="col-12 col-lg-4 mb-5 mb-lg-0">
+							<ProfileCard />
+						</div>
 						<div className="col-12 col-lg-8">
 							<div className="d-flex align-items-center">
 								<span className={style.icon__person}>
@@ -57,12 +60,12 @@ const AccountInformation = () => {
 									</h6>
 									<form>
 										<div className="row">
-											<div className="col-12 col-lg-5 mb-5 mb-lg-0">
+											<div className="col-12 col-lg-5 mb-5 mb-lg-0 d-flex d-lg-inline justify-content-center">
 												<div className="card" style={{ width: "18rem" }}>
 													<div className="p-3">
 														<img
 															src={profile}
-															className={` ${style.img__profile}`}
+															className={style.img__profile}
 															alt="profile"
 														/>
 													</div>
@@ -131,7 +134,7 @@ const AccountInformation = () => {
 
 											<div className="col-12 d-flex justify-content-end">
 												<button
-													className={`btn btn-lg btn-primary mb-lg-4 mt-lg-1 ${style.btn__submit}`}
+													className={`btn btn-lg btn-primary mb-4 mt-lg-1 ${style.btn__submit}`}
 												>
 													Save
 												</button>
