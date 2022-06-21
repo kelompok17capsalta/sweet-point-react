@@ -1,6 +1,7 @@
 import React from "react";
-import style from "./style.module.css";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import style from "./style.module.css";
 
 //icon png
 import icongear from "./icongear.png";
@@ -11,20 +12,28 @@ import iconquestion from "./iconquestion.png";
 import iconreceipt from "./iconreceipt.png";
 
 const ProfileCard = () => {
+  const customer = useSelector((state) => state.customer.value);
+
   return (
     <div className={`card ${style.card_body}`}>
       <div className="card-body p-4">
         <div className="p-4">
-          <img src="https://ui-avatars.com/api/?background=0D8ABC&color=fff&rounded=true" className="img-circle" alt="" />
+          <img
+            width={120}
+            height={120}
+            src={`https://ui-avatars.com/api/?background=0D8ABC&color=fff&rounded=true&name=${customer?.name}`}
+            className="img-circle"
+            alt="Profile"
+          />
         </div>
         <div className="card-body">
-          <h5>Asep Yahud</h5>
-          <p>254.000 point</p>
+          <h5>{customer?.name}</h5>
+          <p className="mb-0">{customer?.point} point</p>
         </div>
 
         {/* Card Title Body */}
 
-        <div className="card-body mx-2 p-3">
+        <div className="card-body p-3">
           <div>
             <Link className={style.text_link} to="/informasi-akun">
               <img className={style.body_hover} src={iconjournal} alt="journal" />

@@ -1,24 +1,32 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import swal from 'sweetalert2';
 import style from "./style.module.css";
-import profile from "./profile.png";
 import CustomerNavbar from "../../../components/CustomerNavbar";
 import ProfileCard from "../../../components/ProfileCard";
 
-// Services
-import Storage from '../../../services/firebase/Storage';
 
 // Utils
 import ErrorHandler from "../../../utils/ErrorHandler";
-import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 const AccountInformation = () => {
-	const [fotoProfile, setFotoProfile] = useState(null);
-	const [preview, setPreview] = useState(profile);
-	const hiddenFileInput = useRef(null);
   const customer = useSelector((state) => state.customer.value);
+	const [formValue, setFormValue] = useState({
+		name: '',
+		address: '',
+		phone: '',
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+
+		setFormValue({
+			...formValue,
+			[name]: value,
+		});
+	};
 
 	const handleUpdate = async (e) => {
 		try {
@@ -33,7 +41,15 @@ const AccountInformation = () => {
 		} catch (error) {
 			ErrorHandler.handle(error);
 		}
-	} 
+	} ;
+
+	useEffect(() => {
+		setFormValue({
+			name: customer?.name || '',
+			address: customer?.address || '',
+			phone: customer?.phone || '',
+		});
+	},[customer]);
 
 	return (
 		<>
@@ -64,7 +80,7 @@ const AccountInformation = () => {
 								<span className={style.icon__person}>
 									<i className="bi bi-person fw-bold"></i>
 								</span>
-								<span className={style.title__name}>Asep yahud</span>
+								<span className={style.title__name}>{customer?.name}</span>
 							</div>
 
 							<div className={style.edit__account}>
@@ -83,31 +99,34 @@ const AccountInformation = () => {
 														type="text"
 														id="name"
 														name="name"
-														value="Asep Yahud"
+														onChange={handleChange}
+														value={formValue.name}
 													/>
 												</div>
 												<div className="mb-4">
-													<label htmlFor="name">
+													<label htmlFor="address">
 														<h6 className={style.title__edit}>Alamat</h6>
 													</label>
 													<input
 														type="text"
-														id="name"
-														name="name"
-														value="Jl. Barong"
+														id="address"
+														name="address"
+														onChange={handleChange}
+														value={formValue.address}
 													/>
 												</div>
 												<div className="mb-4">
-													<label htmlFor="name">
+													<label htmlFor="phone">
 														<h6 className={style.title__edit}>
 															Nomor Handphone
 														</h6>
 													</label>
 													<input
 														type="text"
-														id="name"
-														name="name"
-														value="08123837****"
+														id="phone"
+														name="phone"
+														onChange={handleChange}
+														value={formValue.phone}
 													/>
 												</div>
 											</div>
