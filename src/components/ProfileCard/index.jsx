@@ -26,19 +26,19 @@ const ProfileCard = () => {
 
         <div className="card-body mx-2 p-3">
           <div>
-            <Link className={style.text_link} to="/akun/informasi">
+            <Link className={style.text_link} to="/informasi-akun">
               <img className={style.body_hover} src={iconjournal} alt="journal" />
               <span className="mx-2">Pengaturan Profil</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/akun/pengaturan">
+            <Link className={style.text_link} to="/pengaturan">
               <img className={style.body_hover} src={icongear} alt="gear" />
               <span className="mx-2">Pengaturan Akun</span>
             </Link>
           </div>
           <div className="mt-3">
-            <Link className={style.text_link} to="/akun/transaksi">
+            <Link className={style.text_link} to="/transaksi">
               <img className={style.body_hover} src={iconparkoutline} alt="parkoutline" />
               <span className="mx-2">My Transaction</span>
             </Link>

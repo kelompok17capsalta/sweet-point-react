@@ -38,8 +38,8 @@ const App = () => {
 
         {/* <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}> */}
         <Route path="sign-out" element={<CustomerSignOut />} />
-        <Route path="akun/informasi" element={<CustomerAccountInformation />} />
-        <Route path="akun/pengaturan" element={<CustomerPengaturanAkun />} />
+        <Route path="informasi-akun" element={<CustomerAccountInformation />} />
+        <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
         {/* </Route> */}
 
         {/* <Route
