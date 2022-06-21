@@ -170,9 +170,9 @@ export default function FullWidthTabs() {
               </Grid>
             </Grid>
           )}
-          <div class="d-grid py-3">
+          <div className="d-grid py-3">
             <button
-              class="btn border rounded-pill"
+              className="btn border rounded-pill"
               type="button"
               style={{ backgroundColor: "white" }}
             >

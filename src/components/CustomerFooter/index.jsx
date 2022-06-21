@@ -15,10 +15,10 @@ const Footer = () => (
             <i className="bi bi-instagram"></i>
           </a>
           <a href="/" className={`btn btn-outline-light rounded-circle mx-3 ${styles.social_icon}`}>
-            <i className="bi bi-instagram"></i>
+            <i className="bi bi-facebook"></i>
           </a>
           <a href="/" className={`btn btn-outline-light rounded-circle ${styles.social_icon}`}>
-            <i className="bi bi-instagram"></i>
+            <i className="bi bi-twitter"></i>
           </a>
         </div>
       </div>
@@ -26,14 +26,10 @@ const Footer = () => (
       <hr className="text-light" />
 
       <p className="h4 text-light">Sweet Point</p>
-      <div className="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between mb-3">
+      <nav className="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between mb-3">
         <ul className={`d-flex flex-column flex-lg-row align-items-lg-center p-0 mt-3 ${styles.footer_nav}`}>
           <li>
-            <Link to="/" className="text-light text-decoration-none">All Shops</Link>
-          </li>
-
-          <li>
-            <Link to="/" className="text-light text-decoration-none mx-lg-3">About Us</Link>
+            <Link to="/" className="text-light text-decoration-none me-lg-3">Home</Link>
           </li>
 
           <li>
@@ -42,7 +38,7 @@ const Footer = () => (
         </ul>
 
         <a href="/" target="__blank" className="btn btn-outline-light">Contact Us</a>
-      </div>
+      </nav>
 
       <p className="text-center text-light">© Sweet Point 2022 All rights reserved</p>
     </div>

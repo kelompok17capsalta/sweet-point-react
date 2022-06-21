@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import swal from 'sweetalert2';
 import style from "./style.module.css";
-import CustomerNavbar from "../../../components/CustomerNavbar";
 import ProfileCard from "../../../components/ProfileCard";
 
 
@@ -52,9 +51,7 @@ const AccountInformation = () => {
 	},[customer]);
 
 	return (
-		<>
-			<CustomerNavbar />
-			<div className={style.informasi__page}>
+		<div className={style.informasi__page}>
 				{/* breadcrumb */}
 				<div className="container mt-5">
 					<nav aria-label="breadcrumb">
@@ -145,8 +142,7 @@ const AccountInformation = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-		</>
+		</div>
 	);
 };
 

@@ -8,7 +8,6 @@ import styles from "./style.module.css";
 import LogoLogin from "./logologin.png";
 import MenuBack from "./menuback.png";
 
-
 // Redux Action
 import { updateCustomer } from '../../../services/redux/Customer';
 
