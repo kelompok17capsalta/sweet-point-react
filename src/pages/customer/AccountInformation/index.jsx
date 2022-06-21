@@ -20,33 +20,11 @@ const AccountInformation = () => {
 	const hiddenFileInput = useRef(null);
   const customer = useSelector((state) => state.customer.value);
 
-	const handleChangeInput = (event) => {
-		const fileUploaded = event.target.files[0];
-		setFotoProfile(fileUploaded);
-
-		const reader = new FileReader();
-
-		reader.addEventListener('load', () => {
-			setPreview(reader.result);
-		}, false);
-
-		reader.readAsDataURL(fileUploaded);
-	};
-
-	const handleClickforInput = () => {
-		hiddenFileInput.current.click();
-	};
-
 	const handleUpdate = async (e) => {
 		try {
 			e.preventDefault();
 
 			swal.showLoading();
-			// if (fotoProfile) {
-			// 	const imageUrl = await Storage.uploadCustomerProfile(customer, fotoProfile);
-			// 	setPreview(imageUrl);
-			// }
-
 			await swal.fire(
 				'Data berhasil disimpan.',
 				'',
@@ -96,41 +74,7 @@ const AccountInformation = () => {
 									</h6>
 									<form onSubmit={handleUpdate}>
 										<div className="row">
-											<div className="col-12 col-lg-5 mb-5 mb-lg-0 d-flex d-lg-inline justify-content-center">
-												<div className="card" style={{ width: "18rem" }}>
-													<div className="p-3">
-														<img
-															src={preview}
-															className={style.img__profile}
-															alt="profile"
-														/>
-													</div>
-													<div className="card-body">
-														<div className="d-grid gap-2 mb-4">
-															<label
-																className={`btn btn-lg btn-primary ${style.btn__submit}`}
-																onClick={handleClickforInput}
-															>
-																Pilih Foto
-															</label>
-															<input
-																type="file"
-																id="input"
-																style={{ display: "none" }}
-																accept="image/*"
-																ref={hiddenFileInput}
-																onChange={handleChangeInput}
-															/>
-														</div>
-														<p className="card-text">
-															Besar file: maksimum 10.000.000 bytes (10
-															Megabytes). Ekstensi file yang diperbolehkan: .JPG
-															.JPEG .PNG
-														</p>
-													</div>
-												</div>
-											</div>
-											<div className="col-12 col-lg-7">
+											<div className="col-12">
 												<div className="mb-4">
 													<label htmlFor="name">
 														<h6 className={style.title__edit}>Nama Lengkap</h6>
