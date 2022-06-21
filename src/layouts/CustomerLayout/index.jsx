@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 // Redux Action
-import { updateCustomer } from '../../services/redux/Customer';
+import { updateCustomer } from "../../services/redux/Customer";
 
 // Services
-import Customer from '../../services/api/Customer';
-import Token from '../../services/localStorage/Token';
+import Customer from "../../services/api/Customer";
+import Token from "../../services/localStorage/Token";
+import Navbar from "../../components/CustomerNavbar";
+import Footer from "../../components/CustomerFooter";
 
 const CustomerLayout = () => {
   const dispatch = useDispatch();
@@ -21,8 +23,7 @@ const CustomerLayout = () => {
           const newCustomer = await Customer.getCustomer();
           dispatch(updateCustomer(newCustomer));
         }
-      } catch {
-      }
+      } catch {}
     };
 
     updateData();
@@ -31,15 +32,15 @@ const CustomerLayout = () => {
   return (
     <>
       <header>
-        {/* Ini Header */}
+        <Navbar />
       </header>
 
-      <main>
+      <main style={{ minHeight: "80vh" }}>
         <Outlet />
       </main>
 
       <footer>
-        {/* Ini Footer */}
+        <Footer />
       </footer>
     </>
   );
