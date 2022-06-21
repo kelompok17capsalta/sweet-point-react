@@ -9,14 +9,24 @@ import ProfileCard from "../../../components/ProfileCard";
 
 // Utils
 import ErrorHandler from "../../../utils/ErrorHandler";
+import { useEffect } from "react";
 
 const AccountInformation = () => {
   const customer = useSelector((state) => state.customer.value);
 	const [formValue, setFormValue] = useState({
-		name: customer?.name || '',
-		address: customer?.address || '',
-		phone: customer?.phone || '',
+		name: '',
+		address: '',
+		phone: '',
 	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+
+		setFormValue({
+			...formValue,
+			[name]: value,
+		});
+	};
 
 	const handleUpdate = async (e) => {
 		try {
@@ -31,7 +41,15 @@ const AccountInformation = () => {
 		} catch (error) {
 			ErrorHandler.handle(error);
 		}
-	} 
+	} ;
+
+	useEffect(() => {
+		setFormValue({
+			name: customer?.name || '',
+			address: customer?.address || '',
+			phone: customer?.phone || '',
+		});
+	},[customer]);
 
 	return (
 		<>
@@ -81,6 +99,7 @@ const AccountInformation = () => {
 														type="text"
 														id="name"
 														name="name"
+														onChange={handleChange}
 														value={formValue.name}
 													/>
 												</div>
@@ -92,6 +111,7 @@ const AccountInformation = () => {
 														type="text"
 														id="address"
 														name="address"
+														onChange={handleChange}
 														value={formValue.address}
 													/>
 												</div>
@@ -105,6 +125,7 @@ const AccountInformation = () => {
 														type="text"
 														id="phone"
 														name="phone"
+														onChange={handleChange}
 														value={formValue.phone}
 													/>
 												</div>
