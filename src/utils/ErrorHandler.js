@@ -13,11 +13,12 @@ const ErrorHandler = {
       message = error.message;
     }
 
+    console.log(error);
     return swal.fire(
       CONFIG.DEFAULT_ERROR_TITLE,
       message,
       'error',
-    )
+    );
   }
 };
 

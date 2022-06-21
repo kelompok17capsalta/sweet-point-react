@@ -1,25 +1,61 @@
-import React from "react";
-import style from "./style.module.css";
-import CustomerNavbar from "../../../components/CustomerNavbar";
-import profile from "./profile.png";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import swal from 'sweetalert2';
+import style from "./style.module.css";
+import profile from "./profile.png";
+import CustomerNavbar from "../../../components/CustomerNavbar";
 import ProfileCard from "../../../components/ProfileCard";
 
+// Services
+import Storage from '../../../services/firebase/Storage';
+
+// Utils
+import ErrorHandler from "../../../utils/ErrorHandler";
+import Swal from "sweetalert2";
+
 const AccountInformation = () => {
-	const [fotoProfile, setFotoProfile] = useState();
+	const [fotoProfile, setFotoProfile] = useState(null);
+	const [preview, setPreview] = useState(profile);
 	const hiddenFileInput = useRef(null);
+  const customer = useSelector((state) => state.customer.value);
 
 	const handleChangeInput = (event) => {
 		const fileUploaded = event.target.files[0];
 		setFotoProfile(fileUploaded);
-	};
 
-	console.log(fotoProfile);
+		const reader = new FileReader();
+
+		reader.addEventListener('load', () => {
+			setPreview(reader.result);
+		}, false);
+
+		reader.readAsDataURL(fileUploaded);
+	};
 
 	const handleClickforInput = () => {
-		console.log(hiddenFileInput.current.click());
+		hiddenFileInput.current.click();
 	};
+
+	const handleUpdate = async (e) => {
+		try {
+			e.preventDefault();
+
+			swal.showLoading();
+			// if (fotoProfile) {
+			// 	const imageUrl = await Storage.uploadCustomerProfile(customer, fotoProfile);
+			// 	setPreview(imageUrl);
+			// }
+
+			await swal.fire(
+				'Data berhasil disimpan.',
+				'',
+				'success',
+			)
+		} catch (error) {
+			ErrorHandler.handle(error);
+		}
+	} 
 
 	return (
 		<>
@@ -58,13 +94,13 @@ const AccountInformation = () => {
 									<h6 className={`mt-5 mb-4 ${style.title__edit}`}>
 										Ubah Biodata Diri
 									</h6>
-									<form>
+									<form onSubmit={handleUpdate}>
 										<div className="row">
 											<div className="col-12 col-lg-5 mb-5 mb-lg-0 d-flex d-lg-inline justify-content-center">
 												<div className="card" style={{ width: "18rem" }}>
 													<div className="p-3">
 														<img
-															src={profile}
+															src={preview}
 															className={style.img__profile}
 															alt="profile"
 														/>
@@ -81,7 +117,7 @@ const AccountInformation = () => {
 																type="file"
 																id="input"
 																style={{ display: "none" }}
-																accept=".jpg, .jpeg, .png"
+																accept="image/*"
 																ref={hiddenFileInput}
 																onChange={handleChangeInput}
 															/>
