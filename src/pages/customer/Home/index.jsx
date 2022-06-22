@@ -1,16 +1,20 @@
-import Banner from "../../../components/CostumerBanner";
-import Section1 from "../../../components/HomeSection/Section1";
-import Section2 from "../../../components/HomeSection/Section2";
-import Section3 from "../../../components/HomeSection/Section3";
+import Banner from "../../../components/CustomerBanner";
+import StoreTabs from "../../../components/StoreTabs";
+import PopularRedeem from "../../../components/PopularRedeem";
 
 const Home = () => (
   <div className="container py-3">
-    <div>
+    <section>
       <Banner />
-    </div>
-    <Section1 />
-    <Section3 />
-    <Section2 />
+    </section>
+
+    <section className="mt-5">
+      <StoreTabs />
+    </section>
+
+    <section className="my-5">
+      <PopularRedeem />
+    </section>
   </div>
 );
 
