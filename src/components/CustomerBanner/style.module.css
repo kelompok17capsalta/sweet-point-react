@@ -1,0 +1,13 @@
+.navigation {
+  position: absolute;
+  top: 45%;
+  z-index: 2;
+}
+
+.navigation.navigation__prev {
+  left: -40px;
+}
+
+.navigation.navigation__next {
+  right: -40px;
+}
