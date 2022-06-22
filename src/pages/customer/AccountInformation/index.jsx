@@ -1,30 +1,57 @@
-import React from "react";
-import style from "./style.module.css";
-import CustomerNavbar from "../../../components/CustomerNavbar";
-import profile from "./profile.png";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import swal from 'sweetalert2';
+import style from "./style.module.css";
 import ProfileCard from "../../../components/ProfileCard";
 
+
+// Utils
+import ErrorHandler from "../../../utils/ErrorHandler";
+import { useEffect } from "react";
+
 const AccountInformation = () => {
-	const [fotoProfile, setFotoProfile] = useState();
-	const hiddenFileInput = useRef(null);
+  const customer = useSelector((state) => state.customer.value);
+	const [formValue, setFormValue] = useState({
+		name: '',
+		address: '',
+		phone: '',
+	});
 
-	const handleChangeInput = (event) => {
-		const fileUploaded = event.target.files[0];
-		setFotoProfile(fileUploaded);
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+
+		setFormValue({
+			...formValue,
+			[name]: value,
+		});
 	};
 
-	console.log(fotoProfile);
+	const handleUpdate = async (e) => {
+		try {
+			e.preventDefault();
 
-	const handleClickforInput = () => {
-		console.log(hiddenFileInput.current.click());
-	};
+			swal.showLoading();
+			await swal.fire(
+				'Data berhasil disimpan.',
+				'',
+				'success',
+			)
+		} catch (error) {
+			ErrorHandler.handle(error);
+		}
+	} ;
+
+	useEffect(() => {
+		setFormValue({
+			name: customer?.name || '',
+			address: customer?.address || '',
+			phone: customer?.phone || '',
+		});
+	},[customer]);
 
 	return (
-		<>
-			<CustomerNavbar />
-			<div className={style.informasi__page}>
+		<div className={style.informasi__page}>
 				{/* breadcrumb */}
 				<div className="container mt-5">
 					<nav aria-label="breadcrumb">
@@ -50,7 +77,7 @@ const AccountInformation = () => {
 								<span className={style.icon__person}>
 									<i className="bi bi-person fw-bold"></i>
 								</span>
-								<span className={style.title__name}>Asep yahud</span>
+								<span className={style.title__name}>{customer?.name}</span>
 							</div>
 
 							<div className={style.edit__account}>
@@ -58,43 +85,9 @@ const AccountInformation = () => {
 									<h6 className={`mt-5 mb-4 ${style.title__edit}`}>
 										Ubah Biodata Diri
 									</h6>
-									<form>
+									<form onSubmit={handleUpdate}>
 										<div className="row">
-											<div className="col-12 col-lg-5 mb-5 mb-lg-0 d-flex d-lg-inline justify-content-center">
-												<div className="card" style={{ width: "18rem" }}>
-													<div className="p-3">
-														<img
-															src={profile}
-															className={style.img__profile}
-															alt="profile"
-														/>
-													</div>
-													<div className="card-body">
-														<div className="d-grid gap-2 mb-4">
-															<label
-																className={`btn btn-lg btn-primary ${style.btn__submit}`}
-																onClick={handleClickforInput}
-															>
-																Pilih Foto
-															</label>
-															<input
-																type="file"
-																id="input"
-																style={{ display: "none" }}
-																accept=".jpg, .jpeg, .png"
-																ref={hiddenFileInput}
-																onChange={handleChangeInput}
-															/>
-														</div>
-														<p className="card-text">
-															Besar file: maksimum 10.000.000 bytes (10
-															Megabytes). Ekstensi file yang diperbolehkan: .JPG
-															.JPEG .PNG
-														</p>
-													</div>
-												</div>
-											</div>
-											<div className="col-12 col-lg-7">
+											<div className="col-12">
 												<div className="mb-4">
 													<label htmlFor="name">
 														<h6 className={style.title__edit}>Nama Lengkap</h6>
@@ -103,31 +96,34 @@ const AccountInformation = () => {
 														type="text"
 														id="name"
 														name="name"
-														value="Asep Yahud"
+														onChange={handleChange}
+														value={formValue.name}
 													/>
 												</div>
 												<div className="mb-4">
-													<label htmlFor="name">
+													<label htmlFor="address">
 														<h6 className={style.title__edit}>Alamat</h6>
 													</label>
 													<input
 														type="text"
-														id="name"
-														name="name"
-														value="Jl. Barong"
+														id="address"
+														name="address"
+														onChange={handleChange}
+														value={formValue.address}
 													/>
 												</div>
 												<div className="mb-4">
-													<label htmlFor="name">
+													<label htmlFor="phone">
 														<h6 className={style.title__edit}>
 															Nomor Handphone
 														</h6>
 													</label>
 													<input
 														type="text"
-														id="name"
-														name="name"
-														value="08123837****"
+														id="phone"
+														name="phone"
+														onChange={handleChange}
+														value={formValue.phone}
 													/>
 												</div>
 											</div>
@@ -146,8 +142,7 @@ const AccountInformation = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-		</>
+		</div>
 	);
 };
 

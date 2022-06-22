@@ -1,16 +1,26 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet, useLocation } from "react-router-dom";
+
+// Components
+import Navbar from "../../components/CustomerNavbar";
+import Footer from "../../components/CustomerFooter";
 
 // Redux Action
-import { updateCustomer } from '../../services/redux/Customer';
+import { updateCustomer } from "../../services/redux/Customer";
 
 // Services
-import Customer from '../../services/api/Customer';
-import Token from '../../services/localStorage/Token';
+import Customer from "../../services/api/Customer";
+import Token from "../../services/localStorage/Token";
 
 const CustomerLayout = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const pagesWithoutHeadAndFooter = [
+    '/sign-in',
+    '/sign-up',
+  ];
 
   useEffect(() => {
     const updateData = async () => {
@@ -21,8 +31,7 @@ const CustomerLayout = () => {
           const newCustomer = await Customer.getCustomer();
           dispatch(updateCustomer(newCustomer));
         }
-      } catch {
-      }
+      } catch {}
     };
 
     updateData();
@@ -30,17 +39,13 @@ const CustomerLayout = () => {
 
   return (
     <>
-      <header>
-        {/* Ini Header */}
-      </header>
+      {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
-      <main>
+      <main style={{ minHeight: "80vh" }}>
         <Outlet />
       </main>
 
-      <footer>
-        {/* Ini Footer */}
-      </footer>
+      {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Footer />)}
     </>
   );
 };

@@ -1,15 +1,21 @@
-import { useSelector } from 'react-redux';
-import styles from './style.module.css';
+import Banner from "../../../components/CustomerBanner";
+import StoreTabs from "../../../components/StoreTabs";
+import PopularRedeem from "../../../components/PopularRedeem";
 
-const Home = () => {
-  const customer = useSelector((state) => state.customer.value);
+const Home = () => (
+  <div className="container py-3">
+    <section>
+      <Banner />
+    </section>
 
-  console.log(customer);
-  return (
-    <div className={`${styles.container_custom}`}>
-      Hello World.
-    </div>
-  );
-};
+    <section className="mt-5">
+      <StoreTabs />
+    </section>
+
+    <section className="my-5">
+      <PopularRedeem />
+    </section>
+  </div>
+);
 
 export default Home;
