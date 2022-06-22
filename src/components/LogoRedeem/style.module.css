@@ -1,0 +1,31 @@
+.redeem__category {
+	background-color: #f6f9ff;
+	height: 178px;
+	width: 170px;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-size: 24px;
+	font-weight: 600;
+	color: #404040;
+	text-decoration: none;
+}
+
+.redeem__category:hover {
+	color: #404040e5;
+	border: 1px solid #c9e7ff;
+}
+
+.active {
+	border: 1px solid #c9e7ff;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+@media screen and (max-width: 576px) {
+	.redeem__category {
+		font-size: 20px;
+		font-weight: 500;
+	}
+}

@@ -16,6 +16,7 @@ import CustomerSignUp from "./pages/customer/SignUp";
 import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
 import CustomerMyTransaction from "./pages/customer/MyTransaction";
+import CustomerRedeem from './pages/customer/Redeem'
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="informasi-akun" element={<CustomerAccountInformation />} />
         <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
         <Route path="transaksi" element={<CustomerMyTransaction />} />
+        <Route path="redeem" element={<CustomerRedeem />} />
         {/* </Route> */}
 
         {/* <Route
