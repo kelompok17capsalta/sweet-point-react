@@ -1,0 +1,16 @@
+.card_bg {
+  background-color: #F6F9FF;
+}
+.navigation {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+}
+
+.navigation.navigation__prev {
+  left: -20px;
+}
+
+.navigation.navigation__next {
+  right: -20px;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import bannerFile1 from './banner/banner-1.jpg';
 
 export default function Banner() {
   return (
@@ -33,23 +33,23 @@ export default function Banner() {
         <div className="carousel-inner center">
           <div className="carousel-item active">
             <img
-              src="/assets/banner/banner-1.jpg"
+              src={bannerFile1}
               className="d-block w-100"
-              alt="..."
+              alt="banner"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="/assets/banner/banner-1.jpg"
+              src={bannerFile1}
               className="d-block w-100"
-              alt="..."
+              alt="banner"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="/assets/banner/banner-1.jpg"
+              src={bannerFile1}
               className="d-block w-100"
-              alt="..."
+              alt="banner"
             />
           </div>
         </div>

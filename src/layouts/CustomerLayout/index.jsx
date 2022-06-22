@@ -22,8 +22,6 @@ const CustomerLayout = () => {
     '/sign-up',
   ];
 
-  console.log(pagesWithoutHeadAndFooter.includes(location.pathname));
-
   useEffect(() => {
     const updateData = async () => {
       try {

@@ -5,6 +5,10 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 import './index.css';
 import App from './App';
 
