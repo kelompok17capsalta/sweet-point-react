@@ -15,6 +15,7 @@ import CustomerSignIn from "./pages/customer/SignIn";
 import CustomerSignUp from "./pages/customer/SignUp";
 import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
+import CustomerMyTransaction from "./pages/customer/MyTransaction";
 import CustomerRedeem from './pages/customer/Redeem'
 
 // Admin Pages
@@ -25,7 +26,6 @@ import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
 import AdminRedeemProducts from "./pages/admin/RedeemProducts";
 import AdminRedeemEdit from "./pages/admin/RedeemEdit";
-
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -41,8 +41,8 @@ const App = () => {
         <Route path="sign-out" element={<CustomerSignOut />} />
         <Route path="informasi-akun" element={<CustomerAccountInformation />} />
         <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
+        <Route path="transaksi" element={<CustomerMyTransaction />} />
         <Route path="redeem" element={<CustomerRedeem />} />
-
         {/* </Route> */}
 
         {/* <Route
