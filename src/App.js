@@ -15,6 +15,7 @@ import CustomerSignIn from "./pages/customer/SignIn";
 import CustomerSignUp from "./pages/customer/SignUp";
 import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
+import CustomerRedeem from './pages/customer/Redeem'
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -40,6 +41,8 @@ const App = () => {
         <Route path="sign-out" element={<CustomerSignOut />} />
         <Route path="informasi-akun" element={<CustomerAccountInformation />} />
         <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
+        <Route path="redeem" element={<CustomerRedeem />} />
+
         {/* </Route> */}
 
         {/* <Route

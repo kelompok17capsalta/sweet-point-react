@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+div,
+span,
+h2 {
+	font-family: "Poppins", sans-serif;
+}
+
+.title {
+	font-weight: 600;
+	color: #404040;
+}
+
+.title__description {
+	color: #404040;
+	font-size: 21px;
+}
+
+.input__nomor {
+	border: none;
+	background-color: #f6f9ff;
+	margin-bottom: 0;
+}
+
+.logo__operator {
+	border: none;
+	height: 100%;
+	background-color: #f6f9ff;
+}
+
+.btn__close {
+	background-color: #f6f9ff;
+	height: 100%;
+	color: #404040;
+	border: none;
+	padding: 12px;
+}
+
+.number {
+	font-size: 16px;
+	font-weight: 600;
+	display: block;
+}
+
+.rupiah {
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.jmlh__point {
+	color: #5d6fff;
+	font-size: 12px;
+}
+
+.jenis__paket {
+	font-size: 14px;
+	font-weight: 600;
+	margin-top: 14px;
+	display: inline-block;
+}
+
+.card {
+	width: 170px;
+	height: 77px;
+	background-color: #f6f9ff;
+	color: #404040;
+	border-radius: 10px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.card:hover {
+	border: 1px solid #8bc6ec;
+	cursor: pointer;
+}
+
+.active {
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+	border: 1px solid #8bc6ec;
+}
+
+.container__keterangan {
+	background-color: #f6f9ff;
+	border-radius: 10px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+	color: #404040;
+	padding: 20px;
+	border: 1px solid #c9e7ff;
+}
+.keterangan {
+	font-size: 14px;
+	font-weight: 500;
+	display: block;
+}
+.keterangan__hari {
+	font-size: 14px;
+	display: block;
+}
+.required {
+	font-weight: 500;
+	font: 20px;
+	color: #404040cc;
+}
+
+.btn__submit {
+	background-color: #5d6fff;
+	border-radius: 8px;
+	border: none;
+	color: #ffffff;
+}
+
+.btn__submit:hover {
+	background-color: #5d70ffec;
+}
+
+@media only screen and (max-width: 576px) {
+	.card {
+		width: 150px;
+	}
+}
