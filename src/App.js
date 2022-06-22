@@ -37,13 +37,14 @@ const App = () => {
       <Route path="/" element={<CustomerLayout />}>
         <Route index element={<CustomerHome />} />
 
-        {/* <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}> */}
-        <Route path="sign-out" element={<CustomerSignOut />} />
-        <Route path="informasi-akun" element={<CustomerAccountInformation />} />
-        <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
-        <Route path="transaksi" element={<CustomerMyTransaction />} />
-        <Route path="redeem" element={<CustomerRedeem />} />
-        {/* </Route> */}
+        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
+          <Route path="sign-out" element={<CustomerSignOut />} />
+          <Route path="informasi-akun" element={<CustomerAccountInformation />} />
+          <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
+          <Route path="transaksi" element={<CustomerMyTransaction />} />
+          <Route path="redeem" element={<CustomerRedeem />} />
+          <Route path="redeem/:category" element={<CustomerRedeem />} />
+        </Route>
 
         {/* <Route
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}

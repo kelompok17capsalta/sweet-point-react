@@ -8,16 +8,16 @@ import { Link } from "react-router-dom";
 
 const LogoRedeem = (props) => {
 	const image = () => {
-		if (props.text == "cashout") {
+		if (props.text === "cashout") {
 			return cashout;
 		}
-		if (props.text == "emoney") {
+		if (props.text === "emoney") {
 			return emoney;
 		}
-		if (props.text == "paket") {
+		if (props.text === "paket") {
 			return paket;
 		}
-		if (props.text == "pulsa") {
+		if (props.text === "pulsa") {
 			return pulsa;
 		}
 	};
