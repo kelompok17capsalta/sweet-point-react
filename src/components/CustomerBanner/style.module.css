@@ -5,9 +5,9 @@
 }
 
 .navigation.navigation__prev {
-  left: -40px;
+  left: -10px;
 }
 
 .navigation.navigation__next {
-  right: -40px;
+  right: -10px;
 }

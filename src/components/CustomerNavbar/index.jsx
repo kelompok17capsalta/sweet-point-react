@@ -33,14 +33,18 @@ const Navbar = () => {
             <ul className="navbar-nav flex-lg-row ms-auto mb-2 mb-lg-0">
               {customer && (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item mb-2 mb-lg-0">
                     <Link
                       className="d-flex align-items-center nav-link active py-0"
                       aria-current="page"
                       to="/informasi-akun"
                     >
-                      <i className="bi bi-person h2 m-0 me-2"></i>
-                      <span>{customer.point} Point</span>
+                      <img 
+                        src={`https://ui-avatars.com/api/?background=ffc107&color=fff&rounded=true&name=${customer?.name}`}
+                        alt={customer?.name}
+                        width={40}
+                      />
+                      <span className="ms-2">{customer.point} Point</span>
                     </Link>
                   </li>
                 </>
