@@ -1,0 +1,29 @@
+thead tr th {
+  font-size: 15px;
+  font-weight: 400;
+  color: #000000 !important;
+}
+tbody tr td {
+  font-size: 15px;
+  color: #000000 !important ;
+}
+span {
+  font-size: 15px;
+}
+.text_success {
+  color: #27f777;
+}
+
+.text_failed {
+  color: #f63f3f;
+}
+
+.text_pending {
+  color: #9c9b9a;
+}
+.text_tambahpoint {
+  color: #00b167;
+}
+.text_kurangpoint {
+  color: #5d6fff;
+}
