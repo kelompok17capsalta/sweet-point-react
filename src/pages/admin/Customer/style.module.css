@@ -31,10 +31,6 @@
   color: white;
 }
 
-.user_table tbody {
-  border-top: 0 !important;
-}
-
 .page_number {
   text-decoration: none;
   color: black;

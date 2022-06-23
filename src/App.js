@@ -46,19 +46,20 @@ const App = () => {
           <Route path="redeem/:category" element={<CustomerRedeem />} />
         </Route>
 
-        {/* <Route
+        <Route
           element={<ProtectedRoutes redirectPath="/" allowedBy={!customer} />}
-        > */}
-        <Route path="sign-in" element={<CustomerSignIn />} />
-        <Route path="sign-up" element={<CustomerSignUp />} />
-        {/* </Route> */}
+        >
+          <Route path="sign-in" element={<CustomerSignIn />} />
+          <Route path="sign-up" element={<CustomerSignUp />} />
+        </Route>
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
       {/* ./Customers */}
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminSignIn />} />
+        <Route index element={admin ? <Navigate to="/admin/dashboard" replace /> : <AdminSignIn />} />
 
         <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}>
           <Route path="dashboard" element={<AdminDashboard />} />
