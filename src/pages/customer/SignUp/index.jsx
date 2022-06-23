@@ -14,6 +14,8 @@ import Customer from "../../../services/api/Customer";
 const SignUp = () => {
 	const [form, setForm] = useState({
 		name: "",
+		address: "",
+		phone: "",
 		username: "",
 		email: "",
 		password: "",
@@ -76,6 +78,34 @@ const SignUp = () => {
 										id="name"
 										name="name"
 										placeholder="Nama Lengkap"
+										onChange={handleChange}
+										required
+									/>
+								</div>
+								<div className="mb-3">
+									<label htmlFor="address" className={style.label__form}>
+										Alamat
+									</label>
+									<input
+										type="text"
+										className="form-control form-control-lg"
+										id="address"
+										name="address"
+										placeholder="Alamat"
+										onChange={handleChange}
+										required
+									/>
+								</div>
+								<div className="mb-3">
+									<label htmlFor="phone" className={style.label__form}>
+										Nomor Telepon
+									</label>
+									<input
+										type="text"
+										className="form-control form-control-lg"
+										id="phone"
+										name="phone"
+										placeholder="Nomor Telepon"
 										onChange={handleChange}
 										required
 									/>
