@@ -68,6 +68,23 @@ const Customer = {
 
     return responseJSON.data;
   },
+
+  async updateCustomer({ id, username, name, password, email, phone, address }) {
+    const response = await fetch(`${API_ENDPOINT.CUSTOMER.USER}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, name, password, email, phone, address }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) {
+      throw new APIError(responseJSON.message || responseJSON.error);
+    }
+
+    return responseJSON.data;
+  },
 };
 
 export default Customer;

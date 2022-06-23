@@ -5,7 +5,7 @@ const CONFIG = {
   DEFAULT_ERROR_TITLE: 'Oops...',
   DEFAULT_ERROR_MESSAGE: 'Telah terjadi suatu kesalahan.',
   CREDENTIAL_ERROR_MESSAGE: 'Username atau Password anda tidak valid.',
-  API_NOT_FOUND_MESSAGE: 'DATA_NOT_FOUND',
+  API_NOT_FOUND_MESSAGE: 'Data tidak ditemukan!',
   ADMIN_USERNAME: process.env.REACT_APP_ADMIN_USERNAME,
   FIREBASE: {
     API_KEY: process.env.REACT_APP_FIREBASE_API_KEY,
