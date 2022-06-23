@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Services
+import Token from '../../localStorage/Token';
+
 const initialState = {
-  value: null,
+  value: Token.getCustomerToken() ? true : null,
 };
 
 export const customerSlice = createSlice({

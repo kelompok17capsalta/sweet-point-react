@@ -9,6 +9,7 @@ const API_ENDPOINT = {
   ADMIN: {
     SIGN_IN: `${CONFIG.API_BASE_URL}/v1/auth/login`,
     INFO: `${CONFIG.API_BASE_URL}/v1/auth/info`,
+    CUSTOMERS: `${CONFIG.API_BASE_URL}/v1/user/`,
   },
 };
 

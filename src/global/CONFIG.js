@@ -3,7 +3,10 @@ const CONFIG = {
   ADMIN_TOKEN_KEY: process.env.REACT_APP_ADMIN_TOKEN_KEY,
   API_BASE_URL: process.env.REACT_APP_API_BASE_URL,
   DEFAULT_ERROR_TITLE: 'Oops...',
-  DEFAULT_ERROR_MESSAGE: 'Something went wrong!',
+  DEFAULT_ERROR_MESSAGE: 'Telah terjadi suatu kesalahan.',
+  CREDENTIAL_ERROR_MESSAGE: 'Username atau Password anda tidak valid.',
+  API_NOT_FOUND_MESSAGE: 'DATA_NOT_FOUND',
+  ADMIN_USERNAME: process.env.REACT_APP_ADMIN_USERNAME,
   FIREBASE: {
     API_KEY: process.env.REACT_APP_FIREBASE_API_KEY,
     AUTH_DOMAIN: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
