@@ -16,7 +16,7 @@ import CustomerSignUp from "./pages/customer/SignUp";
 import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
 import CustomerMyTransaction from "./pages/customer/MyTransaction";
-import CustomerRedeem from './pages/customer/Redeem'
+import CustomerRedeem from "./pages/customer/Redeem";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -26,6 +26,7 @@ import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
 import AdminRedeemProducts from "./pages/admin/RedeemProducts";
 import AdminRedeemEdit from "./pages/admin/RedeemEdit";
+import CostumerEdit from "./pages/admin/CostumerEdit";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -37,9 +38,16 @@ const App = () => {
       <Route path="/" element={<CustomerLayout />}>
         <Route index element={<CustomerHome />} />
 
-        <Route element={<ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />}>
+        <Route
+          element={
+            <ProtectedRoutes redirectPath="/sign-in" allowedBy={customer} />
+          }
+        >
           <Route path="sign-out" element={<CustomerSignOut />} />
-          <Route path="informasi-akun" element={<CustomerAccountInformation />} />
+          <Route
+            path="informasi-akun"
+            element={<CustomerAccountInformation />}
+          />
           <Route path="pengaturan" element={<CustomerPengaturanAkun />} />
           <Route path="transaksi" element={<CustomerMyTransaction />} />
           <Route path="redeem" element={<CustomerRedeem />} />
@@ -59,15 +67,26 @@ const App = () => {
 
       {/* Admin */}
       <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={admin ? <Navigate to="/admin/dashboard" replace /> : <AdminSignIn />} />
+        <Route
+          index
+          element={
+            admin ? <Navigate to="/admin/dashboard" replace /> : <AdminSignIn />
+          }
+        />
 
-        <Route element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}>
+        <Route
+          element={<ProtectedRoutes redirectPath="/admin" allowedBy={admin} />}
+        >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="customer" element={<AdminCustomer />} />
+          <Route path="customer/edit/user/:id" element={<CostumerEdit />} />
           <Route path="redeem" element={<AdminRedeem />} />
           <Route path="redeem/:category" element={<AdminRedeemProducts />} />
           <Route path="sign-out" element={<AdminSignOut />} />
-          <Route path="redeem/:category/:itemId/edit" element={<AdminRedeemEdit />} />
+          <Route
+            path="redeem/:category/:itemId/edit"
+            element={<AdminRedeemEdit />}
+          />
         </Route>
 
         <Route path="*" element={<Navigate to="/admin" replace />} />
