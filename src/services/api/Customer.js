@@ -69,13 +69,16 @@ const Customer = {
     return responseJSON.data;
   },
 
-  async updateCustomer({ id, username, name, password, email, phone, address }) {
+  async updateCustomer({ id, username, name, email, phone, address, password }) {
+    const token = Token.getCustomerToken();
+
     const response = await fetch(`${API_ENDPOINT.CUSTOMER.USER}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, name, password, email, phone, address }),
+      body: JSON.stringify({ username, name, email, phone, address, password }),
     });
     const responseJSON = await response.json();
 

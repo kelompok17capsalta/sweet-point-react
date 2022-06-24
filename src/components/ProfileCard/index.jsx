@@ -37,7 +37,7 @@ const ProfileCard = () => {
           <div>
             <Link className={style.text_link} to="/informasi-akun">
               <img className={style.body_hover} src={iconjournal} alt="journal" />
-              <span className="mx-2">Pengaturan Profil</span>
+              <span className="mx-2">Informasi Akun</span>
             </Link>
           </div>
           <div className="mt-3">
@@ -61,7 +61,7 @@ const ProfileCard = () => {
           <div className="mt-3">
             <Link className={style.text_link} to="/redeem">
               <img className={style.body_hover} src={iconreceipt} alt="receipt" />
-              <span className="mx-2">Radeem Category</span>
+              <span className="mx-2">Redeem Category</span>
             </Link>
           </div>
           <div className="mt-3">

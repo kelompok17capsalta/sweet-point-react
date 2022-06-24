@@ -38,19 +38,20 @@ const AdminLayout = () => {
       } catch {
         ErrorHandler.sessionExpired();
         Token.removeAdminToken();
+        dispatch(updateAdmin(null));
         navigate('/admin', { replace: true });
       }
     };
 
     updateData();
-  }, [dispatch, navigate]);
+  }, []);
 
   return (
     <>
       {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
 
-      <main style={{ minHeight: "80vh" }}>
+      <main style={{ minHeight: "85vh" }}>
         <Outlet />
       </main>
 

@@ -1,4 +1,4 @@
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 // Configuration
 import CONFIG from '../global/CONFIG';
@@ -15,7 +15,7 @@ const ErrorHandler = {
       console.error(error);
     }
 
-    return swal.fire(
+    return Swal.fire(
       CONFIG.DEFAULT_ERROR_TITLE,
       message,
       'error',
@@ -23,7 +23,7 @@ const ErrorHandler = {
   },
 
   sessionExpired() {
-    swal.fire(
+    Swal.fire(
       'Sesi login telah habis !',
       '',
       'error',

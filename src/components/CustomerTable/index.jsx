@@ -101,7 +101,7 @@ const CustomerTable = ({ customers, onUpdate }) => {
                   </td>
                 ))}
                 <td>
-                  <Link to={`/edit/user/${row.original.id}`} className="btn btn-info text-light me-3">Edit</Link>
+                  <Link to={`/admin/customer/${row.original.id}`} className="btn btn-info text-light me-3">Edit</Link>
                   <button className="btn btn-danger" onClick={() => handleDeleteCustomer(row.original.id)}>Hapus</button>
                 </td>
               </tr>
