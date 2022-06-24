@@ -17,6 +17,7 @@ import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
 import CustomerMyTransaction from "./pages/customer/MyTransaction";
 import CustomerRedeem from "./pages/customer/Redeem";
+import MidtransTest from "./pages/customer/MidtransTest";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="transaksi" element={<CustomerMyTransaction />} />
           <Route path="redeem" element={<CustomerRedeem />} />
           <Route path="redeem/:category" element={<CustomerRedeem />} />
+          <Route path="midtrans" element={<MidtransTest />} />
         </Route>
 
         <Route
