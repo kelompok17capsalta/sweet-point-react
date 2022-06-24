@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import swal from 'sweetalert2';
+import {
+	useSelector,
+	useDispatch,
+} from "react-redux";
+import Swal from 'sweetalert2';
 import style from "./style.module.css";
+
+// Components
 import ProfileCard from "../../../components/ProfileCard";
 
+// Services
+import Customer from "../../../services/api/Customer";
+import { updateCustomer } from "../../../services/redux/Customer";
 
 // Utils
 import ErrorHandler from "../../../utils/ErrorHandler";
-import { useEffect } from "react";
 
 const AccountInformation = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -17,6 +24,8 @@ const AccountInformation = () => {
 		address: '',
 		phone: '',
 	});
+
+	const dispatch = useDispatch();
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -31,8 +40,17 @@ const AccountInformation = () => {
 		try {
 			e.preventDefault();
 
-			swal.showLoading();
-			await swal.fire(
+			Swal.showLoading();
+
+			const payload = { id: customer.id, ...formValue };
+
+			const updatedCustomerData = await Customer.updateCustomer(payload);
+
+			const updatedCustomer = { ...customer, ...updatedCustomerData };
+
+			dispatch(updateCustomer(updatedCustomer));
+
+			await Swal.fire(
 				'Data berhasil disimpan.',
 				'',
 				'success',
@@ -40,7 +58,7 @@ const AccountInformation = () => {
 		} catch (error) {
 			ErrorHandler.handle(error);
 		}
-	} ;
+	};
 
 	useEffect(() => {
 		setFormValue({

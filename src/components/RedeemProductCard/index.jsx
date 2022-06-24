@@ -5,7 +5,7 @@ const RedeemProductCard = ({ title, description, image }) => {
   return (
     <div className={`${styles.redeem_product_container}`}>
       <div height="20px">
-        <img src={image} height="100" />
+        <img src={image} height="100" alt={title} />
       </div>
       <div>
         <p className={`${styles.redeem_product_title}`}>{title}</p>

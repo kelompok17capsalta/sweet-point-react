@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Outlet, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 
 // Components
 import Navbar from "../../components/CustomerNavbar";
@@ -13,8 +13,12 @@ import { updateCustomer } from "../../services/redux/Customer";
 import Customer from "../../services/api/Customer";
 import Token from "../../services/localStorage/Token";
 
+// Utils
+import ErrorHandler from '../../utils/ErrorHandler';
+
 const CustomerLayout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const pagesWithoutHeadAndFooter = [
@@ -31,17 +35,22 @@ const CustomerLayout = () => {
           const newCustomer = await Customer.getCustomer();
           dispatch(updateCustomer(newCustomer));
         }
-      } catch {}
+      } catch {
+        ErrorHandler.sessionExpired();
+        Token.removeCustomerToken();
+        dispatch(updateCustomer(null));
+        navigate('/', { replace: true });
+      }
     };
 
     updateData();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
       {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
-      <main style={{ minHeight: "80vh" }}>
+      <main style={{ minHeight: "85vh" }}>
         <Outlet />
       </main>
 

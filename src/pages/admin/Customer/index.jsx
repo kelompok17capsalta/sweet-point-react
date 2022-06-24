@@ -1,13 +1,19 @@
-import { useMemo } from 'react';
-import { useTable } from 'react-table';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-import AdminNavbar from '../../../components/AdminNavbar';
-import AdminFooter from '../../../components/AdminFooter';
 
 import styles from './style.module.css';
 
-const PageNav = ({ totalPages }) => {
+// Components
+import CustomerTable from '../../../components/CustomerTable';
+
+// Utils
+import ErrorHandler from '../../../utils/ErrorHandler';
+
+// Services
+import Admin from '../../../services/api/Admin';
+
+
+const PageNav = ({ totalPages = 7 }) => {
   const pages = [];
   for(let i = 1; i <= totalPages; i++) {
     pages.push(i);
@@ -33,133 +39,134 @@ const PageNav = ({ totalPages }) => {
 };
 
 const Customer = () => {
-  const columns = useMemo(() => [
-    {
-      Header: 'Name',
-      accessor: 'name',
-    },
-    {
-      Header: 'Username',
-      accessor: 'username',
-    },
-  ], []);
+  const [customers, setCustomers] = useState([]);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [sortedBy, setSortedBy] = useState('default');
 
-  const users = [];
-  for(let i = 1; i <= 10; i++) {
-    users.push({
-      name: `Dummy User - ${i}`,
-      username: `dummyuser_${i}`,
-      image: 'https://ui-avatars.com/api/?name=dummy+user&background=random&color=ffffff&rounded=true',
+  const filteredCustomers = customers
+    .filter((customer) => (
+      customer.name.toLowerCase().includes(searchKeyword.toLowerCase()) || customer.username.toLowerCase().includes(searchKeyword.toLowerCase())
+    ))
+    .sort((a,b) => {
+      if (sortedBy === 'default') return 0;
+
+      if (a[sortedBy].toLowerCase() < b[sortedBy].toLowerCase()) {
+        return -1;
+      }
+      if (a[sortedBy].toLowerCase() > b[sortedBy].toLowerCase()) {
+        return 1;
+      }
+
+      return 0;
     });
-  }
 
-  const totalPages = 7;
+  const getSortedTogglerClassName = (sortBy) => {
+    return `dropdown-item ${sortedBy === sortBy && 'active'}`;
+  };
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data: users,
-  })
+  const updateData = async () => {
+    try {
+      const newCustomers = await Admin.getCustomers();
+      setCustomers(newCustomers);
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
+  };
+
+  useEffect(() => {
+    updateData();
+  }, []);
 
   return (
-    <>
-      <AdminNavbar />
+    <div className="container">
+      <section className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-4">
+        <h1 className="mb-0 h3">Data Customer</h1>
 
-      <div className="container">
-        <section className="d-flex flex-column flex-lg-row align-items-center justify-content-lg-between mt-4">
-          <h1 className="mb-0 h3">Data Users</h1>
+        <form className="d-flex flex-column flex-lg-row mt-3 mt-lg-1">
+          <div className="input-group">
+            <span className={`input-group-text ${styles.input_icon}`}>
+              <i className="bi bi-search"></i>
+            </span>
 
-          <form className="d-flex flex-column flex-lg-row mt-3 mt-lg-1">
-            <div className="input-group">
-              <span className={`input-group-text ${styles.input_icon}`} id="basic-addon1">
-                <i className="bi bi-search"></i>
-              </span>
+            <input
+              type="text"
+              className={`form-control my-0 ${styles.input}`}
+              placeholder="Cari ..."
+              aria-label="Cari customer"
+              value={searchKeyword}
+              onChange={(event) => {
+                setSearchKeyword(event.target.value);
+              }}
+            />
 
-              <input type="text" className={`form-control ${styles.input}`} placeholder="Search ..." aria-label="Search User" aria-describedby="basic-addon1" />
-
-              <button type="button" className={`input-group-text ${styles.input_icon}`}>
-                <i className="bi bi-x-circle"></i>
-              </button>
-            </div>
-
-            <div className={`input-group mt-3 mt-lg-0 ms-lg-3 ${styles.input_button}`}>
-              <button type="button" className=" d-block btn btn-primary">Add User</button>
-            </div>
-          </form>
-        </section>
-
-        <hr className="my-4" />
-
-        <section className="d-flex align-items-lg-center justify-content-between">
-          <div>
-            <h2 className="mb-0 h3">Users</h2>
-            <p className="text-secondary">10 results found</p>
-          </div>
-
-          <div className={styles.sort_button}>
-            <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <i className="bi bi-sort-down"></i>
-              <span className="mx-1">Sort By</span>
+            <button
+              type="button"
+              className={`input-group-text ${styles.input_icon}`}
+              onClick={() => {
+                setSearchKeyword('');
+              }}
+            >
+              <i className="bi bi-x-circle"></i>
             </button>
-
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><button className="dropdown-item active">Default</button></li>
-              <li><button className="dropdown-item">Name</button></li>
-              <li><button className="dropdown-item">Username</button></li>
-            </ul>
           </div>
-        </section>
+        </form>
+      </section>
 
-        <section className="mt-3 my-5">
-          <div className="table-responsive">
-            <table className={`table table-hover ${styles.user_table}`} {...getTableProps()}>
-              <thead className="table-light">
-                {headerGroups.map(headerGroup => (
-                  <tr {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map(column => (
-                      <th scope="col" {...column.getHeaderProps()}>{column.render('Header')}</th>
-                    ))}
-                    <th scope="col">Action</th>
-                  </tr>
-                ))}
-              </thead>
+      <hr className="my-4" />
 
-              <tbody {...getTableBodyProps()}>
-                {rows.map((row, i) => {
-                  prepareRow(row);
-                  return (
-                    <tr {...row.getRowProps()}>
-                      {row.cells.map((cell, cellIdx) => (
-                        <td {...cell.getCellProps()}>
-                          {cell.column.id === 'name' && (
-                            <img src={row.original.image} alt={row.original.username} className="mb-1 mb-lg-0 me-lg-1" />
-                          )}
-                          {cell.render('Cell')}
-                        </td>
-                      ))}
-                      <td>
-                        <button className="btn btn-info text-light me-3">Edit</button>
-                        <button className="btn btn-danger">Delete</button>
-                      </td>
-                    </tr>
-                  )
-                })}
-              </tbody>
+      <section className="d-flex align-items-lg-center justify-content-between">
+        <div>
+          <h2 className="mb-0 h3">Customer</h2>
+          <p className="text-secondary">{filteredCustomers.length} ditemukan.</p>
+        </div>
 
-            </table>
-          </div>
+        <div className={styles.sort_button}>
+          <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <i className="bi bi-sort-down"></i>
+            <span className="mx-1">Sort By</span>
+          </button>
 
-          <PageNav totalPages={totalPages}/>
-        </section>
-      </div>
+          <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <button 
+                className={getSortedTogglerClassName('default')}
+                onClick={() => {
+                  if (sortedBy !== 'default') setSortedBy('default');
+                }}
+              >
+                Default
+              </button>
+            </li>
+            <li>
+              <button 
+                className={getSortedTogglerClassName('name')}
+                onClick={() => {
+                  if (sortedBy !== 'name') setSortedBy('name');
+                }}
+              >
+                Name
+              </button>
+            </li>
+            <li>
+              <button 
+                className={getSortedTogglerClassName('username')}
+                onClick={() => {
+                  if (sortedBy !== 'username') setSortedBy('username');
+                }}
+              >
+                Username
+              </button>
+            </li>
+          </ul>
+        </div>
+      </section>
 
-      <AdminFooter />
-    </>
+      <section className="mt-3 my-5">
+        <CustomerTable customers={filteredCustomers} onUpdate={updateData} />
+
+        {/* <PageNav /> */}
+      </section>
+    </div>
   );
 };
 

@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
+
+// Components
+import Navbar from '../../components/AdminNavbar';
+import Footer from '../../components/AdminFooter';
 
 // Redux Action
 import { updateAdmin } from '../../services/redux/Admin';
@@ -9,9 +13,18 @@ import { updateAdmin } from '../../services/redux/Admin';
 import Admin from '../../services/api/Admin';
 import Token from '../../services/localStorage/Token';
 
+// Utils
+import ErrorHandler from '../../utils/ErrorHandler';
+
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const pagesWithoutHeadAndFooter = [
+    '/admin',
+  ];
 
   useEffect(() => {
     const updateData = async () => {
@@ -22,27 +35,28 @@ const AdminLayout = () => {
           const newAdmin = await Admin.getAdmin();
           dispatch(updateAdmin(newAdmin));
         }
-      } catch (error) {
-        console.log(error);
+      } catch {
+        ErrorHandler.sessionExpired();
+        Token.removeAdminToken();
+        dispatch(updateAdmin(null));
+        navigate('/admin', { replace: true });
       }
     };
 
     updateData();
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
-      <header>
-        {/* Ini Header */}
-      </header>
+      {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
-      <main>
+
+      <main style={{ minHeight: "85vh" }}>
         <Outlet />
       </main>
 
-      <footer>
-        {/* Ini Footer */}
-      </footer>
+      {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Footer />)}
+
     </>
   );
 };
