@@ -41,9 +41,28 @@ const PageNav = ({ totalPages = 7 }) => {
 const Customer = () => {
   const [customers, setCustomers] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const filteredCustomers = customers.filter((customer) => (
-    customer.name.toLowerCase().includes(searchKeyword.toLowerCase()) || customer.username.toLowerCase().includes(searchKeyword.toLowerCase())
-  ));
+  const [sortedBy, setSortedBy] = useState('default');
+
+  const filteredCustomers = customers
+    .filter((customer) => (
+      customer.name.toLowerCase().includes(searchKeyword.toLowerCase()) || customer.username.toLowerCase().includes(searchKeyword.toLowerCase())
+    ))
+    .sort((a,b) => {
+      if (sortedBy === 'default') return 0;
+
+      if (a[sortedBy].toLowerCase() < b[sortedBy].toLowerCase()) {
+        return -1;
+      }
+      if (a[sortedBy].toLowerCase() > b[sortedBy].toLowerCase()) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+  const getSortedTogglerClassName = (sortBy) => {
+    return `dropdown-item ${sortedBy === sortBy && 'active'}`;
+  };
 
   const updateData = async () => {
     try {
@@ -101,18 +120,45 @@ const Customer = () => {
           <p className="text-secondary">{filteredCustomers.length} ditemukan.</p>
         </div>
 
-        {/* <div className={styles.sort_button}>
+        <div className={styles.sort_button}>
           <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <i className="bi bi-sort-down"></i>
             <span className="mx-1">Sort By</span>
           </button>
 
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><button className="dropdown-item active">Default</button></li>
-            <li><button className="dropdown-item">Name</button></li>
-            <li><button className="dropdown-item">Username</button></li>
+            <li>
+              <button 
+                className={getSortedTogglerClassName('default')}
+                onClick={() => {
+                  if (sortedBy !== 'default') setSortedBy('default');
+                }}
+              >
+                Default
+              </button>
+            </li>
+            <li>
+              <button 
+                className={getSortedTogglerClassName('name')}
+                onClick={() => {
+                  if (sortedBy !== 'name') setSortedBy('name');
+                }}
+              >
+                Name
+              </button>
+            </li>
+            <li>
+              <button 
+                className={getSortedTogglerClassName('username')}
+                onClick={() => {
+                  if (sortedBy !== 'username') setSortedBy('username');
+                }}
+              >
+                Username
+              </button>
+            </li>
           </ul>
-        </div> */}
+        </div>
       </section>
 
       <section className="mt-3 my-5">
