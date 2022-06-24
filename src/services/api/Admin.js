@@ -70,6 +70,44 @@ const Admin = {
     return responseJSON.data;
   },
 
+  async getCustomerById(id) {
+    const token = Token.getAdminToken();
+
+    const response = await fetch(`${API_ENDPOINT.ADMIN.CUSTOMERS}${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) {
+      throw new APIError(responseJSON.message || responseJSON.error);
+    }
+
+    return responseJSON.data;
+  },
+
+  async updateCustomer({ id, username, name, email, phone, address }) {
+    const token = Token.getAdminToken();
+
+    const response = await fetch(`${API_ENDPOINT.ADMIN.CUSTOMERS}${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ username, name, email, phone, address }),
+    });
+    const responseJSON = await response.json();
+
+    if (response.status !== 200) {
+      throw new APIError(responseJSON.message || responseJSON.error);
+    }
+
+    return responseJSON.data;
+  },
+
   async deleteCustomer(id) {
     const token = Token.getAdminToken();
 

@@ -38,18 +38,19 @@ const CustomerLayout = () => {
       } catch {
         ErrorHandler.sessionExpired();
         Token.removeCustomerToken();
+        dispatch(updateCustomer(null));
         navigate('/', { replace: true });
       }
     };
 
     updateData();
-  }, [dispatch, navigate]);
+  }, []);
 
   return (
     <>
       {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
-      <main style={{ minHeight: "80vh" }}>
+      <main style={{ minHeight: "85vh" }}>
         <Outlet />
       </main>
 

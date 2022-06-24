@@ -78,13 +78,13 @@ const SignIn = () => {
                   <label className="mb-1 px-1">
                     <h4 className={styles.color_text}>Username</h4>
                   </label>
-                  <input className="mb-4" type="text" placeholder="Enter your username" name="username" onChange={handleChange} />
+                  <input className="mb-4" type="text" placeholder="Username" name="username" onChange={handleChange} />
                 </div>
                 <div className="row mb-3 px-3">
                   <label className="mb-0 px-1">
                     <h4 className={styles.color_text}>Password</h4>
                   </label>
-                  <input className={`mb-1`} type={clickEye ? "text" : "password"} placeholder="Enter your password" name="password" onChange={handleChange} />
+                  <input className={`mb-1`} type={clickEye ? "text" : "password"} placeholder="Password" name="password" onChange={handleChange} />
                   <div className={` ${styles.col_layout} col-auto`}>
                     <i className={clickEye ? `bi bi-eye` : `bi bi-eye-slash`} onClick={toggleEye}></i>
                   </div>
@@ -101,7 +101,7 @@ const SignIn = () => {
                 </div>
                 <div className="row mb-4 px-3">
                   <Link to="/sign-up" className="btn btn-outline-primary btn-lg">
-                    Create New Account
+                    Buat Akun Baru
                   </Link>
                 </div>
               </form>

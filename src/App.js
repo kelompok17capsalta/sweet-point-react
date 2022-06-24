@@ -26,7 +26,7 @@ import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
 import AdminRedeemProducts from "./pages/admin/RedeemProducts";
 import AdminRedeemEdit from "./pages/admin/RedeemEdit";
-import CostumerEdit from "./pages/admin/CostumerEdit";
+import AdminCostumerEdit from "./pages/admin/CostumerEdit";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -79,7 +79,7 @@ const App = () => {
         >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="customer" element={<AdminCustomer />} />
-          <Route path="customer/edit/user/:id" element={<CostumerEdit />} />
+          <Route path="customer/:customerId" element={<AdminCostumerEdit />} />
           <Route path="redeem" element={<AdminRedeem />} />
           <Route path="redeem/:category" element={<AdminRedeemProducts />} />
           <Route path="sign-out" element={<AdminSignOut />} />

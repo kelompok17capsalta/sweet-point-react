@@ -14,9 +14,9 @@ import Customer from "../../../services/api/Customer";
 const SignUp = () => {
 	const [form, setForm] = useState({
 		name: "",
+		username: "",
 		address: "",
 		phone: "",
-		username: "",
 		email: "",
 		password: "",
 	});
@@ -61,7 +61,7 @@ const SignUp = () => {
 					<div className="col-lg-6 col-12 justify-content-end d-lg-flex">
 						<div className={style.container__form}>
 							<div className={style.container__text}>
-								<h1 className={style.header}>New Account</h1>
+								<h1 className={style.header}>Buat Akun</h1>
 								<p className={style.description}>
 									Lengkapi form dibawah ini dengan menggunakan data anda yang
 									valid
@@ -82,34 +82,7 @@ const SignUp = () => {
 										required
 									/>
 								</div>
-								<div className="mb-3">
-									<label htmlFor="address" className={style.label__form}>
-										Alamat
-									</label>
-									<input
-										type="text"
-										className="form-control form-control-lg"
-										id="address"
-										name="address"
-										placeholder="Alamat"
-										onChange={handleChange}
-										required
-									/>
-								</div>
-								<div className="mb-3">
-									<label htmlFor="phone" className={style.label__form}>
-										Nomor Telepon
-									</label>
-									<input
-										type="text"
-										className="form-control form-control-lg"
-										id="phone"
-										name="phone"
-										placeholder="Nomor Telepon"
-										onChange={handleChange}
-										required
-									/>
-								</div>
+
 								<div className="mb-3">
 									<label htmlFor="username" className={style.label__form}>
 										Username
@@ -124,6 +97,37 @@ const SignUp = () => {
 										required
 									/>
 								</div>
+
+								<div className="mb-3">
+									<label htmlFor="address" className={style.label__form}>
+										Alamat
+									</label>
+									<input
+										type="text"
+										className="form-control form-control-lg"
+										id="address"
+										name="address"
+										placeholder="Alamat"
+										onChange={handleChange}
+										required
+									/>
+								</div>
+
+								<div className="mb-3">
+									<label htmlFor="phone" className={style.label__form}>
+										Nomor Telepon
+									</label>
+									<input
+										type="text"
+										className="form-control form-control-lg"
+										id="phone"
+										name="phone"
+										placeholder="Nomor Telepon"
+										onChange={handleChange}
+										required
+									/>
+								</div>
+
 								<div className="mb-3">
 									<label htmlFor="email" className={style.label__form}>
 										Email
@@ -138,6 +142,7 @@ const SignUp = () => {
 										required
 									/>
 								</div>
+
 								<div className="mb-5">
 									<label htmlFor="password" className={style.label__form}>
 										Password
@@ -157,7 +162,7 @@ const SignUp = () => {
 										className={`btn btn-lg btn-primary ${style.btn__submit}`}
 										type="submit"
 									>
-										Create Account
+										Buat Akun
 									</button>
 								</div>
 							</form>
