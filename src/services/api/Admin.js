@@ -20,7 +20,7 @@ const Admin = {
     });
     const responseJSON = await response.json();
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
@@ -41,7 +41,7 @@ const Admin = {
     });
     const responseJSON = await response.json();
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       const responseMessage = responseJSON.message || responseJSON.error;
 
       if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE) throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
@@ -63,7 +63,7 @@ const Admin = {
     });
     const responseJSON = await response.json();
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
@@ -81,7 +81,7 @@ const Admin = {
     });
     const responseJSON = await response.json();
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
@@ -101,7 +101,7 @@ const Admin = {
     });
     const responseJSON = await response.json();
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
@@ -120,7 +120,7 @@ const Admin = {
     });
     const responseJSON = await response.json();
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status > 299) {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 

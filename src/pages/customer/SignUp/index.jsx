@@ -37,7 +37,7 @@ const SignUp = () => {
 			e.preventDefault();
 			await Customer.register(form);
 
-			await Swal.fire('User successfully registered!', '', 'success');
+			await Swal.fire('User berhasil dibuat', '', 'success');
 			navigate('/sign-in');
 		} catch (error) {
 			ErrorHandler.handle(error);
