@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import styles from './style.module.css';
@@ -6,11 +6,11 @@ import styles from './style.module.css';
 // Components
 import CustomerTable from '../../../components/CustomerTable';
 
-// Utils
-import ErrorHandler from '../../../utils/ErrorHandler';
-
-// Services
-import Admin from '../../../services/api/Admin';
+// Actions
+import {
+  sortUserList,
+  searchUser,
+} from '../../../services/redux/UserList';
 
 
 const PageNav = ({ totalPages = 7 }) => {
@@ -39,43 +39,17 @@ const PageNav = ({ totalPages = 7 }) => {
 };
 
 const Customer = () => {
-  const [customers, setCustomers] = useState([]);
-  const [searchKeyword, setSearchKeyword] = useState('');
-  const [sortedBy, setSortedBy] = useState('default');
+  const {
+    sortedBy,
+    search,
+    result: customers,
+  } = useSelector((state) => state.userList);
 
-  const filteredCustomers = customers
-    .filter((customer) => (
-      customer.name.toLowerCase().includes(searchKeyword.toLowerCase()) || customer.username.toLowerCase().includes(searchKeyword.toLowerCase())
-    ))
-    .sort((a,b) => {
-      if (sortedBy === 'default') return 0;
-
-      if (a[sortedBy].toLowerCase() < b[sortedBy].toLowerCase()) {
-        return -1;
-      }
-      if (a[sortedBy].toLowerCase() > b[sortedBy].toLowerCase()) {
-        return 1;
-      }
-
-      return 0;
-    });
+  const dispatch = useDispatch();
 
   const getSortedTogglerClassName = (sortBy) => {
     return `dropdown-item ${sortedBy === sortBy && 'active'}`;
   };
-
-  const updateData = async () => {
-    try {
-      const newCustomers = await Admin.getCustomers();
-      setCustomers(newCustomers);
-    } catch (error) {
-      ErrorHandler.handle(error);
-    }
-  };
-
-  useEffect(() => {
-    updateData();
-  }, []);
 
   return (
     <div className="container">
@@ -93,9 +67,9 @@ const Customer = () => {
               className={`form-control my-0 ${styles.input}`}
               placeholder="Cari ..."
               aria-label="Cari customer"
-              value={searchKeyword}
+              value={search}
               onChange={(event) => {
-                setSearchKeyword(event.target.value);
+                dispatch(searchUser(event.target.value));
               }}
             />
 
@@ -103,7 +77,7 @@ const Customer = () => {
               type="button"
               className={`input-group-text ${styles.input_icon}`}
               onClick={() => {
-                setSearchKeyword('');
+                dispatch(searchUser(''));
               }}
             >
               <i className="bi bi-x-circle"></i>
@@ -117,7 +91,7 @@ const Customer = () => {
       <section className="d-flex align-items-lg-center justify-content-between">
         <div>
           <h2 className="mb-0 h3">Customer</h2>
-          <p className="text-secondary">{filteredCustomers.length} ditemukan.</p>
+          <p className="text-secondary">{customers.length} ditemukan.</p>
         </div>
 
         <div className={styles.sort_button}>
@@ -131,7 +105,7 @@ const Customer = () => {
               <button 
                 className={getSortedTogglerClassName('default')}
                 onClick={() => {
-                  if (sortedBy !== 'default') setSortedBy('default');
+                  if (sortedBy !== 'default') dispatch(sortUserList('default'));
                 }}
               >
                 Default
@@ -141,7 +115,7 @@ const Customer = () => {
               <button 
                 className={getSortedTogglerClassName('name')}
                 onClick={() => {
-                  if (sortedBy !== 'name') setSortedBy('name');
+                  if (sortedBy !== 'name') dispatch(sortUserList('name'));
                 }}
               >
                 Name
@@ -151,7 +125,7 @@ const Customer = () => {
               <button 
                 className={getSortedTogglerClassName('username')}
                 onClick={() => {
-                  if (sortedBy !== 'username') setSortedBy('username');
+                  if (sortedBy !== 'username') dispatch(sortUserList('username'));
                 }}
               >
                 Username
@@ -162,7 +136,7 @@ const Customer = () => {
       </section>
 
       <section className="mt-3 my-5">
-        <CustomerTable customers={filteredCustomers} onUpdate={updateData} />
+        <CustomerTable />
 
         {/* <PageNav /> */}
       </section>

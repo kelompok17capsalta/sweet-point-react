@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 // Reducers from Slice
-import customerReducer from './Customer';
+import CustomerReducer from './Customer';
 import AdminReducer from './Admin';
+import UserListReducer from './UserList';
 
 const store = configureStore({
   reducer: {
-    customer: customerReducer,
+    customer: CustomerReducer,
     admin: AdminReducer,
+    userList: UserListReducer,
   },
 });
 

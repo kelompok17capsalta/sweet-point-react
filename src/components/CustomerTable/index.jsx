@@ -1,4 +1,5 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTable } from 'react-table';
 import Swal from 'sweetalert2';
@@ -10,7 +11,16 @@ import ErrorHandler from '../../utils/ErrorHandler';
 // Services
 import Admin from '../../services/api/Admin';
 
-const CustomerTable = ({ customers, onUpdate }) => {
+// Actions
+import {
+  updateUserList,
+} from '../../services/redux/UserList';
+
+const CustomerTable = () => {
+  const {
+    result: customers,
+  } = useSelector((state) => state.userList);
+
   const columns = useMemo(() => [
     {
       Header: 'Name',
@@ -33,6 +43,21 @@ const CustomerTable = ({ customers, onUpdate }) => {
     data: customers,
   });
 
+  const dispatch = useDispatch();
+
+  const updateData = async () => {
+    try {
+      const newCustomers = await Admin.getCustomers();
+      dispatch(updateUserList(newCustomers));
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
+  };
+
+  useEffect(() => {
+    updateData();
+  }, []);
+
   const handleDeleteCustomer = async (customerId) => {
     try {
       const { isConfirmed } = await Swal.fire({
@@ -52,7 +77,7 @@ const CustomerTable = ({ customers, onUpdate }) => {
 
       await Admin.deleteCustomer(customerId);
       
-      await onUpdate();
+      await updateData();
 
       await Swal.fire(
         'Terhapus!',
