@@ -5,14 +5,14 @@ import API_ENDPOINT from "../../global/API_ENDPOINT";
 // Error
 import APIError from "../../errors/APIError";
 
-// Utils
+// Services
 import Token from "../localStorage/Token";
 
 const Customer = {
   async getCustomer() {
     const token = Token.getCustomerToken();
 
-    const response = await fetch(API_ENDPOINT.CUSTOMER.INFO, {
+    const response = await fetch(API_ENDPOINT.AUTH.INFO, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -28,7 +28,7 @@ const Customer = {
   },
 
   async register({ username, name, password, email, phone, address }) {
-    const response = await fetch(API_ENDPOINT.CUSTOMER.SIGN_UP, {
+    const response = await fetch(API_ENDPOINT.AUTH.SIGN_UP, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const Customer = {
       throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
     }
 
-    const response = await fetch(API_ENDPOINT.CUSTOMER.SIGN_IN, {
+    const response = await fetch(API_ENDPOINT.AUTH.SIGN_IN, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const Customer = {
   async updateCustomer({ id, username, name, email, phone, address, password }) {
     const token = Token.getCustomerToken();
 
-    const response = await fetch(`${API_ENDPOINT.CUSTOMER.USER}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

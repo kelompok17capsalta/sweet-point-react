@@ -48,7 +48,7 @@ const SignIn = () => {
 
       const { point, ...newAdmin } = await Admin.getAdmin();
       dispatch(updateAdmin(newAdmin));
-			navigate('/');
+			navigate('/admin/dashboard');
 		} catch (error) {
 			ErrorHandler.handle(error);
 		}

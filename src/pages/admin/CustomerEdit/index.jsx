@@ -8,7 +8,7 @@ import ErrorHandler from "../../../utils/ErrorHandler";
 // Services
 import Admin from "../../../services/api/Admin";
 
-export default function CostumerEdit() {
+export default function CustomerEdit() {
   const [customer, setCustomer] = useState(null);
   const [formValue, setFormValue] = useState({
 		name: '',
