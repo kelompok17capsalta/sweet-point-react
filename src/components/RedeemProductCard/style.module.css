@@ -1,6 +1,6 @@
 .redeem_product_container {	
-	height: 24rem;
-	width: 20rem;
+	min-height: 24rem;
+	max-width: 20rem;
 	display: flex;
 	justify-content: space-around;
 	flex-direction: column;
@@ -18,7 +18,7 @@
 	margin-bottom: 0;
 }
 
-.redeem_product_description {
+.redeem_product_sub {
 	color: #404D61;
 	font-size: 20px;
 }

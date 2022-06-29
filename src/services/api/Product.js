@@ -1,5 +1,4 @@
 // Configuration
-import CONFIG from "../../global/CONFIG";
 import API_ENDPOINT from "../../global/API_ENDPOINT";
 
 // Error
@@ -7,55 +6,51 @@ import APIError from "../../errors/APIError";
 
 // Services
 import Token from "../localStorage/Token";
+import Storage from "../firebase/Storage";
 
-const Admin = {
-  async getAdmin() {
+const Product = {
+  async createProduct({ 
+    product_name,
+    denom,
+    category,
+    descriptions,
+    points,
+    stock,
+    image,
+  }) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(API_ENDPOINT.AUTH.INFO, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const responseJSON = await response.json();
+    const imageURL = await Storage.uploadProductImage(image);
 
-    if (response.status < 200 || response.status > 299) {
-      throw new APIError(responseJSON.message || responseJSON.error);
-    }
-
-    return responseJSON.data;
-  },
-
-  async signIn({ username, password }) {
-    if (username !== CONFIG.ADMIN_USERNAME) {
-      throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
-    }
-
-    const response = await fetch(API_ENDPOINT.AUTH.SIGN_IN, {
+    const response = await fetch(`${API_ENDPOINT.PRODUCT}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ 
+        product_name,
+        denom,
+        category,
+        descriptions,
+        points,
+        stock,
+        image: imageURL,
+      }),
     });
     const responseJSON = await response.json();
 
     if (response.status < 200 || response.status > 299) {
-      const responseMessage = responseJSON.message || responseJSON.error;
-
-      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE) throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
-
-      throw new APIError(responseMessage);
+      throw new APIError(responseJSON.message || responseJSON.error);
     }
 
     return responseJSON.data;
   },
 
-  async getCustomers() {
-    const token = Token.getAdminToken();
+  async getAllProducts() {
+    const token = Token.getAdminToken() || Token.getCustomerToken;
 
-    const response = await fetch(`${API_ENDPOINT.USER}/`, {
+    const response = await fetch(`${API_ENDPOINT.PRODUCT}/`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -70,10 +65,10 @@ const Admin = {
     return responseJSON.data;
   },
 
-  async getCustomerById(id) {
-    const token = Token.getAdminToken();
+  async getProductById(id) {
+    const token = Token.getAdminToken() || Token.getCustomerToken;
 
-    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.PRODUCT}/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -88,16 +83,38 @@ const Admin = {
     return responseJSON.data;
   },
 
-  async updateCustomer({ id, username, name, email, phone, address }) {
+  async updateProduct({
+    id,
+    product_name,
+    denom,
+    category,
+    descriptions,
+    points,
+    image,
+    stock,
+  }, oldImage) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
+    let imageURL = image;
+    if (!image.startsWith('https')) {
+      imageURL = await Storage.uploadProductImage(image);
+    }
+
+    const response = await fetch(`${API_ENDPOINT.PRODUCT}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, name, email, phone, address }),
+      body: JSON.stringify({ 
+        product_name,
+        denom,
+        category,
+        descriptions,
+        points,
+        image: imageURL,
+        stock,
+      }),
     });
     const responseJSON = await response.json();
 
@@ -105,13 +122,17 @@ const Admin = {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
+    if (oldImage) {
+      await Storage.deleteProductImage(oldImage);
+    }
+
     return responseJSON.data;
   },
 
-  async deleteCustomer(id) {
+  async deleteProduct(id, image) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.PRODUCT}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -124,8 +145,10 @@ const Admin = {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
+    await Storage.deleteProductImage(image);
+
     return responseJSON.data;
   },
 };
 
-export default Admin;
+export default Product;
