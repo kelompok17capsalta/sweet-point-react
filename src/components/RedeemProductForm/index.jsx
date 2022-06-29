@@ -8,13 +8,15 @@ import Swal from "sweetalert2";
 // Components
 import NumberFormat from 'react-number-format';
 
+// Errors 
+import InvariantError from "../../errors/InvariantError";
+
 // Utils
-import ErrorHandling from "../../utils/ErrorHandler";
+import ErrorHandler from "../../utils/ErrorHandler";
 
 // Services
 import Product from "../../services/api/Product";
 import { updateProductForm, updateProductField, resetProductForm } from "../../services/redux/ProductForm";
-import InvariantError from "../../errors/InvariantError";
 
 const RedeemProductForm = ({ id } = {}) => {
   const productForm = useSelector((state) => state.productForm.value);
@@ -33,7 +35,7 @@ const RedeemProductForm = ({ id } = {}) => {
           setImage(product.image);
           dispatch(updateProductForm(product));
         } catch (error) {
-          ErrorHandling.handle(error);
+          ErrorHandler.handle(error);
         }
       };
 
@@ -64,7 +66,7 @@ const RedeemProductForm = ({ id } = {}) => {
     const reader = new FileReader();
 
     reader.addEventListener('load', () => {
-      if (image.startsWith('https')) {
+      if (image && image.startsWith('https')) {
         setOldImage(image);
       }
       setImage(reader.result);
@@ -110,7 +112,7 @@ const RedeemProductForm = ({ id } = {}) => {
       dispatch(resetProductForm());
       navigate(-1);
     } catch (error) {
-      ErrorHandling.handle(error);
+      ErrorHandler.handle(error);
     }
   };
 
