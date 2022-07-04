@@ -6,36 +6,34 @@ import APIError from "../../errors/APIError";
 
 // Services
 import Token from "../localStorage/Token";
-import Storage from "../firebase/Storage";
 
-const Product = {
-  async createProduct({ 
-    product_name,
-    denom,
-    category,
-    descriptions,
+const Transaction = {
+  async createTransaction({ 
     points,
-    stock,
-    image,
+    user_id,
+    category,
+    credentials,
+    provider,
+    product_id,
+    price,
   }) {
-    const token = Token.getAdminToken();
+    const token = Token.getAdminToken() || Token.getCustomerToken();
 
-    const imageURL = await Storage.uploadProductImage(image);
-
-    const response = await fetch(`${API_ENDPOINT.PRODUCT}/`, {
+    const response = await fetch(`${API_ENDPOINT.TRANSACTION.BASE}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ 
-        product_name,
-        denom,
-        category,
-        descriptions,
+        descriptions:  `Penukaran ${category} ${price}`,
+        status: 'Pending',
         points,
-        stock,
-        image: imageURL,
+        user_id,
+        category,
+        credentials,
+        provider,
+        product_id,
       }),
     });
     const responseJSON = await response.json();
@@ -47,10 +45,10 @@ const Product = {
     return responseJSON.data;
   },
 
-  async getAllProducts() {
-    const token = Token.getAdminToken() || Token.getCustomerToken();
+  async getAllTransactions() {
+    const token = Token.getAdminToken() || Token.getCustomerToken;
 
-    const response = await fetch(`${API_ENDPOINT.PRODUCT}/`, {
+    const response = await fetch(`${API_ENDPOINT.TRANSACTION.BASE}/`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -65,10 +63,10 @@ const Product = {
     return responseJSON.data;
   },
 
-  async getProductById(id) {
+  async getUserTransactions(id) {
     const token = Token.getAdminToken() || Token.getCustomerToken();
 
-    const response = await fetch(`${API_ENDPOINT.PRODUCT}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.TRANSACTION.USER}/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -83,37 +81,17 @@ const Product = {
     return responseJSON.data;
   },
 
-  async updateProduct({
-    id,
-    product_name,
-    denom,
-    category,
-    descriptions,
-    points,
-    image,
-    stock,
-  }, oldImage) {
+  async updateTransactionStatus(id, status) {
     const token = Token.getAdminToken();
 
-    let imageURL = image;
-    if (!image.startsWith('https')) {
-      imageURL = await Storage.uploadProductImage(image);
-    }
-
-    const response = await fetch(`${API_ENDPOINT.PRODUCT}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.TRANSACTION.BASE}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ 
-        product_name,
-        denom,
-        category,
-        descriptions,
-        points,
-        image: imageURL,
-        stock,
+        status
       }),
     });
     const responseJSON = await response.json();
@@ -122,17 +100,13 @@ const Product = {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
-    if (oldImage) {
-      await Storage.deleteProductImage(oldImage);
-    }
-
     return responseJSON.data;
   },
 
-  async deleteProduct(id, image) {
+  async deleteTransaction(id) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(`${API_ENDPOINT.PRODUCT}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.TRANSACTION.BASE}/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -145,10 +119,8 @@ const Product = {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
-    await Storage.deleteProductImage(image);
-
     return responseJSON.data;
   },
 };
 
-export default Product;
+export default Transaction;

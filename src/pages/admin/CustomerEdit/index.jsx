@@ -23,6 +23,7 @@ export default function CustomerEdit() {
   useEffect(() => {
     const updateCustomer = async () => {
     try {
+      Swal.showLoading();
       const newCustomer = await Admin.getCustomerById(customerId);
       setCustomer(newCustomer);
       setFormValue({
@@ -33,6 +34,7 @@ export default function CustomerEdit() {
         email: newCustomer?.email || '',
         password: newCustomer?.password || '',
       });
+      Swal.close();
     } catch (error) {
       ErrorHandler.handle(error);
     }
