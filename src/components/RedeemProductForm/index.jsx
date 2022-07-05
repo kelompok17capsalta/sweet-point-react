@@ -30,10 +30,12 @@ const RedeemProductForm = ({ id } = {}) => {
     if (id) {
       const updateProductFormValue = async () => {
         try {
+          Swal.showLoading();
           const product = await Product.getProductById(id);
 
           setImage(product.image);
           dispatch(updateProductForm(product));
+          Swal.close();
         } catch (error) {
           ErrorHandler.handle(error);
         }

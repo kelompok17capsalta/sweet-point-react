@@ -12,7 +12,10 @@ import indosat from "./indosat.png";
 
 // Services
 import Product from "../../../services/api/Product";
+import Transaction from "../../../services/api/Transaction";
+import Customer from "../../../services/api/Customer";
 import { updateProductList, updateCategory } from "../../../services/redux/ProductList";
+import { updateCustomer } from "../../../services/redux/Customer";
 
 // Utils
 import ProductHelper from "../../../utils/ProductHelper";
@@ -36,13 +39,18 @@ const Redem = () => {
 		return 0;
 	});
 
-	const [redeemValue, setRedeemValue] = useState({
+	const customer = useSelector((state) => state.customer.value);
+
+	const initialRedeemValue = {
 		provider: '',
-		number: '',
-		productId: '',
-		pointsNeeded: 0,
-		description: '',
-	});
+		credentials: '',
+		product_id: '',
+		points: 0,
+		descriptions: '',
+		denom: 0,
+	};
+
+	const [redeemValue, setRedeemValue] = useState(initialRedeemValue);
 	const dispatch = useDispatch();
 	const { category } = useParams();
 
@@ -134,21 +142,25 @@ const Redem = () => {
 		});
 	}
 
-	const setCurrentProduct = ({ id, points, descriptions }) => {
+	const setCurrentProduct = ({ id, points, descriptions, denom }) => {
 		setRedeemValue({
 			...redeemValue,
-			productId: id,
-			pointsNeeded: points,
-			description: descriptions,
+			product_id: id,
+			points,
+			descriptions,
+			denom,
 		});
 	};
 
 	const updateList = async () => {
     try {
       if (category) {
+				Swal.showLoading();
+				setRedeemValue(initialRedeemValue);
 				const newProductList = await Product.getAllProducts();
 				dispatch(updateCategory(category));
 				dispatch(updateProductList(newProductList));
+				Swal.close();
 			}
     } catch (error) {
       ErrorHandler.handle(error);
@@ -164,13 +176,25 @@ const Redem = () => {
       event.preventDefault();
       Swal.showLoading();
 
-			if (!redeemValue.productId) {
-				throw new InvariantError("Pilih product terlebih dahulu");
+			if (!redeemValue.product_id) {
+				throw new InvariantError("Pilih produk terlebih dahulu");
 			}
 
+			await Transaction.createTransaction({
+				...redeemValue,
+				username: customer?.username,
+				category: ProductHelper.formatCategory(category),
+			});
+
+			const updatedCustomerData = await Customer.getCustomer();
+
+			const updatedCustomer = { ...customer, ...updatedCustomerData };
+
+			dispatch(updateCustomer(updatedCustomer));
+
       await Swal.fire(
-        "Sukses !",
-        "Produk Berhasil dirubah.",
+        "Produk Berhasil diklaim !",
+        "Silahkan tunggu notifikasi pengiriman kamu ya.",
         "success"
       );
     } catch (error) {
@@ -250,15 +274,15 @@ const Redem = () => {
 											</span> */}
 										</div>
 
-										<label className={style.title__description} htmlFor="number">Masukkan Nomor</label>
+										<label className={style.title__description} htmlFor="credentials">Masukkan Nomor</label>
 										<div className="input-group d-flex align-items-center">
 											<input
 												className={`form-control form-control-lg ${style.input__nomor}`}
 												type="tel"
-												name="number"
-												id="number"
+												name="credentials"
+												id="credentials"
 												placeholder="Contoh : 081276598720"
-												value={redeemValue.number}
+												value={redeemValue.credentials}
 												onChange={handleChange}
 												required
 											/>
@@ -292,7 +316,7 @@ const Redem = () => {
 										<div className={style.container__keterangan}>
 											<span className={style.keterangan}>Keterangan</span>
 											<span className={style.keterangan__hari}>
-												{redeemValue.description}
+												{redeemValue.descriptions}
 											</span>
 										</div>
 									</div>
@@ -300,7 +324,7 @@ const Redem = () => {
 									<div className="col-12 d-flex justify-content-between align-items-center mb-5">
 										<div>
 											<span className={style.required}>Point yang dibutuhkan</span>
-											<h3 className={style.title}>{MoneyFormatter.format(redeemValue.pointsNeeded)} Point</h3>
+											<h3 className={style.title}>{MoneyFormatter.format(redeemValue.points)} Point</h3>
 										</div>
 										<div>
 											<button
