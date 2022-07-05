@@ -104,8 +104,8 @@ const MyTransaction = () => {
                         <td>
                           <span 
                             className={category.toLowerCase() === 'shopping' 
-                              ? style.text_kurangpoint : style.text_tambahpoint}>
-                            {category.toLowerCase() === 'shopping' && '-'}{points} Point
+                              ? style.text_tambahpoint : style.text_kurangpoint}>
+                            {category.toLowerCase() !== 'shopping' && '-'}{points} Point
                           </span>
                         </td>
                       </tr>

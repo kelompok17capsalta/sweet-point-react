@@ -8,10 +8,12 @@ import iconDelete from "./icon-delete.svg";
 
 // Services
 import Transaction from "../../services/api/Transaction";
+import Payment from "../../services/api/Payment";
 import { updateTransactionList } from "../../services/redux/TransactionList"; 
 
 // Utils
 import ErrorHandler from "../../utils/ErrorHandler";
+import MoneyFormatter from "../../utils/MoneyFormatter";
 
 const TableTransactionAdmin = () => {
 	const transactionList = useSelector((state) => state.transactionList.data);
@@ -33,6 +35,39 @@ const TableTransactionAdmin = () => {
     updateData();
   }, []);
 
+	const handlePay = async (transaction) => {
+		try {
+			Swal.showLoading();
+			const name = transaction.user.username;
+			const price = transaction.denom;
+
+			const { token: paymentToken } = await Payment.payTransaction({
+				...transaction,
+				name,
+				price,
+			});
+
+			window.snap.pay(paymentToken, {
+				onSuccess: async () => {
+					try {
+						await Transaction.updateTransactionStatus(transaction.id, "Success");
+						await updateData();
+						await Swal.fire(
+							'Pembayaran berhasil',
+							'',
+							'success',
+						);
+					} catch (error) {
+						ErrorHandler.handle(error);
+					}
+				}
+			});
+
+		} catch (error) {
+			ErrorHandler.handle(error);
+		}
+	};
+
 	return (
 		<div className="table-responsive">
 			<table className="table table-striped">
@@ -45,7 +80,7 @@ const TableTransactionAdmin = () => {
 							Provider
 						</th>
 						<th scope="col">
-							Kredential
+							Kredensial
 						</th>
 						<th scope="col">
 							Kategori
@@ -62,26 +97,40 @@ const TableTransactionAdmin = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{filteredTransactionList.map(({ id, provider, credentials, category, points, denom }) => (
-						<tr>
-							<td>
-								<div className="d-flex align-items-center">
-									<img src="https://ui-avatars.com/api/?name=dummy+user&background=random&color=ffffff&rounded=true" alt="" className={`${styles.img_profile} me-1`} width="60" height="60" />
-									Darlene Robertson
-								</div>
-							</td>
-							<td className="align-middle">{provider}</td>
-							<td className="align-middle pe-5">
-								<span>{credentials}</span>
-							</td>
-							<td className="align-middle pe-5">{category}</td>
-							<td className="align-middle pe-5">{points}</td>
-							<td className="align-middle pe-5">{denom}</td>
-							<td className="align-middle">
-								<button className="btn btn-primary">Bayar</button>
-							</td>
-						</tr>
-					))}
+					{filteredTransactionList.map((transaction) => {
+						const {
+							id, user: { username }, 
+							provider, 
+							credentials, 
+							category, 
+							points, 
+							denom 
+						} = transaction
+
+						return (
+							<tr key={id}>
+								<td>
+									<div className="d-flex align-items-center">
+										<img src={`https://ui-avatars.com/api/?name=${username}&background=random&color=ffffff&rounded=true`} alt={username} className={`${styles.img_profile} me-1`} width="60" height="60" />
+										{username}
+									</div>
+								</td>
+								<td className="align-middle">{provider}</td>
+								<td className="align-middle pe-5">
+									<span>{credentials}</span>
+								</td>
+								<td className="align-middle pe-5">{category}</td>
+								<td className="align-middle pe-5">{MoneyFormatter.format(points)}</td>
+								<td className="align-middle pe-5">{MoneyFormatter.format(denom)}</td>
+								<td className="align-middle">
+									<button 
+										className="btn btn-primary"
+										onClick={() => handlePay(transaction)}
+									>Bayar</button>
+								</td>
+							</tr>
+						);
+					})}
 				</tbody>
 			</table>
 		</div>

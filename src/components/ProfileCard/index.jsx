@@ -11,6 +11,9 @@ import iconparkoutline from "./iconparkoutline.png";
 import iconquestion from "./iconquestion.png";
 import iconreceipt from "./iconreceipt.png";
 
+// Utils
+import MoneyFormatter from "../../utils/MoneyFormatter";
+
 const ProfileCard = () => {
   const customer = useSelector((state) => state.customer.value);
 
@@ -28,7 +31,7 @@ const ProfileCard = () => {
         </div>
         <div className="card-body">
           <h5>{customer?.name}</h5>
-          <p className="mb-0">{customer?.point} point</p>
+          <p className="mb-0">{MoneyFormatter.format(customer?.point || 0)} point</p>
         </div>
 
         {/* Card Title Body */}

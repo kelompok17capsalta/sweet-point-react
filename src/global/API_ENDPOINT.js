@@ -11,7 +11,9 @@ const API_ENDPOINT = {
   TRANSACTION: {
     BASE: `${CONFIG.API_BASE_URL}/v1/transaction`,
     USER: `${CONFIG.API_BASE_URL}/v1/transaction/user`,
+    NEW: `${CONFIG.API_BASE_URL}/v1/transaction/new`,
   },
+  PAYMENT: `${CONFIG.API_BASE_URL}/v1/payment`,
 };
 
 export default API_ENDPOINT;

@@ -13,7 +13,9 @@ import indosat from "./indosat.png";
 // Services
 import Product from "../../../services/api/Product";
 import Transaction from "../../../services/api/Transaction";
+import Customer from "../../../services/api/Customer";
 import { updateProductList, updateCategory } from "../../../services/redux/ProductList";
+import { updateCustomer } from "../../../services/redux/Customer";
 
 // Utils
 import ProductHelper from "../../../utils/ProductHelper";
@@ -45,7 +47,7 @@ const Redem = () => {
 		product_id: '',
 		points: 0,
 		descriptions: '',
-		price: 0,
+		denom: 0,
 	};
 
 	const [redeemValue, setRedeemValue] = useState(initialRedeemValue);
@@ -140,13 +142,13 @@ const Redem = () => {
 		});
 	}
 
-	const setCurrentProduct = ({ id, points, descriptions, price }) => {
+	const setCurrentProduct = ({ id, points, descriptions, denom }) => {
 		setRedeemValue({
 			...redeemValue,
 			product_id: id,
 			points,
 			descriptions,
-			price,
+			denom,
 		});
 	};
 
@@ -180,12 +182,19 @@ const Redem = () => {
 
 			await Transaction.createTransaction({
 				...redeemValue,
-				user_id: customer?.id,
+				username: customer?.username,
+				category: ProductHelper.formatCategory(category),
 			});
 
+			const updatedCustomerData = await Customer.getCustomer();
+
+			const updatedCustomer = { ...customer, ...updatedCustomerData };
+
+			dispatch(updateCustomer(updatedCustomer));
+
       await Swal.fire(
-        "Sukses !",
-        "Produk Berhasil diklaim.",
+        "Produk Berhasil diklaim !",
+        "Silahkan tunggu notifikasi pengiriman kamu ya.",
         "success"
       );
     } catch (error) {

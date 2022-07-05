@@ -7,33 +7,36 @@ import APIError from "../../errors/APIError";
 // Services
 import Token from "../localStorage/Token";
 
+// Utils
+import MoneyFormatter from "../../utils/MoneyFormatter";
+
 const Transaction = {
   async createTransaction({ 
     points,
-    user_id,
+    username,
     category,
     credentials,
     provider,
     product_id,
-    price,
+    denom,
   }) {
     const token = Token.getAdminToken() || Token.getCustomerToken();
 
-    const response = await fetch(`${API_ENDPOINT.TRANSACTION.BASE}/`, {
+    const response = await fetch(API_ENDPOINT.TRANSACTION.NEW, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ 
-        descriptions:  `Penukaran ${category} ${price}`,
-        status: 'Pending',
+        descriptions:  `Penukaran ${category} ${MoneyFormatter.format(denom)}`,
         points,
-        user_id,
+        user: { username },
         category,
         credentials,
         provider,
-        product_id,
+        product: { id: product_id },
+        denom,
       }),
     });
     const responseJSON = await response.json();
@@ -63,10 +66,10 @@ const Transaction = {
     return responseJSON.data;
   },
 
-  async getUserTransactions(id) {
-    const token = Token.getAdminToken() || Token.getCustomerToken();
+  async getUserTransactions() {
+    const token = Token.getCustomerToken();
 
-    const response = await fetch(`${API_ENDPOINT.TRANSACTION.USER}/${id}`, {
+    const response = await fetch(`${API_ENDPOINT.TRANSACTION.USER}/`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
