@@ -10,7 +10,7 @@ const RedeemEdit = () => {
 
   return (
     <div className={`container mt-5 ${styles.container}`}>
-      <span className={`mt-5 ${styles.header}`}>Edit Data Produck</span>
+      <span className={`mt-5 ${styles.header}`}>Edit Data Produk</span>
       
       <RedeemProductForm id={params.id} />
     </div>

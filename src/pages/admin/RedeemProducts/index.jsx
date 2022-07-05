@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import styles from "./style.module.css";
 
 // Components
@@ -24,9 +26,11 @@ const RedeemProducts = () => {
 
   const updateList = async () => {
     try {
+      Swal.showLoading();
       const newProductList = await Product.getAllProducts();
       dispatch(updateCategory(category));
       dispatch(updateProductList(newProductList));
+      Swal.close();
     } catch (error) {
       ErrorHandler.handle(error);
     }

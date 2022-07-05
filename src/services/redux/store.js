@@ -5,6 +5,7 @@ import CustomerReducer from './Customer';
 import AdminReducer from './Admin';
 import UserListReducer from './UserList';
 import ProductListReducer from './ProductList';
+import TransactionListReducer from './TransactionList';
 import ProductFormReducer from './ProductForm';
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
     admin: AdminReducer,
     userList: UserListReducer,
     productList: ProductListReducer,
+    transactionList: TransactionListReducer,
     productForm: ProductFormReducer,
   },
 });
