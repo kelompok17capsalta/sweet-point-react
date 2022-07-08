@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
 import styles from "./style.module.css";
-import iconEdit from "./icon-edit.svg";
-import iconDelete from "./icon-delete.svg";
 
 // Services
 import Transaction from "../../services/api/Transaction";
@@ -17,7 +15,16 @@ import MoneyFormatter from "../../utils/MoneyFormatter";
 
 const TableTransactionAdmin = () => {
 	const transactionList = useSelector((state) => state.transactionList.data);
-	const filteredTransactionList = transactionList.filter(({ status }) => status.toLowerCase() === 'pending');
+	const filteredTransactionList = transactionList.filter(({ status }) => status.toLowerCase() === 'pending').sort((a,b) => {
+    if (new Date(a.created) < new Date(b.created)) {
+      return 1;
+    }
+    if (new Date(a.created) > new Date(b.created)) {
+      return -1;
+    }
+
+    return 0;
+  });
   const dispatch = useDispatch();
 
 	const updateData = async () => {
