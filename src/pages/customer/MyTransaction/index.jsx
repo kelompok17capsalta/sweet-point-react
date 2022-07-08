@@ -1,70 +1,12 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-
 import style from "./style.module.css";
-
-// Components
 import ProfileCard from "../../../components/ProfileCard";
 
 //icon
 import filter from "./filter.png";
 
-// Services
-import Transaction from "../../../services/api/Transaction.js";
-import { updateTransactionList } from "../../../services/redux/TransactionList"; 
-
-// Utils
-import DateHelper from "../../../utils/DateHelper";
-import ErrorHandler from "../../../utils/ErrorHandler";
-
 const MyTransaction = () => {
-  const transactionList = useSelector((state) => state.transactionList.data);
-  const sortedTransactionList = [...transactionList].sort((a,b) => {
-    if (new Date(a.created) < new Date(b.created)) {
-      return 1;
-    }
-    if (new Date(a.created) > new Date(b.created)) {
-      return -1;
-    }
-
-    return 0;
-  });
-  const customer = useSelector((state) => state.customer.value);
-  const dispatch = useDispatch();
-
-  const updateData = async () => {
-    try {
-      Swal.showLoading();
-      const updatedList = await Transaction.getUserTransactions(customer?.id);
-      dispatch(updateTransactionList(updatedList));
-      Swal.close();
-    } catch (error) {
-      ErrorHandler.handle(error);
-    }
-  };
-
-  useEffect(() => {
-    updateData();
-  }, []);
-
-  const getTransactionStatusClass = (status) => {
-    switch (status.toLowerCase()) {
-      case 'success':
-        return style.text_success
-
-      case 'failed':
-        return style.text_failed
-
-      case 'failed':
-        return style.text_pending
-    
-      default:
-        break;
-    }
-  };
-
   return (
     <>
       <div className="container mt-5">
@@ -74,11 +16,13 @@ const MyTransaction = () => {
               <Link to="/">Home</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Transaksiku
+              My Transaction
             </li>
           </ol>
         </nav>
       </div>
+
+      {/* My Transaction */}
 
       <div className="container mb-5">
         <div className="mt-3">
@@ -87,12 +31,12 @@ const MyTransaction = () => {
               <ProfileCard />
             </div>
             <div className="col-12 col-lg-8">
-              <h2>Transaksi Saya</h2>
+              <h2>My Transaction</h2>
               <p>Daftar hasil dari transaksi anda, untuk mengetahui pengeluaran point yang anda dapatkan</p>
 
-              {/* <div className="text-end">
+              <div className="text-end">
                 <img src={filter} alt="filter" />
-              </div> */}
+              </div>
               <div className="table-responsive">
                 <table className="table mt-4">
                   <thead className="table-primary ">
@@ -104,22 +48,109 @@ const MyTransaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {sortedTransactionList.map(({ id, descriptions, created, status, category, points }) => (
-                      <tr key={id}>
-                        <td>{descriptions}</td>
-                        <td>{DateHelper.formatTransactionDate(created)}</td>
-                        <td>
-                          <span className={getTransactionStatusClass(status)}>{status}</span>
-                        </td>
-                        <td>
-                          <span 
-                            className={category.toLowerCase() === 'shopping' 
-                              ? style.text_tambahpoint : style.text_kurangpoint}>
-                            {category.toLowerCase() !== 'shopping' && '-'}{points} Point
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                    {/* Baris 1 */}
+
+                    <tr>
+                      <td>Reedem Pulsa</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_success}>Success</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 2 */}
+
+                    <tr>
+                      <td>Reedem Pulsa</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_success}>Success</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 3 */}
+
+                    <tr>
+                      <td>Reedem Pulsa</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_success}>Success</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 4 */}
+
+                    <tr>
+                      <td>Belanja Di Erigo</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_success}>Success</span>
+                      </td>
+                      <td>
+                        <span className={style.text_tambahpoint}>+500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 5 */}
+
+                    <tr>
+                      <td>Reedem Cash Out</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_failed}>Failed</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 6 */}
+
+                    <tr>
+                      <td>Reedem E-Money</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_pending}>Pending</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 7 */}
+
+                    <tr>
+                      <td>Reedem E-Money</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_pending}>Pending</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
+
+                    {/* Baris 8 */}
+
+                    <tr>
+                      <td>Reedem E-Money</td>
+                      <td>14/06/2022 12:30</td>
+                      <td>
+                        <span className={style.text_pending}>Pending</span>
+                      </td>
+                      <td>
+                        <span className={style.text_kurangpoint}>-500 Point</span>
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

@@ -6,18 +6,18 @@ import paket from "./paket.png";
 import pulsa from "./pulsa.png";
 import { Link } from "react-router-dom";
 
-const LogoRedeem = ({ text, category }) => {
+const LogoRedeem = (props) => {
 	const image = () => {
-		if (text === "Cash Out") {
+		if (props.text === "cashout") {
 			return cashout;
 		}
-		if (text === "E-Money") {
+		if (props.text === "emoney") {
 			return emoney;
 		}
-		if (text === "Paket Data") {
+		if (props.text === "paket") {
 			return paket;
 		}
-		if (text === "Pulsa") {
+		if (props.text === "pulsa") {
 			return pulsa;
 		}
 	};
@@ -25,9 +25,9 @@ const LogoRedeem = ({ text, category }) => {
 		<>
 			{/* Ada style activenya ya */}
 
-			<Link to={`/redeem/${category}`} className={`${style.redeem__category}`}>
-				<img src={image()} alt="text" />
-				<span>{text}</span>
+			<Link to="" className={`${style.redeem__category}`}>
+				<img src={image()} alt="" />
+				<span>{props.text}</span>
 			</Link>
 		</>
 	);

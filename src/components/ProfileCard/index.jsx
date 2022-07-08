@@ -11,9 +11,6 @@ import iconparkoutline from "./iconparkoutline.png";
 import iconquestion from "./iconquestion.png";
 import iconreceipt from "./iconreceipt.png";
 
-// Utils
-import MoneyFormatter from "../../utils/MoneyFormatter";
-
 const ProfileCard = () => {
   const customer = useSelector((state) => state.customer.value);
 
@@ -31,7 +28,7 @@ const ProfileCard = () => {
         </div>
         <div className="card-body">
           <h5>{customer?.name}</h5>
-          <p className="mb-0">{MoneyFormatter.format(customer?.point || 0)} point</p>
+          <p className="mb-0">{customer?.point} point</p>
         </div>
 
         {/* Card Title Body */}
@@ -52,7 +49,7 @@ const ProfileCard = () => {
           <div className="mt-3">
             <Link className={style.text_link} to="/transaksi">
               <img className={style.body_hover} src={iconparkoutline} alt="parkoutline" />
-              <span className="mx-2">Transaksiku</span>
+              <span className="mx-2">My Transaction</span>
             </Link>
           </div>
           <div className="mt-3">
@@ -64,13 +61,13 @@ const ProfileCard = () => {
           <div className="mt-3">
             <Link className={style.text_link} to="/redeem">
               <img className={style.body_hover} src={iconreceipt} alt="receipt" />
-              <span className="mx-2">Redeem Point</span>
+              <span className="mx-2">Redeem Category</span>
             </Link>
           </div>
           <div className="mt-3">
             <Link className={style.text_link} to="/sign-out">
               <img className={style.body_hover} src={iconlogout} alt="logout" />
-              <span className="mx-2">Keluar</span>
+              <span className="mx-2">Log Out</span>
             </Link>
           </div>
         </div>
