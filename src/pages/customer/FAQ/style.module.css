@@ -20,6 +20,10 @@
 }
 
 @media (min-width: 992px) {
+  .banner img {
+    width: 100%;
+  }
+
   .contact_card {
     min-width: 355px;
   }
