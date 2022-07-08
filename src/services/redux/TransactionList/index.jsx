@@ -2,9 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   data: [],
-  startDate: null,
-  endDate: null,
-  result: [],
 };
 
 
@@ -13,32 +10,13 @@ export const transactionListSlice = createSlice({
   initialState,
   reducers: {
     updateTransactionList: (state, { payload: data }) => {
-      return state = {
-        ...state,
-        data,
-        // result: ProductHelper.formatList(data, {
-        //   ...state,
-        //   category: state.category,
-        // }),
-      };
-    },
-    updateFilter: (state, { payload: { start, end } }) => {
-      return {
-        ...state,
-        start,
-        end,
-        // result: ProductHelper.formatList(state.data, {
-        //   ...state,
-        //   category
-        // }),
-      };
+      state.data = data;
     },
   },
 });
 
 export const {
   updateTransactionList,
-  updateFilter,
 } = transactionListSlice.actions;
 
 export default transactionListSlice.reducer;

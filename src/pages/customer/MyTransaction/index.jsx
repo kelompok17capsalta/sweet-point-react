@@ -21,6 +21,16 @@ import ErrorHandler from "../../../utils/ErrorHandler";
 
 const MyTransaction = () => {
   const transactionList = useSelector((state) => state.transactionList.data);
+  const sortedTransactionList = [...transactionList].sort((a,b) => {
+    if (new Date(a.created) < new Date(b.created)) {
+      return 1;
+    }
+    if (new Date(a.created) > new Date(b.created)) {
+      return -1;
+    }
+
+    return 0;
+  });
   const customer = useSelector((state) => state.customer.value);
   const dispatch = useDispatch();
 
@@ -80,9 +90,9 @@ const MyTransaction = () => {
               <h2>Transaksi Saya</h2>
               <p>Daftar hasil dari transaksi anda, untuk mengetahui pengeluaran point yang anda dapatkan</p>
 
-              <div className="text-end">
+              {/* <div className="text-end">
                 <img src={filter} alt="filter" />
-              </div>
+              </div> */}
               <div className="table-responsive">
                 <table className="table mt-4">
                   <thead className="table-primary ">
@@ -94,7 +104,7 @@ const MyTransaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {transactionList.map(({ id, descriptions, created, status, category, points }) => (
+                    {sortedTransactionList.map(({ id, descriptions, created, status, category, points }) => (
                       <tr key={id}>
                         <td>{descriptions}</td>
                         <td>{DateHelper.formatTransactionDate(created)}</td>
