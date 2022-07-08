@@ -1,0 +1,35 @@
+.banner {
+  min-height: 70px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.banner img {
+  object-fit: cover;
+}
+
+.contact {
+  background-color: #F6F9FF;
+}
+.contact_card {
+  min-width: 100%;
+}
+
+.contact_circle {
+  width: 45px;
+  height: 45px;
+}
+
+@media (min-width: 992px) {
+  .banner img {
+    width: 100%;
+  }
+
+  .contact_card {
+    min-width: 355px;
+  }
+
+  .contact_circle {
+    width: 65px;
+    height: 65px;
+  }
+}
