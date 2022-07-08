@@ -25,6 +25,8 @@ textarea {
   padding: 10px 12px 10px 12px;
   border: 2px solid #767676;
   border-radius: 8px;
+  margin-bottom: 5px;
+  margin-top: 2px;
   width: 100%;
   box-sizing: border-box;
   color: #000000;

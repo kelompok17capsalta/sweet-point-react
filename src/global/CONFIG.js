@@ -2,10 +2,10 @@ const CONFIG = {
   CUSTOMER_TOKEN_KEY: process.env.REACT_APP_CUSTOMER_TOKEN_KEY,
   ADMIN_TOKEN_KEY: process.env.REACT_APP_ADMIN_TOKEN_KEY,
   API_BASE_URL: process.env.REACT_APP_API_BASE_URL,
-  DEFAULT_ERROR_TITLE: 'Oops...',
-  DEFAULT_ERROR_MESSAGE: 'Telah terjadi suatu kesalahan.',
-  CREDENTIAL_ERROR_MESSAGE: 'Username atau Password anda tidak valid.',
-  API_NOT_FOUND_MESSAGE: 'Data tidak ditemukan!',
+  DEFAULT_ERROR_TITLE: "Oops...",
+  DEFAULT_ERROR_MESSAGE: "Telah terjadi suatu kesalahan.",
+  CREDENTIAL_ERROR_MESSAGE: "Username atau Password anda tidak valid.",
+  API_NOT_FOUND_MESSAGE: "Data tidak ditemukan!",
   ADMIN_USERNAME: process.env.REACT_APP_ADMIN_USERNAME,
   FIREBASE: {
     API_KEY: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -15,7 +15,7 @@ const CONFIG = {
     MESSAGING_SENDER_ID: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
     APP_ID: process.env.REACT_APP_FIREBASE_APP_ID,
     STORAGE: {
-      PRODUCT: process.env.REACT_APP_FIREBASE_STORAGE_PRODUCT,
+      REDEEM: process.env.REACT_APP_FIREBASE_STORAGE_REDEEM,
     },
   },
 };

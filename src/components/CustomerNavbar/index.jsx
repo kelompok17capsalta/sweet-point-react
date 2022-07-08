@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 
 import styles from "./style.module.css";
 
-// Utils
-import MoneyFormatter from "../../utils/MoneyFormatter";
-
 const Navbar = () => {
   const customer = useSelector((state) => state.customer.value);
 
@@ -47,7 +44,7 @@ const Navbar = () => {
                         alt={customer?.name}
                         width={40}
                       />
-                      <span className="ms-2">{MoneyFormatter.format(customer?.point || 0)} Point</span>
+                      <span className="ms-2">{customer.point} Point</span>
                     </Link>
                   </li>
                 </>

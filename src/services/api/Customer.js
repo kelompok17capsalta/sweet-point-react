@@ -5,16 +5,16 @@ import API_ENDPOINT from "../../global/API_ENDPOINT";
 // Error
 import APIError from "../../errors/APIError";
 
-// Services
+// Utils
 import Token from "../localStorage/Token";
 
 const Customer = {
   async getCustomer() {
     const token = Token.getCustomerToken();
 
-    const response = await fetch(API_ENDPOINT.AUTH.INFO, {
+    const response = await fetch(API_ENDPOINT.CUSTOMER.INFO, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     });
@@ -28,10 +28,10 @@ const Customer = {
   },
 
   async register({ username, name, password, email, phone, address }) {
-    const response = await fetch(API_ENDPOINT.AUTH.SIGN_UP, {
-      method: 'POST',
+    const response = await fetch(API_ENDPOINT.CUSTOMER.SIGN_UP, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, name, password, email, phone, address }),
     });
@@ -49,10 +49,10 @@ const Customer = {
       throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
     }
 
-    const response = await fetch(API_ENDPOINT.AUTH.SIGN_IN, {
-      method: 'POST',
+    const response = await fetch(API_ENDPOINT.CUSTOMER.SIGN_IN, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, password }),
     });
@@ -61,7 +61,8 @@ const Customer = {
     if (response.status < 200 || response.status > 299) {
       const responseMessage = responseJSON.message || responseJSON.error;
 
-      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE) throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
+      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE)
+        throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
 
       throw new APIError(responseMessage);
     }
@@ -69,13 +70,21 @@ const Customer = {
     return responseJSON.data;
   },
 
-  async updateCustomer({ id, username, name, email, phone, address, password }) {
+  async updateCustomer({
+    id,
+    username,
+    name,
+    email,
+    phone,
+    address,
+    password,
+  }) {
     const token = Token.getCustomerToken();
 
-    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
-      method: 'PUT',
+    const response = await fetch(`${API_ENDPOINT.CUSTOMER.USER}/${id}`, {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ username, name, email, phone, address, password }),

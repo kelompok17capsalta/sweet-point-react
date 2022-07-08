@@ -33,7 +33,7 @@ const Footer = () => (
           </li>
 
           <li>
-            <Link to="/bantuan" className="text-light text-decoration-none">FAQ</Link>
+            <Link to="/help" className="text-light text-decoration-none">FAQ</Link>
           </li>
         </ul>
 

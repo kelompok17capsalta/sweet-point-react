@@ -14,7 +14,7 @@ const Dashboard = () => {
 			</div>
 
 			<div className="container mt-5">
-				<span className={styles.transaction}>Pending Transaction</span>
+				<span className={styles.transaction}>Recent Transaction</span>
 				<TableTransactionAdmin />
 			</div>
 		</div>
