@@ -5,16 +5,16 @@ import API_ENDPOINT from "../../global/API_ENDPOINT";
 // Error
 import APIError from "../../errors/APIError";
 
-// Utils
+// Services
 import Token from "../localStorage/Token";
 
 const Admin = {
   async getAdmin() {
     const token = Token.getAdminToken();
 
-    const response = await fetch(API_ENDPOINT.ADMIN.INFO, {
+    const response = await fetch(API_ENDPOINT.AUTH.INFO, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -32,10 +32,10 @@ const Admin = {
       throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
     }
 
-    const response = await fetch(API_ENDPOINT.ADMIN.SIGN_IN, {
-      method: "POST",
+    const response = await fetch(API_ENDPOINT.AUTH.SIGN_IN, {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, password }),
     });
@@ -44,8 +44,7 @@ const Admin = {
     if (response.status < 200 || response.status > 299) {
       const responseMessage = responseJSON.message || responseJSON.error;
 
-      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE)
-        throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
+      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE) throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
 
       throw new APIError(responseMessage);
     }
@@ -56,9 +55,9 @@ const Admin = {
   async getCustomers() {
     const token = Token.getAdminToken();
 
-    const response = await fetch(API_ENDPOINT.ADMIN.CUSTOMERS, {
+    const response = await fetch(`${API_ENDPOINT.USER}/`, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -74,9 +73,9 @@ const Admin = {
   async getCustomerById(id) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(`${API_ENDPOINT.ADMIN.CUSTOMERS}${id}`, {
+    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });
@@ -89,16 +88,16 @@ const Admin = {
     return responseJSON.data;
   },
 
-  async updateCustomer({ id, username, name, email, phone, address }) {
+  async updateCustomer({ id, username, name, email, phone, address, password }) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(`${API_ENDPOINT.ADMIN.CUSTOMERS}${id}`, {
-      method: "PUT",
+    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, name, email, phone, address }),
+      body: JSON.stringify({ username, name, email, phone, address, password }),
     });
     const responseJSON = await response.json();
 
@@ -112,10 +111,10 @@ const Admin = {
   async deleteCustomer(id) {
     const token = Token.getAdminToken();
 
-    const response = await fetch(`${API_ENDPOINT.ADMIN.CUSTOMERS}${id}`, {
-      method: "DELETE",
+    const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     });

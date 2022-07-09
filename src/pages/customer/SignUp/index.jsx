@@ -28,47 +28,9 @@ const SignUp = () => {
 		phone: "",
 		email: "",
 		password: "",
-	})
+	});
 
 	const navigate = useNavigate();
-
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		const error = validateClient(name,value)
-
-		setForm({
-			...form,
-			[name]: value,
-		});
-
-		setErrors({
-			...errors,
-			[name]: error
-		})
-
-		console.log(error);
-	};
-
-	// const handleSignUp = (e) => {
-	// 	e.preventDefault()
-	// 	const checkValue = Object.values(errors).some(item => item !== false)
-	// 	if(checkValue){
-	// 		alert("Data balum tepat")
-	// 	}
-	// 	alert("berhasil terdaftar")
-	// }
-
-	const handleSignUp = async (e) => {
-		try {
-			e.preventDefault();
-			await Customer.register(form);
-
-			await Swal.fire('User berhasil dibuat', '', 'success');
-			navigate('/sign-in');
-		} catch (error) {
-			ErrorHandler.handle(error);
-		}
-	};
 
 	const validateClient = (name, value) => {
 		const regexPhone = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9]{10})+$/i;
@@ -95,7 +57,40 @@ const SignUp = () => {
 		}
 
 		return false
-	}
+	};
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		const error = validateClient(name,value);
+
+		setForm({
+			...form,
+			[name]: value,
+		});
+
+		setErrors({
+			...errors,
+			[name]: error
+		});
+	};
+
+	const handleSignUp = async (e) => {
+		try {
+			e.preventDefault();
+
+			const isInvalid = Object.values(errors).some(item => item !== false)
+			if(isInvalid){
+				return Swal.fire('User gagal dibuat!', 'Data kamu belum tepat, silakan cek kembali data yang kamu isi', 'error');
+			}
+
+			await Customer.register(form);
+
+			await Swal.fire('User berhasil dibuat!', '', 'success');
+			navigate('/sign-in');
+		} catch (error) {
+			ErrorHandler.handle(error);
+		}
+	};
 
 	return (
 		<div className={style.signup__page}>

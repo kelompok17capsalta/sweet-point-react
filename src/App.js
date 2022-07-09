@@ -8,9 +8,6 @@ import ProtectedRoutes from "./routes/ProtectedRoutes";
 import CustomerLayout from "./layouts/CustomerLayout";
 import AdminLayout from "./layouts/AdminLayout";
 
-//Help
-import Help from "./pages/customer/Bantuan";
-
 // Customer Pages
 import CustomerHome from "./pages/customer/Home";
 import CustomerSignOut from "./pages/customer/SignOut";
@@ -20,7 +17,7 @@ import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
 import CustomerMyTransaction from "./pages/customer/MyTransaction";
 import CustomerRedeem from "./pages/customer/Redeem";
-import MidtransTest from "./pages/customer/MidtransTest";
+import CustomerFAQ from "./pages/customer/Bantuan";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";
@@ -28,9 +25,10 @@ import AdminSignOut from "./pages/admin/SignOut";
 import AdminDashboard from "./pages/admin/Dashboard";
 import AdminCustomer from "./pages/admin/Customer";
 import AdminRedeem from "./pages/admin/Redeem";
+import AdminRedeemAdd from "./pages/admin/RedeemAdd";
 import AdminRedeemProducts from "./pages/admin/RedeemProducts";
 import AdminRedeemEdit from "./pages/admin/RedeemEdit";
-import AdminCostumerEdit from "./pages/admin/CostumerEdit";
+import AdminCustomerEdit from "./pages/admin/CustomerEdit";
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -39,10 +37,9 @@ const App = () => {
   return (
     <Routes>
       {/* Customers */}
-
       <Route path="/" element={<CustomerLayout />}>
-        <Route path="/bantuan" element={<Help />} />
         <Route index element={<CustomerHome />} />
+        <Route path="bantuan" element={<CustomerFAQ />} />
 
         <Route
           element={
@@ -58,7 +55,6 @@ const App = () => {
           <Route path="transaksi" element={<CustomerMyTransaction />} />
           <Route path="redeem" element={<CustomerRedeem />} />
           <Route path="redeem/:category" element={<CustomerRedeem />} />
-          <Route path="midtrans" element={<MidtransTest />} />
         </Route>
 
         <Route
@@ -86,12 +82,13 @@ const App = () => {
         >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="customer" element={<AdminCustomer />} />
-          <Route path="customer/:customerId" element={<AdminCostumerEdit />} />
+          <Route path="customer/:customerId" element={<AdminCustomerEdit />} />
           <Route path="redeem" element={<AdminRedeem />} />
+          <Route path="redeem/add" element={<AdminRedeemAdd />} />
           <Route path="redeem/:category" element={<AdminRedeemProducts />} />
           <Route path="sign-out" element={<AdminSignOut />} />
           <Route
-            path="redeem/:category/:itemId/edit"
+            path="redeem/:id/edit"
             element={<AdminRedeemEdit />}
           />
         </Route>

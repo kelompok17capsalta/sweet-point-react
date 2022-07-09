@@ -1,24 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+
 import styles from "./style.module.css";
 
-import brilogo from "./brilogo.png";
+// Components
 import RedeemProductCard from "../../../components/RedeemProductCard";
 
+// Services
+import { updateProductList, updateCategory, searchProduct } from "../../../services/redux/ProductList";
+import Product from "../../../services/api/Product";
+
+// Utils
+import ErrorHandler from "../../../utils/ErrorHandler";
+import ProductHelper from "../../../utils/ProductHelper";
+
 const RedeemProducts = () => {
-  const [products, setProducts] = useState([]);
+  const {
+    search,
+    result: productList
+  } = useSelector((state) => state.productList);
   const { category } = useParams();
+  const dispatch = useDispatch();
+
+  const updateList = async () => {
+    try {
+      Swal.showLoading();
+      const newProductList = await Product.getAllProducts();
+      dispatch(updateCategory(category));
+      dispatch(updateProductList(newProductList));
+      Swal.close();
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
+  };
 
   useEffect(() => {
-    const mockProducts = [];
-    for (let i = 0; i < 10; i++) {
-      mockProducts.push({
-        title: `Paket ${i}`,
-        description: `Saldo Bank ${i} sebesar 50.000 rupiah ada daw awdaw daw awd wa`,
-        image: brilogo,
-      });
-    }
-    setProducts(mockProducts);
+    updateList();
   }, []);
 
   return (
@@ -38,14 +57,21 @@ const RedeemProducts = () => {
             <input
               type="text"
               className={`form-control ${styles.input}`}
-              placeholder="Search ..."
-              aria-label="Search User"
+              placeholder="Cari ..."
+              aria-label="Cari Produk"
               aria-describedby="basic-addon1"
+              value={search}
+              onChange={(event) => {
+                dispatch(searchProduct(event.target.value));
+              }}
             />
 
             <button
               type="button"
               className={`input-group-text ${styles.input_icon}`}
+              onClick={() => {
+                dispatch(searchProduct(''));
+              }}
             >
               <i className="bi bi-x-circle"></i>
             </button>
@@ -54,22 +80,22 @@ const RedeemProducts = () => {
           <div
             className={`input-group mt-3 mt-lg-0 ms-lg-3 ${styles.input_button}`}
           >
-            <button type="button" className=" d-block btn btn-primary">
-              Add Product
-            </button>
+            <Link to="/admin/redeem/add" className=" d-block btn btn-primary">
+              Tambah Product
+            </Link>
           </div>
         </form>
       </section>
       <section>
-        <h1 className={`mb-0 h5 ${styles.subpage_title}`}>{category}</h1>
-        <p>{products.length} results found</p>
+        <h1 className={`mb-0 h5 ${styles.subpage_title}`}>{ProductHelper.formatCategory(category)}</h1>
+        <p>{productList.length} Ditemukan</p>
         <div className="d-flex justify-content-center flex-wrap gap-5">
-          {products.map((product, index) => (
+          {productList.map((product, index) => (
             <RedeemProductCard
               key={index}
-              title={product.title}
-              description={product.description}
-              image={brilogo}
+              category={category}
+              onUpdate={updateList}
+              {...product}
             />
           ))}
         </div>
