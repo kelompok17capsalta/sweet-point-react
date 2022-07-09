@@ -21,23 +21,71 @@ const SignUp = () => {
 		password: "",
 	});
 
+	const [ errors, setErrors ] = useState({
+		name: "",
+		username: "",
+		address: "",
+		phone: "",
+		email: "",
+		password: "",
+	});
+
 	const navigate = useNavigate();
+
+	const validateClient = (name, value) => {
+		const regexPhone = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9]{10})+$/i;
+		const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+		const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/gm
+
+		if(!value){
+			return "*Wajib diisi"
+		}
+		if(name === "name" && value.length < 3){
+			return "*Nama tidak boleh kurang dari 3 huruf"
+		}
+		if(name === "username" && value.length < 3 ){
+			return "*Username harus lebih  dari 5"
+		}
+		if (name === "phone" && !(regexPhone.test(value)) ) {
+			return "*Nomor telpon tidak valid"
+		}
+		if(name==="email" && !(regexEmail.test(value))){
+			return "*Email tidak valid"
+		}
+		if(name === "password" && !(regexPassword.test(value))){
+			return "*Minimal 8 karakter dengan kombinasi huruf dan angka"
+		}
+
+		return false
+	};
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
+		const error = validateClient(name,value);
 
 		setForm({
 			...form,
 			[name]: value,
+		});
+
+		setErrors({
+			...errors,
+			[name]: error
 		});
 	};
 
 	const handleSignUp = async (e) => {
 		try {
 			e.preventDefault();
+
+			const isInvalid = Object.values(errors).some(item => item !== false)
+			if(isInvalid){
+				return Swal.fire('User gagal dibuat!', 'Data kamu belum tepat, silakan cek kembali data yang kamu isi', 'error');
+			}
+
 			await Customer.register(form);
 
-			await Swal.fire('User berhasil dibuat', '', 'success');
+			await Swal.fire('User berhasil dibuat!', '', 'success');
 			navigate('/sign-in');
 		} catch (error) {
 			ErrorHandler.handle(error);
@@ -81,6 +129,7 @@ const SignUp = () => {
 										onChange={handleChange}
 										required
 									/>
+									<p className="text-danger mt-1">{errors.name}</p>
 								</div>
 
 								<div className="mb-3">
@@ -96,6 +145,7 @@ const SignUp = () => {
 										onChange={handleChange}
 										required
 									/>
+									<p className="text-danger mt-1">{errors.username}</p>
 								</div>
 
 								<div className="mb-3">
@@ -111,6 +161,7 @@ const SignUp = () => {
 										onChange={handleChange}
 										required
 									/>
+									<p className="text-danger mt-1">{errors.address}</p>
 								</div>
 
 								<div className="mb-3">
@@ -126,6 +177,7 @@ const SignUp = () => {
 										onChange={handleChange}
 										required
 									/>
+									<p className="text-danger mt-1">{errors.phone}</p>
 								</div>
 
 								<div className="mb-3">
@@ -141,6 +193,7 @@ const SignUp = () => {
 										onChange={handleChange}
 										required
 									/>
+									<p className="text-danger mt-1">{errors.email}</p>
 								</div>
 
 								<div className="mb-5">
@@ -156,6 +209,7 @@ const SignUp = () => {
 										onChange={handleChange}
 										required
 									/>
+									<p className="text-danger mt-1">{errors.password}</p>
 								</div>
 								<div className="d-grid gap-2">
 									<button

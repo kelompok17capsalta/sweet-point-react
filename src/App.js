@@ -17,7 +17,7 @@ import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
 import CustomerAccountInformation from "./pages/customer/AccountInformation";
 import CustomerMyTransaction from "./pages/customer/MyTransaction";
 import CustomerRedeem from "./pages/customer/Redeem";
-import CustomerFAQ from "./pages/customer/FAQ";
+import CustomerFAQ from "./pages/customer/Bantuan";
 
 // Admin Pages
 import AdminSignIn from "./pages/admin/SignIn";

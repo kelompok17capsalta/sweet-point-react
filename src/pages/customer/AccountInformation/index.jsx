@@ -116,6 +116,7 @@ const AccountInformation = () => {
 														name="name"
 														onChange={handleChange}
 														value={formValue.name}
+														required
 													/>
 												</div>
 												<div className="mb-4">
@@ -128,6 +129,7 @@ const AccountInformation = () => {
 														name="address"
 														onChange={handleChange}
 														value={formValue.address}
+														required
 													/>
 												</div>
 												<div className="mb-4">
@@ -142,6 +144,7 @@ const AccountInformation = () => {
 														name="phone"
 														onChange={handleChange}
 														value={formValue.phone}
+														required
 													/>
 												</div>
 											</div>

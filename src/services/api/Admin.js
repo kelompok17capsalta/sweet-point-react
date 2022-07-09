@@ -88,7 +88,7 @@ const Admin = {
     return responseJSON.data;
   },
 
-  async updateCustomer({ id, username, name, email, phone, address }) {
+  async updateCustomer({ id, username, name, email, phone, address, password }) {
     const token = Token.getAdminToken();
 
     const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
@@ -97,7 +97,7 @@ const Admin = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, name, email, phone, address }),
+      body: JSON.stringify({ username, name, email, phone, address, password }),
     });
     const responseJSON = await response.json();
 

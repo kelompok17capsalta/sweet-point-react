@@ -62,6 +62,7 @@ export default function CustomerEdit() {
 			const payload = { id: customer.id, ...formValue };
       payload.username = payload.username === customer.username ? null : payload.username;
       payload.email = payload.email === customer.email ? null : payload.email;
+      payload.password = payload.password === '' ? null : payload.password;
 
 			const updatedCustomerData = await Admin.updateCustomer(payload);
 
@@ -98,6 +99,7 @@ export default function CustomerEdit() {
                 placeholder="Nama lengkap"
                 onChange={handleChange}
                 value={formValue.name}
+                required
               />
             </div>
 
@@ -113,6 +115,7 @@ export default function CustomerEdit() {
                 placeholder="Username"
                 onChange={handleChange}
                 value={formValue.username}
+                required
               />
             </div>
 
@@ -128,6 +131,7 @@ export default function CustomerEdit() {
                 placeholder="Alamat"
                 onChange={handleChange}
                 value={formValue.address}
+                required
               />
             </div>
 
@@ -143,6 +147,7 @@ export default function CustomerEdit() {
                 placeholder="No. Handphone"
                 onChange={handleChange}
                 value={formValue.phone}
+                required
               />
             </div>
 
@@ -158,6 +163,7 @@ export default function CustomerEdit() {
                 placeholder="Email"
                 onChange={handleChange}
                 value={formValue.email}
+                required
               />
             </div>
 
@@ -173,6 +179,7 @@ export default function CustomerEdit() {
                 placeholder="Password"
                 onChange={handleChange}
                 value={formValue.password}
+                required
               />
             </div>
 
