@@ -35,7 +35,7 @@ const Transaction = {
         category,
         credentials,
         provider,
-        product: { id: product_id },
+        product: product_id,
         denom,
       }),
     });
