@@ -55,6 +55,15 @@ const TableTransactionAdmin = () => {
 			});
 
 			window.snap.pay(paymentToken, {
+				onPending: (result) => {
+					console.log(result);
+				},
+				onError: (result) => {
+					console.log(result);
+				},
+				onClose: () => {
+					console.log('Payment Closed');
+				},
 				onSuccess: async () => {
 					try {
 						await Transaction.updateTransactionStatus(transaction.id, "Success");
