@@ -122,7 +122,7 @@ const Product = {
       throw new APIError(responseJSON.message || responseJSON.error);
     }
 
-    if (oldImage.startsWith('https://firebasestorage.googleapis.com/')) {
+    if (oldImage?.startsWith('https://firebasestorage.googleapis.com/')) {
       await Storage.deleteProductImage(oldImage);
     }
 
