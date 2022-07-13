@@ -68,7 +68,7 @@ const RedeemProductForm = ({ id } = {}) => {
     const reader = new FileReader();
 
     reader.addEventListener('load', () => {
-      if (image && image.startsWith('https')) {
+      if (image && image?.startsWith('https')) {
         setOldImage(image);
       }
       setImage(reader.result);
