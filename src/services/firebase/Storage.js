@@ -4,11 +4,11 @@ import {
   uploadString,
   getDownloadURL,
   deleteObject,
-} from "firebase/storage";
-import { nanoid } from 'nanoid'
+} from 'firebase/storage';
+import { nanoid } from 'nanoid';
 
 // Configuration
-import CONFIG from "../../global/CONFIG";
+import CONFIG from '../../global/CONFIG';
 import firebaseApp from './config';
 
 const storage = getStorage(firebaseApp);
@@ -26,12 +26,14 @@ const Storage = {
   },
 
   async deleteProductImage(url) {
-    const fileName = url.split('/').at(-1).split('%2F').at(-1).split('?').at(0);
+    const fileName = url.split('/').at(-1).split('%2F').at(-1)
+      .split('?')
+      .at(0);
     const path = `${CONFIG.FIREBASE.STORAGE.PRODUCT}/${fileName}`;
     const storageRef = ref(storage, path);
-    
+
     await deleteObject(storageRef);
-  }
+  },
 };
 
 export default Storage;

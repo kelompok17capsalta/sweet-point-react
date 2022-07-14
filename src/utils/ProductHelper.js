@@ -7,10 +7,9 @@ const ProductHelper = {
   formatList(rawData, { category, search }) {
     const formatedCategory = this.formatCategory(category);
     const result = rawData
-      .filter((product) => (
-        product.category.toLowerCase() === formatedCategory.toLowerCase() && product.product_name.toLowerCase().includes(search.toLowerCase())
-      ));
-    
+      .filter((product) => product.category.toLowerCase() === formatedCategory.toLowerCase()
+          && product.product_name.toLowerCase().includes(search.toLowerCase()));
+
     return result;
   },
 

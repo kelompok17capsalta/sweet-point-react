@@ -1,14 +1,14 @@
 // Configuration
-import API_ENDPOINT from "../../global/API_ENDPOINT";
+import API_ENDPOINT from '../../global/API_ENDPOINT';
 
 // Error
-import APIError from "../../errors/APIError";
+import APIError from '../../errors/APIError';
 
 // Services
-import Token from "../localStorage/Token";
+import Token from '../localStorage/Token';
 
 const Payment = {
-  async payTransaction({ 
+  async payTransaction({
     name,
     provider,
     credentials,
@@ -22,7 +22,7 @@ const Payment = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         name,
         provider,
         credentials,

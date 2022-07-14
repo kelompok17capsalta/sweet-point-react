@@ -6,7 +6,7 @@ const DateHelper = {
     const day = date.getDate();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    
+
     return `${day}/${month}/${year} ${hour}:${minute}`;
   },
 };

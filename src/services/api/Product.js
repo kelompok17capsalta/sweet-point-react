@@ -1,15 +1,15 @@
 // Configuration
-import API_ENDPOINT from "../../global/API_ENDPOINT";
+import API_ENDPOINT from '../../global/API_ENDPOINT';
 
 // Error
-import APIError from "../../errors/APIError";
+import APIError from '../../errors/APIError';
 
 // Services
-import Token from "../localStorage/Token";
-import Storage from "../firebase/Storage";
+import Token from '../localStorage/Token';
+import Storage from '../firebase/Storage';
 
 const Product = {
-  async createProduct({ 
+  async createProduct({
     product_name,
     denom,
     category,
@@ -28,7 +28,7 @@ const Product = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         product_name,
         denom,
         category,
@@ -106,7 +106,7 @@ const Product = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         product_name,
         denom,
         category,

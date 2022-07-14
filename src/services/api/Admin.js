@@ -1,12 +1,12 @@
 // Configuration
-import CONFIG from "../../global/CONFIG";
-import API_ENDPOINT from "../../global/API_ENDPOINT";
+import CONFIG from '../../global/CONFIG';
+import API_ENDPOINT from '../../global/API_ENDPOINT';
 
 // Error
-import APIError from "../../errors/APIError";
+import APIError from '../../errors/APIError';
 
 // Services
-import Token from "../localStorage/Token";
+import Token from '../localStorage/Token';
 
 const Admin = {
   async getAdmin() {
@@ -44,7 +44,9 @@ const Admin = {
     if (response.status < 200 || response.status > 299) {
       const responseMessage = responseJSON.message || responseJSON.error;
 
-      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE) throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
+      if (responseMessage === CONFIG.API_NOT_FOUND_MESSAGE) {
+        throw new APIError(CONFIG.CREDENTIAL_ERROR_MESSAGE);
+      }
 
       throw new APIError(responseMessage);
     }
@@ -88,7 +90,9 @@ const Admin = {
     return responseJSON.data;
   },
 
-  async updateCustomer({ id, username, name, email, phone, address, password }) {
+  async updateCustomer({
+    id, username, name, email, phone, address, password,
+  }) {
     const token = Token.getAdminToken();
 
     const response = await fetch(`${API_ENDPOINT.USER}/${id}`, {
@@ -97,7 +101,9 @@ const Admin = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, name, email, phone, address, password }),
+      body: JSON.stringify({
+        username, name, email, phone, address, password,
+      }),
     });
     const responseJSON = await response.json();
 
