@@ -1,7 +1,7 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 
 // Configuration
-import CONFIG from "../../global/CONFIG";
+import CONFIG from '../../global/CONFIG';
 
 const firebaseConfig = {
   apiKey: CONFIG.FIREBASE.API_KEY,

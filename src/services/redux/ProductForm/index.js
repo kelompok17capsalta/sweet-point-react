@@ -15,13 +15,12 @@ const initialState = {
   },
 };
 
-
 export const productFormSlicer = createSlice({
   name: 'ProductForm',
   initialState,
   reducers: {
     updateProductForm: (state, { payload }) => {
-     state.value = payload;
+      state.value = payload;
     },
     updateProductField: (state, { payload }) => {
       if (payload.denom || payload.points || payload.stock) {
@@ -34,12 +33,10 @@ export const productFormSlicer = createSlice({
         value: {
           ...state.value,
           ...payload,
-        }
-      }
+        },
+      };
     },
-    resetProductForm: (state) => {
-      return initialState;
-    },
+    resetProductForm: () => initialState,
   },
 });
 

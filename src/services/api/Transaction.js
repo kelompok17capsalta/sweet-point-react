@@ -1,17 +1,17 @@
 // Configuration
-import API_ENDPOINT from "../../global/API_ENDPOINT";
+import API_ENDPOINT from '../../global/API_ENDPOINT';
 
 // Error
-import APIError from "../../errors/APIError";
+import APIError from '../../errors/APIError';
 
 // Services
-import Token from "../localStorage/Token";
+import Token from '../localStorage/Token';
 
 // Utils
-import MoneyFormatter from "../../utils/MoneyFormatter";
+import MoneyFormatter from '../../utils/MoneyFormatter';
 
 const Transaction = {
-  async createTransaction({ 
+  async createTransaction({
     points,
     username,
     category,
@@ -28,8 +28,8 @@ const Transaction = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ 
-        descriptions:  `Penukaran ${category} ${MoneyFormatter.format(denom)}`,
+      body: JSON.stringify({
+        descriptions: `Penukaran ${category} ${MoneyFormatter.format(denom)}`,
         points,
         user: { username },
         category,
@@ -93,8 +93,8 @@ const Transaction = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ 
-        status
+      body: JSON.stringify({
+        status,
       }),
     });
     const responseJSON = await response.json();
