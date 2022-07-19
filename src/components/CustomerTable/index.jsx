@@ -104,11 +104,11 @@ const CustomerTable = () => {
         </thead>
 
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, i) => {
+          {rows.map((row) => {
             prepareRow(row);
             return (
               <tr {...row.getRowProps()}>
-                {row.cells.map((cell, cellIdx) => (
+                {row.cells.map((cell) => (
                   <td {...cell.getCellProps()}>
                     {cell.column.id === 'name' ? (
                       <>
@@ -127,7 +127,7 @@ const CustomerTable = () => {
                 ))}
                 <td>
                   <Link to={`/admin/customer/${row.original.id}`} className="btn btn-info text-light me-3">Edit</Link>
-                  <button className="btn btn-danger" onClick={() => handleDeleteCustomer(row.original.id)}>Hapus</button>
+                  <button className="btn btn-danger" type="button" onClick={() => handleDeleteCustomer(row.original.id)}>Hapus</button>
                 </td>
               </tr>
             );
