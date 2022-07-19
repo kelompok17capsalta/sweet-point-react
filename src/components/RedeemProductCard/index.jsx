@@ -52,7 +52,7 @@ const RedeemProductCard = ({
         <p className={`${styles.redeem_product_sub}`}>Stok : {stock}</p>
         <div>
           <Link to={`/admin/redeem/${id}/edit`} className="btn btn-info text-light me-3">Edit</Link>
-          <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
+          <button className="btn btn-danger" type="button" onClick={handleDelete}>Delete</button>
         </div>
       </div>
     </div>
