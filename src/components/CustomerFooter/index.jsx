@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import styles from './style.module.css';
 
 const Footer = () => (
@@ -6,19 +6,19 @@ const Footer = () => (
     <div className="container">
       <div className="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between">
         <div className="d-flex align-items-center">
-            <img src="/logo.png" alt="Logo" width="60" height="60" />
-            <span className={`text-light h4 ${styles.title} mt-1`}>Sweet Point</span>
+          <img src="/logo.png" alt="Logo" width="60" height="60" />
+          <span className={`text-light h4 ${styles.title} mt-1`}>Sweet Point</span>
         </div>
 
         <div className="d-flex align-items-center m-auto m-lg-0">
           <a href="/" className={`btn btn-outline-light rounded-circle ${styles.social_icon}`}>
-            <i className="bi bi-instagram"></i>
+            <i className="bi bi-instagram" />
           </a>
           <a href="/" className={`btn btn-outline-light rounded-circle mx-3 ${styles.social_icon}`}>
-            <i className="bi bi-facebook"></i>
+            <i className="bi bi-facebook" />
           </a>
           <a href="/" className={`btn btn-outline-light rounded-circle ${styles.social_icon}`}>
-            <i className="bi bi-twitter"></i>
+            <i className="bi bi-twitter" />
           </a>
         </div>
       </div>

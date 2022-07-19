@@ -16,7 +16,6 @@ import Token from '../../services/localStorage/Token';
 // Utils
 import ErrorHandler from '../../utils/ErrorHandler';
 
-
 const AdminLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,8 +49,7 @@ const AdminLayout = () => {
     <>
       {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
-
-      <main style={{ minHeight: "85vh" }}>
+      <main style={{ minHeight: '85vh' }}>
         <Outlet />
       </main>
 

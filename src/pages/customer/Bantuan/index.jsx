@@ -1,5 +1,5 @@
-import React from "react";
-import style from "./style.module.css";
+import React from 'react';
+import style from './style.module.css';
 
 const Bantuan = () => {
   const faqs = [
@@ -43,24 +43,24 @@ const Bantuan = () => {
         </h5>
         <div className="mt-5">
           <div className="mt-5 d-grid gap-1">
-            {faqs.map(({question, answer}, faqIdx) => (
+            {faqs.map(({ question, answer }, faqIdx) => (
               <React.Fragment key={faqIdx}>
-              <button
-                className="btn btn-outline-secondary text-start"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target={`#question-${faqIdx}`}
-                aria-expanded="false"
-                aria-controls={`question-${faqIdx}`}
-              >
-                {question}
-                <i className="bi bi-chevron-down float-end"></i>
-              </button>
-              <div className="collapse" id={`question-${faqIdx}`}>
-                <div className="card card-body">
-                  {answer}
+                <button
+                  className="btn btn-outline-secondary text-start"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#question-${faqIdx}`}
+                  aria-expanded="false"
+                  aria-controls={`question-${faqIdx}`}
+                >
+                  {question}
+                  <i className="bi bi-chevron-down float-end" />
+                </button>
+                <div className="collapse" id={`question-${faqIdx}`}>
+                  <div className="card card-body">
+                    {answer}
+                  </div>
                 </div>
-              </div>
               </React.Fragment>
             ))}
           </div>
@@ -71,31 +71,34 @@ const Bantuan = () => {
           </h5>
           <div className="d-flex justify-content-center mt-4">
             <div className="row">
-              <button className="btn btn-light text-start">
+              <button className="btn btn-light text-start" type="button">
                 <img
                   src="/assets/images/icons/envelope.svg"
                   className={style.imgIcon}
+                  alt=""
                 />
-                <strong style={{ color: "#5D6FFF" }}>Email</strong>
+                <strong style={{ color: '#5D6FFF' }}>Email</strong>
               </button>
             </div>
-            <button className="btn btn-light text-start ms-4">
+            <button className="btn btn-light text-start ms-4" type="button">
               <img
                 src="/assets/images/icons/whatsapp.svg"
                 className={style.imgIcon}
+                alt=""
               />
-              <strong style={{ color: "#5D6FFF" }}>Whatsapp</strong>
+              <strong style={{ color: '#5D6FFF' }}>Whatsapp</strong>
             </button>
           </div>
         </div>
         <div className="d-flex justify-content-end">
-          <a className={`btn btn-primary rounded-circle mb-4 ${style.chat}`}>
-            <h3 class="bi bi-chat-fill "></h3>
+          <a className={`btn btn-primary rounded-circle mb-4 ${style.chat}`} href="#/">
+            {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
+            <h3 className="bi bi-chat-fill" aria-label="chat" />
           </a>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Bantuan;

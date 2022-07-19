@@ -1,27 +1,24 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-import style from "./style.module.css";
+import style from './style.module.css';
 
 // Components
-import ProfileCard from "../../../components/ProfileCard";
-
-//icon
-import filter from "./filter.png";
+import ProfileCard from '../../../components/ProfileCard';
 
 // Services
-import Transaction from "../../../services/api/Transaction.js";
-import { updateTransactionList } from "../../../services/redux/TransactionList"; 
+import Transaction from '../../../services/api/Transaction';
+import { updateTransactionList } from '../../../services/redux/TransactionList';
 
 // Utils
-import DateHelper from "../../../utils/DateHelper";
-import ErrorHandler from "../../../utils/ErrorHandler";
+import DateHelper from '../../../utils/DateHelper';
+import ErrorHandler from '../../../utils/ErrorHandler';
 
 const MyTransaction = () => {
   const transactionList = useSelector((state) => state.transactionList.data);
-  const sortedTransactionList = [...transactionList].sort((a,b) => {
+  const sortedTransactionList = [...transactionList].sort((a, b) => {
     if (new Date(a.created) < new Date(b.created)) {
       return 1;
     }
@@ -52,14 +49,14 @@ const MyTransaction = () => {
   const getTransactionStatusClass = (status) => {
     switch (status.toLowerCase()) {
       case 'success':
-        return style.text_success
+        return style.text_success;
 
       case 'failed':
-        return style.text_failed
+        return style.text_failed;
 
-      case 'failed':
-        return style.text_pending
-    
+      case 'pending':
+        return style.text_pending;
+
       default:
         break;
     }
@@ -88,7 +85,10 @@ const MyTransaction = () => {
             </div>
             <div className="col-12 col-lg-8">
               <h2>Transaksi Saya</h2>
-              <p>Daftar hasil dari transaksi anda, untuk mengetahui pengeluaran point yang anda dapatkan</p>
+              <p>
+                Daftar hasil dari transaksi anda,
+                untuk mengetahui pengeluaran point yang anda dapatkan
+              </p>
 
               {/* <div className="text-end">
                 <img src={filter} alt="filter" />
@@ -104,7 +104,9 @@ const MyTransaction = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {sortedTransactionList.map(({ id, descriptions, created, status, category, points }) => (
+                    {sortedTransactionList.map(({
+                      id, descriptions, created, status, category, points,
+                    }) => (
                       <tr key={id}>
                         <td>{descriptions}</td>
                         <td>{DateHelper.formatTransactionDate(created)}</td>
@@ -112,9 +114,10 @@ const MyTransaction = () => {
                           <span className={getTransactionStatusClass(status)}>{status}</span>
                         </td>
                         <td>
-                          <span 
-                            className={category.toLowerCase() === 'shopping' 
-                              ? style.text_tambahpoint : style.text_kurangpoint}>
+                          <span
+                            className={category.toLowerCase() === 'shopping'
+                              ? style.text_tambahpoint : style.text_kurangpoint}
+                          >
                             {category.toLowerCase() !== 'shopping' && '-'}{points} Point
                           </span>
                         </td>

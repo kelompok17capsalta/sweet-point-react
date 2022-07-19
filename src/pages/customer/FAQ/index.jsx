@@ -24,7 +24,7 @@ const FAQ = () => {
       answer: 'Pertama, pastikan toko sudah bekerja sama dengan Sweet Point. Lalu informasikan username sweet point kamu ke penjual, agar penjual dapat mengirimkan data transaksi untuk kami tukarkan.',
     },
   ];
-  
+
   return (
     <>
       <section className={`position-relative ${styles.banner}`}>
@@ -37,15 +37,15 @@ const FAQ = () => {
       <section className="mt-3 container pb-5 mb-5">
         <h2 className="text-center h4 fw-bold mb-5">Pertanyaan Populer ?, Temukan Jawabanmu Disini</h2>
 
-        <ul class="list-group">
+        <ul className="list-group">
           {faqs.map(({ question, answer }, faqIdx) => (
-            <li class="list-group-item">
-              <button class="btn btn-none w-100 d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target={`#faq-${faqIdx}`} aria-expanded="false" aria-controls={`faq-${faqIdx}`}>
+            <li className="list-group-item">
+              <button className="btn btn-none w-100 d-flex justify-content-between" type="button" data-bs-toggle="collapse" data-bs-target={`#faq-${faqIdx}`} aria-expanded="false" aria-controls={`faq-${faqIdx}`}>
                 <span>{question}</span>
-                <span class="bi bi-chevron-down" />
+                <span className="bi bi-chevron-down" />
               </button>
 
-              <div className='collapse px-3 mt-3' id={`faq-${faqIdx}`}>
+              <div className="collapse px-3 mt-3" id={`faq-${faqIdx}`}>
                 {answer}
               </div>
             </li>
@@ -61,7 +61,7 @@ const FAQ = () => {
             <div className="d-flex flex-column flex-lg-row justify-content-center">
               <div className={`card d-flex flex-row align-items-center p-3 mb-5 mb-lg-0 me-lg-5 ${styles.contact_card}`}>
                 <div className={`btn border-primary rounded-circle me-3 ${styles.contact_circle} d-flex justify-content-center align-items-center`}>
-                  <span class="bi bi-envelope text-primary h2 my-0" />
+                  <span className="bi bi-envelope text-primary h2 my-0" />
                 </div>
 
                 <div className="d-flex flex-column">
@@ -72,7 +72,7 @@ const FAQ = () => {
 
               <div className={`card d-flex flex-row align-items-center p-3 ${styles.contact_card}`}>
                 <div className={`btn border-primary rounded-circle me-3 ${styles.contact_circle} d-flex justify-content-center align-items-center`}>
-                  <span class="bi bi-whatsapp text-primary h2 my-0" />
+                  <span className="bi bi-whatsapp text-primary h2 my-0" />
                 </div>
 
                 <div className="d-flex flex-column">
@@ -85,12 +85,13 @@ const FAQ = () => {
         </div>
 
         <div className="position-absolute bottom-0 end-0 mb-3 me-3">
-          <a href='#' target="__blank" className={`btn btn-primary rounded-circle d-flex justify-content-center align-items-center ${styles.contact_circle}`}>
+          <a href="#/" target="__blank" className={`btn btn-primary rounded-circle d-flex justify-content-center align-items-center ${styles.contact_circle}`}>
             <span className="bi bi-chat-dots fs-4" />
           </a>
         </div>
       </section>
     </>
-)};
+  );
+};
 
 export default FAQ;

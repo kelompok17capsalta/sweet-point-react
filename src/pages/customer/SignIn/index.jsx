@@ -1,22 +1,22 @@
-import React from "react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import styles from "./style.module.css";
+import React, { useState } from 'react';
 
-//logo
-import LogoLogin from "./logologin.png";
-import MenuBack from "./menuback.png";
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import styles from './style.module.css';
+
+// logo
+import LogoLogin from './logologin.png';
+import MenuBack from './menuback.png';
 
 // Redux Action
 import { updateCustomer } from '../../../services/redux/Customer';
 
 // Services
-import Customer from "../../../services/api/Customer";
-import Token from "../../../services/localStorage/Token";
+import Customer from '../../../services/api/Customer';
+import Token from '../../../services/localStorage/Token';
 
 // Utils
-import ErrorHandler from "../../../utils/ErrorHandler";
+import ErrorHandler from '../../../utils/ErrorHandler';
 
 const SignIn = () => {
   const [clickEye, setClickEye] = useState(false);
@@ -26,34 +26,34 @@ const SignIn = () => {
   });
 
   const dispatch = useDispatch();
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const toggleEye = () => {
     setClickEye((prevState) => !prevState);
   };
 
   const handleChange = (e) => {
-		const { name, value } = e.target;
+    const { name, value } = e.target;
 
-		setFormValue({
-			...formValue,
-			[name]: value,
-		});
-	};
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
 
   const handleSignIn = async (e) => {
     try {
-			e.preventDefault();
-			const { token } = await Customer.signIn(formValue);
+      e.preventDefault();
+      const { token } = await Customer.signIn(formValue);
 
-			Token.saveCustomerToken(token);
+      Token.saveCustomerToken(token);
 
       const newCustomer = await Customer.getCustomer();
       dispatch(updateCustomer(newCustomer));
-			navigate('/');
-		} catch (error) {
-			ErrorHandler.handle(error);
-		}
+      navigate('/');
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
   };
 
   return (
@@ -63,7 +63,7 @@ const SignIn = () => {
       </Link>
       <div className={`${styles.body} ${styles.body_height} container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5  mx-auto`}>
         <div className={`${styles.body} card border-0`}>
-          <div className={`row d-flex`}>
+          <div className="row d-flex">
             <div className="col-lg-6">
               <div className="pb-5">
                 <div className="row px-3 justify-content-center mt-4 mb-5">
@@ -84,9 +84,9 @@ const SignIn = () => {
                   <label className="mb-0 px-1">
                     <h4 className={styles.color_text}>Password</h4>
                   </label>
-                  <input className={`mb-1`} type={clickEye ? "text" : "password"} placeholder="Password" name="password" onChange={handleChange} required />
+                  <input className="mb-1" type={clickEye ? 'text' : 'password'} placeholder="Password" name="password" onChange={handleChange} required />
                   <div className={` ${styles.col_layout} col-auto`}>
-                    <i className={clickEye ? `bi bi-eye` : `bi bi-eye-slash`} onClick={toggleEye}></i>
+                    <i className={clickEye ? 'bi bi-eye' : 'bi bi-eye-slash'} onClick={toggleEye} />
                   </div>
                 </div>
                 {/* <div className="row px-2 mb-5">

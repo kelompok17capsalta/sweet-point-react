@@ -11,42 +11,42 @@ const StoreTabs = () => {
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
   ];
 
@@ -54,42 +54,42 @@ const StoreTabs = () => {
     {
       name: 'Nivea',
       img: '/assets/images/stores/nivea.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Nike',
       img: '/assets/images/stores/nike.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Unilever',
       img: '/assets/images/stores/unilever.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Erigo',
       img: '/assets/images/stores/erigo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Philips',
       img: '/assets/images/stores/philips.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Uniqlo',
       img: '/assets/images/stores/uniqlo.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Motul',
       img: '/assets/images/stores/motul.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
     {
       name: 'Zoya',
       img: '/assets/images/stores/zoya.png',
-      description: 'Cashback 100 Point'
+      description: 'Cashback 100 Point',
     },
   ];
 

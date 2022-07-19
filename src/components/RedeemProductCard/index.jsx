@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
-import styles from "./style.module.css";
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import styles from './style.module.css';
 
 // Services
-import Product from "../../services/api/Product";
+import Product from '../../services/api/Product';
 
 // Utils
-import ErrorHandler from "../../utils/ErrorHandler";
+import ErrorHandler from '../../utils/ErrorHandler';
 
-const RedeemProductCard = ({ id, product_name, descriptions, image, stock, onUpdate }) => {
+const RedeemProductCard = ({
+  id, product_name, descriptions, image, stock, onUpdate,
+}) => {
   const handleDelete = async () => {
     try {
       const { isConfirmed } = await Swal.fire({
@@ -19,7 +21,7 @@ const RedeemProductCard = ({ id, product_name, descriptions, image, stock, onUpd
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Hapus!',
-        cancelButtonText: 'Tidak.'
+        cancelButtonText: 'Tidak.',
       });
 
       if (!isConfirmed) return;
@@ -27,13 +29,13 @@ const RedeemProductCard = ({ id, product_name, descriptions, image, stock, onUpd
       Swal.showLoading();
 
       await Product.deleteProduct(id, image);
-      
+
       await onUpdate();
 
       await Swal.fire(
         'Terhapus!',
         'Data produk berhasil dihapus.',
-        'success'
+        'success',
       );
     } catch (error) {
       ErrorHandler.handle(error);

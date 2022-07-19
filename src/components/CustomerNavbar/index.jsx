@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import styles from "./style.module.css";
+import styles from './style.module.css';
 
 // Utils
-import MoneyFormatter from "../../utils/MoneyFormatter";
+import MoneyFormatter from '../../utils/MoneyFormatter';
 
 const Navbar = () => {
   const customer = useSelector((state) => state.customer.value);
@@ -29,28 +29,26 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon" />
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav flex-lg-row ms-auto mb-2 mb-lg-0">
               {customer && (
-                <>
-                  <li className="nav-item mb-2 mb-lg-0">
-                    <Link
-                      className="d-flex align-items-center nav-link active py-0"
-                      aria-current="page"
-                      to="/informasi-akun"
-                    >
-                      <img 
-                        src={`https://ui-avatars.com/api/?background=ffc107&color=fff&rounded=true&name=${customer?.name}`}
-                        alt={customer?.name}
-                        width={40}
-                      />
-                      <span className="ms-2">{MoneyFormatter.format(customer?.point || 0)} Point</span>
-                    </Link>
-                  </li>
-                </>
+                <li className="nav-item mb-2 mb-lg-0">
+                  <Link
+                    className="d-flex align-items-center nav-link active py-0"
+                    aria-current="page"
+                    to="/informasi-akun"
+                  >
+                    <img
+                      src={`https://ui-avatars.com/api/?background=ffc107&color=fff&rounded=true&name=${customer?.name}`}
+                      alt={customer?.name}
+                      width={40}
+                    />
+                    <span className="ms-2">{MoneyFormatter.format(customer?.point || 0)} Point</span>
+                  </Link>
+                </li>
               )}
 
               {!customer && (
@@ -79,7 +77,7 @@ const Navbar = () => {
 
               <li className="nav-item d-flex align-items-center ms-1 ms-lg-3">
                 <Link className="nav-link active py-0" to="/bantuan">
-                  <i className="bi bi-question-circle me-2 me-lg-0"></i>
+                  <i className="bi bi-question-circle me-2 me-lg-0" />
                   <span className="ms-1 d-lg-none">Bantuan</span>
                 </Link>
               </li>

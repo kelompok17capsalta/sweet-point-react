@@ -12,9 +12,10 @@ import {
   searchUser,
 } from '../../../services/redux/UserList';
 
-
+// eslint-disable-next-line no-unused-vars
 const PageNav = ({ totalPages = 7 }) => {
   const pages = [];
+  // eslint-disable-next-line keyword-spacing, no-plusplus
   for(let i = 1; i <= totalPages; i++) {
     pages.push(i);
   }
@@ -22,17 +23,17 @@ const PageNav = ({ totalPages = 7 }) => {
   return (
     <div className="d-flex justify-content-center align-items-center">
       <Link to="/" className={`${styles.page_nav} me-3`}>
-        <i className="bi bi-chevron-left"></i>
+        <i className="bi bi-chevron-left" />
       </Link>
 
-      {pages.map((page) =>(
+      {pages.map((page) => (
         <Link key={page} to="/" className={`mx-1 bg-light ${styles.page_number}`}>
           {page}
         </Link>
       ))}
 
       <Link to="/" className={`${styles.page_nav} ms-3`}>
-        <i className="bi bi-chevron-right"></i>
+        <i className="bi bi-chevron-right" />
       </Link>
     </div>
   );
@@ -47,9 +48,7 @@ const Customer = () => {
 
   const dispatch = useDispatch();
 
-  const getSortedTogglerClassName = (sortBy) => {
-    return `dropdown-item ${sortedBy === sortBy && 'active'}`;
-  };
+  const getSortedTogglerClassName = (sortBy) => `dropdown-item ${sortedBy === sortBy && 'active'}`;
 
   return (
     <div className="container">
@@ -59,7 +58,7 @@ const Customer = () => {
         <form className="d-flex flex-column flex-lg-row mt-3 mt-lg-1">
           <div className="input-group">
             <span className={`input-group-text ${styles.input_icon}`}>
-              <i className="bi bi-search"></i>
+              <i className="bi bi-search" />
             </span>
 
             <input
@@ -80,7 +79,7 @@ const Customer = () => {
                 dispatch(searchUser(''));
               }}
             >
-              <i className="bi bi-x-circle"></i>
+              <i className="bi bi-x-circle" />
             </button>
           </div>
         </form>
@@ -96,14 +95,15 @@ const Customer = () => {
 
         <div className={styles.sort_button}>
           <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            <i className="bi bi-sort-down"></i>
+            <i className="bi bi-sort-down" />
             <span className="mx-1">Sort By</span>
           </button>
 
           <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li>
-              <button 
+              <button
                 className={getSortedTogglerClassName('default')}
+                type="button"
                 onClick={() => {
                   if (sortedBy !== 'default') dispatch(sortUserList('default'));
                 }}
@@ -112,8 +112,9 @@ const Customer = () => {
               </button>
             </li>
             <li>
-              <button 
+              <button
                 className={getSortedTogglerClassName('name')}
+                type="button"
                 onClick={() => {
                   if (sortedBy !== 'name') dispatch(sortUserList('name'));
                 }}
@@ -122,8 +123,9 @@ const Customer = () => {
               </button>
             </li>
             <li>
-              <button 
+              <button
                 className={getSortedTogglerClassName('username')}
+                type="button"
                 onClick={() => {
                   if (sortedBy !== 'username') dispatch(sortUserList('username'));
                 }}

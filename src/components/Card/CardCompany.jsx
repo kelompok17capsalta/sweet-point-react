@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import React from "react";
+import { Box } from '@mui/material';
+import React from 'react';
 
 export default function CardCompany({ image, title, cashback }) {
   return (
@@ -17,7 +17,7 @@ export default function CardCompany({ image, title, cashback }) {
         <h5>{title}</h5>
       </div>
       <div className="d-flex justify-content-center">
-        <p style={{ color: "blue" }}>{cashback} </p>
+        <p style={{ color: 'blue' }}>{cashback} </p>
       </div>
     </Box>
   );
