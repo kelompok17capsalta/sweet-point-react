@@ -7,6 +7,7 @@ const API_ENDPOINT = {
     INFO: `${CONFIG.API_BASE_URL}/v1/auth/info`,
   },
   SUMMARY: `${CONFIG.API_BASE_URL}/v1/admin/data`,
+  POPULAR_REDEEM: `${CONFIG.API_BASE_URL}/v1/product/random`,
   USER: `${CONFIG.API_BASE_URL}/v1/user`,
   PRODUCT: `${CONFIG.API_BASE_URL}/v1/product`,
   TRANSACTION: {

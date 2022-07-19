@@ -6,17 +6,17 @@ import paket from './paket.png';
 import pulsa from './pulsa.png';
 import styles from './style.module.css';
 
-import RedeemStatsCard from '../../../components/RedeemStatsCard';
+// import RedeemStatsCard from '../../../components/RedeemStatsCard';
 import ProductCategoryCard from '../../../components/ProductCategoryCard';
 
 const Redeem = () => (
   <div className={`container mt-5 ${styles.container}`}>
-    <div className="d-flex justify-content-center flex-wrap gap-5">
+    {/* <div className="d-flex justify-content-center flex-wrap gap-5">
       <RedeemStatsCard title="Total Redeem" value={85125} />
       <RedeemStatsCard title="Monthly Redeem" value={85125} />
       <RedeemStatsCard title="Weekly Redeem" value={85125} />
       <RedeemStatsCard title="Todays Redeem" value={85125} />
-    </div>
+    </div> */}
     <span className={`mt-5 ${styles.header}`}>Product Categories</span>
     <div className="d-flex justify-content-center flex-wrap gap-5">
       <ProductCategoryCard

@@ -65,6 +65,17 @@ const Product = {
     return responseJSON.data;
   },
 
+  async getPopularProducts() {
+    const response = await fetch(API_ENDPOINT.POPULAR_REDEEM);
+    const responseJSON = await response.json();
+
+    if (response.status < 200 || response.status > 299) {
+      throw new APIError(responseJSON.message || responseJSON.error);
+    }
+
+    return responseJSON.data;
+  },
+
   async getProductById(id) {
     const token = Token.getAdminToken() || Token.getCustomerToken();
 
