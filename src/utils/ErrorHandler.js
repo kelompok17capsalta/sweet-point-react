@@ -12,6 +12,7 @@ const ErrorHandler = {
     if (error instanceof ClientError) {
       message = error.message;
     } else {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
 

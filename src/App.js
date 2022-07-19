@@ -1,34 +1,35 @@
-import { useSelector } from "react-redux";
-import { Routes, Route, Navigate } from "react-router-dom";
+/* eslint-disable react/jsx-filename-extension */
+import { useSelector } from 'react-redux';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 // Routes
-import ProtectedRoutes from "./routes/ProtectedRoutes";
+import ProtectedRoutes from './routes/ProtectedRoutes';
 
 // Layouts
-import CustomerLayout from "./layouts/CustomerLayout";
-import AdminLayout from "./layouts/AdminLayout";
+import CustomerLayout from './layouts/CustomerLayout';
+import AdminLayout from './layouts/AdminLayout';
 
 // Customer Pages
-import CustomerHome from "./pages/customer/Home";
-import CustomerSignOut from "./pages/customer/SignOut";
-import CustomerSignIn from "./pages/customer/SignIn";
-import CustomerSignUp from "./pages/customer/SignUp";
-import CustomerPengaturanAkun from "./pages/customer/PengaturanAkun";
-import CustomerAccountInformation from "./pages/customer/AccountInformation";
-import CustomerMyTransaction from "./pages/customer/MyTransaction";
-import CustomerRedeem from "./pages/customer/Redeem";
-import CustomerFAQ from "./pages/customer/Bantuan";
+import CustomerHome from './pages/customer/Home';
+import CustomerSignOut from './pages/customer/SignOut';
+import CustomerSignIn from './pages/customer/SignIn';
+import CustomerSignUp from './pages/customer/SignUp';
+import CustomerPengaturanAkun from './pages/customer/PengaturanAkun';
+import CustomerAccountInformation from './pages/customer/AccountInformation';
+import CustomerMyTransaction from './pages/customer/MyTransaction';
+import CustomerRedeem from './pages/customer/Redeem';
+import CustomerFAQ from './pages/customer/Bantuan';
 
 // Admin Pages
-import AdminSignIn from "./pages/admin/SignIn";
-import AdminSignOut from "./pages/admin/SignOut";
-import AdminDashboard from "./pages/admin/Dashboard";
-import AdminCustomer from "./pages/admin/Customer";
-import AdminRedeem from "./pages/admin/Redeem";
-import AdminRedeemAdd from "./pages/admin/RedeemAdd";
-import AdminRedeemProducts from "./pages/admin/RedeemProducts";
-import AdminRedeemEdit from "./pages/admin/RedeemEdit";
-import AdminCustomerEdit from "./pages/admin/CustomerEdit";
+import AdminSignIn from './pages/admin/SignIn';
+import AdminSignOut from './pages/admin/SignOut';
+import AdminDashboard from './pages/admin/Dashboard';
+import AdminCustomer from './pages/admin/Customer';
+import AdminRedeem from './pages/admin/Redeem';
+import AdminRedeemAdd from './pages/admin/RedeemAdd';
+import AdminRedeemProducts from './pages/admin/RedeemProducts';
+import AdminRedeemEdit from './pages/admin/RedeemEdit';
+import AdminCustomerEdit from './pages/admin/CustomerEdit';
 
 const App = () => {
   const customer = useSelector((state) => state.customer.value);

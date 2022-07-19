@@ -4,7 +4,6 @@ const initialState = {
   data: [],
 };
 
-
 export const transactionListSlice = createSlice({
   name: 'transactionList',
   initialState,

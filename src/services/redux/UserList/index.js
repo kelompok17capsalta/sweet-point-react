@@ -10,38 +10,31 @@ const initialState = {
   result: [],
 };
 
-
 export const userListSlice = createSlice({
   name: 'userList',
   initialState,
   reducers: {
-    updateUserList: (state, { payload: data }) => {
-      return state = {
-        ...state,
-        data,
-        result: UserListHelper.format(data, state),
-      };
-    },
-    sortUserList: (state, { payload: sortedBy }) => {
-      return {
+    updateUserList: (state, { payload: data }) => ({
+      ...state,
+      data,
+      result: UserListHelper.format(data, state),
+    }),
+    sortUserList: (state, { payload: sortedBy }) => ({
+      ...state,
+      sortedBy,
+      result: UserListHelper.format(state.data, {
         ...state,
         sortedBy,
-        result: UserListHelper.format(state.data, {
-          ...state,
-          sortedBy,
-        }),
-      };
-    },
-    searchUser: (state, { payload: search }) => {
-      return {
+      }),
+    }),
+    searchUser: (state, { payload: search }) => ({
+      ...state,
+      search,
+      result: UserListHelper.format(state.data, {
         ...state,
         search,
-        result: UserListHelper.format(state.data, {
-          ...state,
-          search,
-        }),
-      };
-    },
+      }),
+    }),
   },
 });
 
