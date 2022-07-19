@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigation, Pagination, Controller } from 'swiper';
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -7,60 +7,25 @@ import styles from './style.module.css';
 
 // Global Component
 import PopularRedeemItem from '../PopularRedeemItem';
+import ErrorHandler from '../../utils/ErrorHandler';
+import Product from '../../services/api/Product';
 
 const PopularRedeem = () => {
   const [controlledSwiper, setControlledSwiper] = useState(null);
+  const [redeems, setRedeems] = useState([]);
 
-  const redeems = [
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-    {
-      name: 'Paket C',
-      img: '/assets/images/redeems/dana.png',
-      point: 70,
-      description: 'Paket ini berisi saldo e-money dengan total uang senilai 50.000 rupiah',
-    },
-  ];
+  useEffect(() => {
+    const updateRedeem = async () => {
+      try {
+        const popularRedeem = await Product.getPopularProducts();
+        setRedeems(popularRedeem);
+      } catch (error) {
+        ErrorHandler.handle(error);
+      }
+    };
+
+    updateRedeem();
+  }, []);
 
   const handlePrevSlide = () => {
     controlledSwiper?.slidePrev();
