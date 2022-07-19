@@ -1,25 +1,25 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-import styles from "./style.module.css";
+import styles from './style.module.css';
 
 // Components
-import RedeemProductCard from "../../../components/RedeemProductCard";
+import RedeemProductCard from '../../../components/RedeemProductCard';
 
 // Services
-import { updateProductList, updateCategory, searchProduct } from "../../../services/redux/ProductList";
-import Product from "../../../services/api/Product";
+import { updateProductList, updateCategory, searchProduct } from '../../../services/redux/ProductList';
+import Product from '../../../services/api/Product';
 
 // Utils
-import ErrorHandler from "../../../utils/ErrorHandler";
-import ProductHelper from "../../../utils/ProductHelper";
+import ErrorHandler from '../../../utils/ErrorHandler';
+import ProductHelper from '../../../utils/ProductHelper';
 
 const RedeemProducts = () => {
   const {
     search,
-    result: productList
+    result: productList,
   } = useSelector((state) => state.productList);
   const { category } = useParams();
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const RedeemProducts = () => {
               className={`input-group-text ${styles.input_icon}`}
               id="basic-addon1"
             >
-              <i className="bi bi-search"></i>
+              <i className="bi bi-search" />
             </span>
 
             <input
@@ -73,7 +73,7 @@ const RedeemProducts = () => {
                 dispatch(searchProduct(''));
               }}
             >
-              <i className="bi bi-x-circle"></i>
+              <i className="bi bi-x-circle" />
             </button>
           </div>
 

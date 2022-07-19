@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 
-export default function RedeemCard({ imgProduct, imgLogo, title, content }) {
+export default function RedeemCard({
+  imgProduct, imgLogo, title, content,
+}) {
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card" style={{ width: '18rem' }}>
       <img
         src={imgProduct}
         className="card-img-top"
         alt={title}
-        style={{ borderRadius: "10px", height: "10rem" }}
+        style={{ borderRadius: '10px', height: '10rem' }}
       />
       <div className="d-flex justify-content-center">
         <img src={imgLogo} className="rounded" width="75px" alt={title} />

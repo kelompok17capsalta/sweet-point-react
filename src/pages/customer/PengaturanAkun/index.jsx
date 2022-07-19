@@ -1,82 +1,82 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
-	useSelector,
-	useDispatch,
-} from "react-redux";
+  useSelector,
+  useDispatch,
+} from 'react-redux';
 import Swal from 'sweetalert2';
-import style from "./style.module.css";
+import style from './style.module.css';
 
 // Components
-import ProfileCard from "../../../components/ProfileCard";
+import ProfileCard from '../../../components/ProfileCard';
 
 // Errors
-import InvariantError from "../../../errors/InvariantError";
+import InvariantError from '../../../errors/InvariantError';
 
 // Services
-import Customer from "../../../services/api/Customer";
-import { updateCustomer } from "../../../services/redux/Customer";
+import Customer from '../../../services/api/Customer';
+import { updateCustomer } from '../../../services/redux/Customer';
 
 // Utils
-import ErrorHandler from "../../../utils/ErrorHandler";
+import ErrorHandler from '../../../utils/ErrorHandler';
 
 const PengaturanAkun = () => {
   const customer = useSelector((state) => state.customer.value);
-	const [formValue, setFormValue] = useState({
-		username: '',
-		email: '',
-		password: '',
-		passwordConfirmation: '',
-	});
+  const [formValue, setFormValue] = useState({
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+  });
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const handleChange = (e) => {
-		const { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-		setFormValue({
-			...formValue,
-			[name]: value,
-		});
-	};
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
 
-	const handleUpdate = async (e) => {
-		try {
-			e.preventDefault();
+  const handleUpdate = async (e) => {
+    try {
+      e.preventDefault();
 
-			Swal.showLoading();
+      Swal.showLoading();
 
       if (formValue.password !== formValue.passwordConfirmation) {
         throw new InvariantError('Konfirmasi Password gagal, pastikan password dan konfirmasi password sudah benar.');
       }
-			const payload = { id: customer.id, ...formValue };
+      const payload = { id: customer.id, ...formValue };
       payload.username = payload.username === customer.username ? null : payload.username;
       payload.email = payload.email === customer.email ? null : payload.email;
 
-			const updatedCustomerData = await Customer.updateCustomer(payload);
+      const updatedCustomerData = await Customer.updateCustomer(payload);
 
-			const updatedCustomer = { ...customer, ...updatedCustomerData };
+      const updatedCustomer = { ...customer, ...updatedCustomerData };
 
-			dispatch(updateCustomer(updatedCustomer));
+      dispatch(updateCustomer(updatedCustomer));
 
-			await Swal.fire(
-				'Data berhasil disimpan.',
-				'',
-				'success',
-			)
-		} catch (error) {
-			ErrorHandler.handle(error);
-		}
-	} ;
+      await Swal.fire(
+        'Data berhasil disimpan.',
+        '',
+        'success',
+      );
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
+  };
 
-	useEffect(() => {
-		setFormValue({
+  useEffect(() => {
+    setFormValue({
       username: customer?.username || '',
       email: customer?.email || '',
       password: customer?.password || '',
       passwordConfirmation: customer?.passwordConfirmation || '',
-		});
-	},[customer]);
+    });
+  }, [customer]);
 
   return (
     <>
@@ -129,7 +129,7 @@ const PengaturanAkun = () => {
                   />
 
                   <label htmlFor="password">Ubah Password</label>
-                  <input 
+                  <input
                     type="password"
                     id="password"
                     name="password"
@@ -151,7 +151,7 @@ const PengaturanAkun = () => {
                   />
                 </div>
                 <div className="card-body text-end me-3">
-                  <button className={`btn btn-lg ${style.btn_clr}`}>Save</button>
+                  <button className={`btn btn-lg ${style.btn_clr}`} type="button">Save</button>
                 </div>
               </form>
             </div>

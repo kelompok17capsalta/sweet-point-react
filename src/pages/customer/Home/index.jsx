@@ -1,6 +1,6 @@
-import Banner from "../../../components/CustomerBanner";
-import StoreTabs from "../../../components/StoreTabs";
-import PopularRedeem from "../../../components/PopularRedeem";
+import Banner from '../../../components/CustomerBanner';
+import StoreTabs from '../../../components/StoreTabs';
+import PopularRedeem from '../../../components/PopularRedeem';
 
 const Home = () => (
   <div className="container py-3">

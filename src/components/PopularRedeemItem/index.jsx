@@ -1,4 +1,6 @@
-const PopularRedeemItem = ({img, name, point, description}) => (
+const PopularRedeemItem = ({
+  img, name, point, description,
+}) => (
   <div className="card d-flex p-3">
     <img src={img} alt={name} />
 

@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from "react-router-dom";
-import coin from "./logocoin.png";
-import styles from "./style.module.css";
+
+import coin from './logocoin.png';
+import styles from './style.module.css';
 
 // Redux Action
 import { updateAdmin } from '../../../services/redux/Admin';
 
 // Services
-import Admin from "../../../services/api/Admin";
-import Token from "../../../services/localStorage/Token";
+import Admin from '../../../services/api/Admin';
+import Token from '../../../services/localStorage/Token';
 
 // Utils
-import ErrorHandler from "../../../utils/ErrorHandler";
+import ErrorHandler from '../../../utils/ErrorHandler';
 
 const SignIn = () => {
   const [formValue, setFormValue] = useState({
@@ -24,41 +24,41 @@ const SignIn = () => {
   const admin = useSelector((state) => state.admin.value);
 
   const dispatch = useDispatch();
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
   if (admin) {
-    return <Navigate to="/admin/dashboard" />
+    return <Navigate to="/admin/dashboard" />;
   }
 
   const handleChange = (e) => {
-		const { name, value } = e.target;
+    const { name, value } = e.target;
 
-		setFormValue({
-			...formValue,
-			[name]: value,
-		});
-	};
+    setFormValue({
+      ...formValue,
+      [name]: value,
+    });
+  };
 
   const handleSignIn = async (e) => {
     try {
-			e.preventDefault();
-			const { token } = await Admin.signIn(formValue);
+      e.preventDefault();
+      const { token } = await Admin.signIn(formValue);
 
-			Token.saveAdminToken(token);
+      Token.saveAdminToken(token);
 
       const { point, ...newAdmin } = await Admin.getAdmin();
       dispatch(updateAdmin(newAdmin));
-			navigate('/admin/dashboard');
-		} catch (error) {
-			ErrorHandler.handle(error);
-		}
+      navigate('/admin/dashboard');
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
   };
 
   return (
     <div className={`${styles.body_login}`}>
-      <div className={`container`}>
+      <div className="container">
         <div className={`mt-3 ${styles.text_login}`}>
-          <img className={`px-1`} src={coin} alt="" />
+          <img className="px-1" src={coin} alt="" />
           Sweet Point
         </div>
 
@@ -68,10 +68,15 @@ const SignIn = () => {
               <h1>Sell Digital</h1>
               <h1>Product the</h1>
               <h1>easy-peasy way</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem fugit voluptate, eos vero deleniti minus optio maxime culpa natus repudiandae sint voluptatem velit inventore mollitia.</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Exercitationem fugit voluptate,
+                eos vero deleniti minus optio maxime culpa
+                natus repudiandae sint voluptatem velit inventore mollitia.
+              </p>
             </div>
             <div className="col">
-              <form onSubmit={handleSignIn} className="card shadow-2-strong" style={{ borderRadius: "1rem" }}>
+              <form onSubmit={handleSignIn} className="card shadow-2-strong" style={{ borderRadius: '1rem' }}>
                 <div className="card-body p-5 text-center">
                   <h3 className={`mb-5 text-start ${styles.color_text}`}>Login</h3>
                   <div className="form-outline mb-4">

@@ -1,21 +1,24 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Swal from "sweetalert2";
+/* eslint-disable react/jsx-indent-props */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable no-console */
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
-import styles from "./style.module.css";
+import styles from './style.module.css';
 
 // Services
-import Transaction from "../../services/api/Transaction";
-import Payment from "../../services/api/Payment";
-import { updateTransactionList } from "../../services/redux/TransactionList"; 
+import Transaction from '../../services/api/Transaction';
+import Payment from '../../services/api/Payment';
+import { updateTransactionList } from '../../services/redux/TransactionList';
 
 // Utils
-import ErrorHandler from "../../utils/ErrorHandler";
-import MoneyFormatter from "../../utils/MoneyFormatter";
+import ErrorHandler from '../../utils/ErrorHandler';
+import MoneyFormatter from '../../utils/MoneyFormatter';
 
 const TableTransactionAdmin = () => {
-	const transactionList = useSelector((state) => state.transactionList.data);
-	const filteredTransactionList = transactionList.filter(({ status }) => status.toLowerCase() === 'pending').sort((a,b) => {
+  const transactionList = useSelector((state) => state.transactionList.data);
+  const filteredTransactionList = transactionList.filter(({ status }) => status.toLowerCase() === 'pending').sort((a, b) => {
     if (new Date(a.created) < new Date(b.created)) {
       return 1;
     }
@@ -27,7 +30,7 @@ const TableTransactionAdmin = () => {
   });
   const dispatch = useDispatch();
 
-	const updateData = async () => {
+  const updateData = async () => {
     try {
       Swal.showLoading();
       const updatedList = await Transaction.getAllTransactions();
@@ -42,88 +45,87 @@ const TableTransactionAdmin = () => {
     updateData();
   }, []);
 
-	const handlePay = async (transaction) => {
-		try {
-			Swal.showLoading();
-			const name = transaction.user.username;
-			const price = transaction.denom;
+  const handlePay = async (transaction) => {
+    try {
+      Swal.showLoading();
+      const name = transaction.user.username;
+      const price = transaction.denom;
 
-			const { token: paymentToken } = await Payment.payTransaction({
-				...transaction,
-				name,
-				price,
-			});
+      const { token: paymentToken } = await Payment.payTransaction({
+        ...transaction,
+        name,
+        price,
+      });
 
-			window.snap.pay(paymentToken, {
-				onPending: (result) => {
-					console.log(result);
-				},
-				onError: (result) => {
-					console.log(result);
-				},
-				onClose: () => {
-					console.log('Payment Closed');
-				},
-				onSuccess: async () => {
-					try {
-						await Transaction.updateTransactionStatus(transaction.id, "Success");
-						await updateData();
-						await Swal.fire(
-							'Pembayaran berhasil',
-							'',
-							'success',
-						);
-					} catch (error) {
-						ErrorHandler.handle(error);
-					}
-				}
-			});
+      window.snap.pay(paymentToken, {
+        onPending: (result) => {
+          console.log(result);
+        },
+        onError: (result) => {
+          console.log(result);
+        },
+        onClose: () => {
+          console.log('Payment Closed');
+        },
+        onSuccess: async () => {
+          try {
+            await Transaction.updateTransactionStatus(transaction.id, 'Success');
+            await updateData();
+            await Swal.fire(
+              'Pembayaran berhasil',
+              '',
+              'success',
+            );
+          } catch (error) {
+            ErrorHandler.handle(error);
+          }
+        },
+      });
+    } catch (error) {
+      ErrorHandler.handle(error);
+    }
+  };
 
-		} catch (error) {
-			ErrorHandler.handle(error);
-		}
-	};
+  return (
+    <div className="table-responsive">
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">
+              Username
+            </th>
+            <th scope="col">
+              Provider
+            </th>
+            <th scope="col">
+              Kredensial
+            </th>
+            <th scope="col">
+              Kategori
+            </th>
+            <th scope="col">
+              Point
+            </th>
+            <th scope="col">
+              Nominal Hadiah
+            </th>
+            <th scope="col">
+              Aksi
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredTransactionList.map((transaction) => {
+					  const {
+					    id, user: { username },
+					    provider,
+					    credentials,
+					    category,
+					    points,
+					    denom,
+            } = transaction;
 
-	return (
-		<div className="table-responsive">
-			<table className="table table-striped">
-				<thead>
-					<tr>
-						<th scope="col">
-							Username
-						</th>
-						<th scope="col">
-							Provider
-						</th>
-						<th scope="col">
-							Kredensial
-						</th>
-						<th scope="col">
-							Kategori
-						</th>
-						<th scope="col">
-							Point
-						</th>
-						<th scope="col">
-							Nominal Hadiah
-						</th>
-						<th scope="col">
-							Aksi
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredTransactionList.map((transaction) => {
-						const {
-							id, user: { username }, 
-							provider, 
-							credentials, 
-							category, 
-							points, 
-							denom 
-						} = transaction
-
-						return (
+					  return (
 							<tr key={id}>
 								<td>
 									<div className="d-flex align-items-center">
@@ -139,18 +141,20 @@ const TableTransactionAdmin = () => {
 								<td className="align-middle pe-5">{MoneyFormatter.format(points)}</td>
 								<td className="align-middle pe-5">{MoneyFormatter.format(denom)}</td>
 								<td className="align-middle">
-									<button 
+									<button
 										className="btn btn-primary"
+										type="button"
 										onClick={() => handlePay(transaction)}
-									>Bayar</button>
+									>Bayar
+									</button>
 								</td>
 							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-		</div>
-	);
+					  );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default TableTransactionAdmin;

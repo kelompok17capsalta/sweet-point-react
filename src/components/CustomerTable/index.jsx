@@ -68,7 +68,7 @@ const CustomerTable = () => {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Ya, Hapus!',
-        cancelButtonText: 'Tidak.'
+        cancelButtonText: 'Tidak.',
       });
 
       if (!isConfirmed) return;
@@ -76,13 +76,13 @@ const CustomerTable = () => {
       Swal.showLoading();
 
       await Admin.deleteCustomer(customerId);
-      
+
       await updateData();
 
       await Swal.fire(
         'Terhapus!',
         'Data pengguna berhasil dihapus.',
-        'success'
+        'success',
       );
     } catch (error) {
       ErrorHandler.handle(error);
@@ -93,9 +93,9 @@ const CustomerTable = () => {
     <div className="table-responsive">
       <table className={`table table-hover ${styles.user_table}`} {...getTableProps()}>
         <thead className="table-light">
-          {headerGroups.map(headerGroup => (
+          {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
+              {headerGroup.headers.map((column) => (
                 <th scope="col" {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
               <th scope="col">Aksi</th>
@@ -112,9 +112,9 @@ const CustomerTable = () => {
                   <td {...cell.getCellProps()}>
                     {cell.column.id === 'name' ? (
                       <>
-                        <img 
+                        <img
                           src={`https://ui-avatars.com/api/?name=${row.original.name}&background=random&color=ffffff&rounded=true`}
-                          alt={row.original.username} 
+                          alt={row.original.username}
                           className="mb-1 mb-lg-0 me-lg-2"
                         />
 
@@ -130,7 +130,7 @@ const CustomerTable = () => {
                   <button className="btn btn-danger" onClick={() => handleDeleteCustomer(row.original.id)}>Hapus</button>
                 </td>
               </tr>
-            )
+            );
           })}
         </tbody>
 

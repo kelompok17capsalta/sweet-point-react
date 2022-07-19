@@ -1,28 +1,28 @@
-import { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import defaultImage from "./profile.png";
-import styles from "./style.module.css";
-import Swal from "sweetalert2";
+import { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import NumberFormat from 'react-number-format';
+import defaultImage from './profile.png';
+import styles from './style.module.css';
 
 // Components
-import NumberFormat from 'react-number-format';
 
-// Errors 
-import InvariantError from "../../errors/InvariantError";
+// Errors
+import InvariantError from '../../errors/InvariantError';
 
 // Utils
-import ErrorHandler from "../../utils/ErrorHandler";
+import ErrorHandler from '../../utils/ErrorHandler';
 
 // Services
-import Product from "../../services/api/Product";
-import { updateProductForm, updateProductField, resetProductForm } from "../../services/redux/ProductForm";
+import Product from '../../services/api/Product';
+import { updateProductForm, updateProductField, resetProductForm } from '../../services/redux/ProductForm';
 
 const RedeemProductForm = ({ id } = {}) => {
   const productForm = useSelector((state) => state.productForm.value);
   const [image, setImage] = useState(productForm.image);
   const [oldImage, setOldImage] = useState(null);
-	const hiddenFileInput = useRef(null);
+  const hiddenFileInput = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,26 +43,26 @@ const RedeemProductForm = ({ id } = {}) => {
 
       updateProductFormValue();
     }
-  },[])
+  }, []);
 
-	const handleClickforInput = () => {
-		hiddenFileInput.current.click();
-	};
+  const handleClickforInput = () => {
+    hiddenFileInput.current.click();
+  };
 
   const categories = [
-    "Cash Out",
-    "E-Money",
-    "Pulsa",
-    "Paket Data"
+    'Cash Out',
+    'E-Money',
+    'Pulsa',
+    'Paket Data',
   ];
 
   const handleChange = (event) => {
-		const { name, value } = event.target;
+    const { name, value } = event.target;
 
-		dispatch(updateProductField({
+    dispatch(updateProductField({
       [name]: value,
     }));
-	};
+  };
 
   const handleChangeImage = (event) => {
     const reader = new FileReader();
@@ -89,15 +89,15 @@ const RedeemProductForm = ({ id } = {}) => {
       Swal.showLoading();
 
       if (!image) {
-        throw new InvariantError("Gambar produk diperlukan !");
+        throw new InvariantError('Gambar produk diperlukan !');
       }
 
       if (!id) {
         await Product.createProduct(productForm);
         await Swal.fire(
-          "Sukses !",
-          "Produk Berhasil Dibuat",
-          "success"
+          'Sukses !',
+          'Produk Berhasil Dibuat',
+          'success',
         );
 
         dispatch(resetProductForm());
@@ -106,9 +106,9 @@ const RedeemProductForm = ({ id } = {}) => {
 
       await Product.updateProduct(productForm, oldImage);
       await Swal.fire(
-        "Sukses !",
-        "Produk Berhasil dirubah.",
-        "success"
+        'Sukses !',
+        'Produk Berhasil dirubah.',
+        'success',
       );
 
       dispatch(resetProductForm());
@@ -144,7 +144,7 @@ const RedeemProductForm = ({ id } = {}) => {
       </div>
 
       <div className="col-12 col-md-6 col-lg-8 offset-lg-1">
-        <div className={`form-outline mb-4`}>
+        <div className="form-outline mb-4">
           <label htmlFor="c" className={styles.input_label}>
             Kategori
           </label>
@@ -165,7 +165,7 @@ const RedeemProductForm = ({ id } = {}) => {
           </select>
         </div>
 
-        <div className={`form-outline mb-4`}>
+        <div className="form-outline mb-4">
           <label htmlFor="name" className={styles.input_label}>
             Nama
           </label>

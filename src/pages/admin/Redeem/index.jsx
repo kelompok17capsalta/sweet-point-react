@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import cashout from "./cashout.png";
-import eMoney from "./e-money.png";
-import paket from "./paket.png";
-import pulsa from "./pulsa.png";
-import styles from "./style.module.css";
+import cashout from './cashout.png';
+import eMoney from './e-money.png';
+import paket from './paket.png';
+import pulsa from './pulsa.png';
+import styles from './style.module.css';
 
-import RedeemStatsCard from "../../../components/RedeemStatsCard";
-import ProductCategoryCard from "../../../components/ProductCategoryCard";
+import RedeemStatsCard from '../../../components/RedeemStatsCard';
+import ProductCategoryCard from '../../../components/ProductCategoryCard';
 
-const Redeem = () => {
-  return (
+const Redeem = () => (
   <div className={`container mt-5 ${styles.container}`}>
     <div className="d-flex justify-content-center flex-wrap gap-5">
       <RedeemStatsCard title="Total Redeem" value={85125} />
@@ -42,7 +41,6 @@ const Redeem = () => {
       />
     </div>
   </div>
-  );
-};
+);
 
 export default Redeem;

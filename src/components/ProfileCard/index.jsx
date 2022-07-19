@@ -1,18 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import style from "./style.module.css";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import style from './style.module.css';
 
-//icon png
-import icongear from "./icongear.png";
-import iconjournal from "./iconjournal.png";
-import iconlogout from "./iconlogout.png";
-import iconparkoutline from "./iconparkoutline.png";
-import iconquestion from "./iconquestion.png";
-import iconreceipt from "./iconreceipt.png";
+// icon png
+import icongear from './icongear.png';
+import iconjournal from './iconjournal.png';
+import iconlogout from './iconlogout.png';
+import iconparkoutline from './iconparkoutline.png';
+import iconquestion from './iconquestion.png';
+import iconreceipt from './iconreceipt.png';
 
 // Utils
-import MoneyFormatter from "../../utils/MoneyFormatter";
+import MoneyFormatter from '../../utils/MoneyFormatter';
 
 const ProfileCard = () => {
   const customer = useSelector((state) => state.customer.value);

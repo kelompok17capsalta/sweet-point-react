@@ -8,7 +8,7 @@ export default function Banner() {
         className="carousel slide"
         data-bs-ride="true"
       >
-        <div className="carousel-indicators" style={{ height: "10px" }}>
+        <div className="carousel-indicators" style={{ height: '10px' }}>
           <button
             type="button"
             data-bs-target="#carouselExampleIndicators"
@@ -16,19 +16,19 @@ export default function Banner() {
             className="active"
             aria-current="true"
             aria-label="Slide 1"
-          ></button>
+          />
           <button
             type="button"
             data-bs-target="#carouselExampleIndicators"
             data-bs-slide-to="1"
             aria-label="Slide 2"
-          ></button>
+          />
           <button
             type="button"
             data-bs-target="#carouselExampleIndicators"
             data-bs-slide-to="2"
             aria-label="Slide 3"
-          ></button>
+          />
         </div>
         <div className="carousel-inner center">
           <div className="carousel-item active">
@@ -62,7 +62,7 @@ export default function Banner() {
           <span
             className="carousel-control-prev-icon"
             aria-hidden="true"
-          ></span>
+          />
           <span className="visually-hidden">Previous</span>
         </button>
         <button
@@ -74,7 +74,7 @@ export default function Banner() {
           <span
             className="carousel-control-next-icon"
             aria-hidden="true"
-          ></span>
+          />
           <span className="visually-hidden">Next</span>
         </button>
       </div>

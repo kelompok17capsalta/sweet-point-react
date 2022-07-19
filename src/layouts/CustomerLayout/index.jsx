@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate, useLocation, Outlet } from "react-router-dom";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 
 // Components
-import Navbar from "../../components/CustomerNavbar";
-import Footer from "../../components/CustomerFooter";
+import Navbar from '../../components/CustomerNavbar';
+import Footer from '../../components/CustomerFooter';
 
 // Redux Action
-import { updateCustomer } from "../../services/redux/Customer";
+import { updateCustomer } from '../../services/redux/Customer';
 
 // Services
-import Customer from "../../services/api/Customer";
-import Token from "../../services/localStorage/Token";
+import Customer from '../../services/api/Customer';
+import Token from '../../services/localStorage/Token';
 
 // Utils
 import ErrorHandler from '../../utils/ErrorHandler';
@@ -50,7 +50,7 @@ const CustomerLayout = () => {
     <>
       {!pagesWithoutHeadAndFooter.includes(location.pathname) && (<Navbar />)}
 
-      <main style={{ minHeight: "85vh" }}>
+      <main style={{ minHeight: '85vh' }}>
         <Outlet />
       </main>
 
