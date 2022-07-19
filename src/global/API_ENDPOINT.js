@@ -6,6 +6,7 @@ const API_ENDPOINT = {
     SIGN_IN: `${CONFIG.API_BASE_URL}/v1/auth/login`,
     INFO: `${CONFIG.API_BASE_URL}/v1/auth/info`,
   },
+  SUMMARY: `${CONFIG.API_BASE_URL}/v1/admin/data`,
   USER: `${CONFIG.API_BASE_URL}/v1/user`,
   PRODUCT: `${CONFIG.API_BASE_URL}/v1/product`,
   TRANSACTION: {

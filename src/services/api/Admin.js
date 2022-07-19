@@ -54,6 +54,24 @@ const Admin = {
     return responseJSON.data;
   },
 
+  async getSummary() {
+    const token = Token.getAdminToken();
+
+    const response = await fetch(API_ENDPOINT.SUMMARY, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const responseJSON = await response.json();
+
+    if (response.status < 200 || response.status > 299) {
+      throw new APIError(responseJSON.message || responseJSON.error);
+    }
+
+    return responseJSON.data;
+  },
+
   async getCustomers() {
     const token = Token.getAdminToken();
 
