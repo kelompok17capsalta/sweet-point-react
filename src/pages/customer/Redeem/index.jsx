@@ -329,7 +329,7 @@ const Redem = () => {
                   <div>
                     <button
                       className={`btn btn-lg btn-primary ${style.btn__submit}`}
-                      type="button"
+                      type="submit"
                     >
                       Redeem Now
                     </button>
