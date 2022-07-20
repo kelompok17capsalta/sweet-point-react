@@ -151,7 +151,7 @@ const PengaturanAkun = () => {
                   />
                 </div>
                 <div className="card-body text-end me-3">
-                  <button className={`btn btn-lg ${style.btn_clr}`} type="button">Save</button>
+                  <button className={`btn btn-lg ${style.btn_clr}`} type="submit">Save</button>
                 </div>
               </form>
             </div>

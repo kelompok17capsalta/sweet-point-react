@@ -151,7 +151,7 @@ const AccountInformation = () => {
 
                     <div className="col-12 d-flex justify-content-end">
                       <button
-                        type="button"
+                        type="submit"
                         className={`btn btn-lg btn-primary mb-4 mt-lg-1 ${style.btn__submit}`}
                       >
                         Save
