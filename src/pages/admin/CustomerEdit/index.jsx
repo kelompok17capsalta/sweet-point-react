@@ -178,7 +178,6 @@ export default function CustomerEdit() {
                 placeholder="Password"
                 onChange={handleChange}
                 value={formValue.password}
-                required
               />
             </div>
 
